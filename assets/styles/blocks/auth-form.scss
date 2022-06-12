@@ -1,0 +1,40 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        margin-bottom: 20px;
+
+        color: var(--color-black);
+
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    &__input {
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__option {
+        margin: 20px 0 15px;
+    }
+
+    &__text {
+        margin: 15px 0;
+    }
+
+    &__btn {
+        align-self: flex-start;
+        display: display-block;
+        min-width: 100px;
+        height: 42px;
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+
+    &__link {
+        margin-top: 10px;
+    }
+}

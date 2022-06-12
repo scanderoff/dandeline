@@ -1,0 +1,31 @@
+.payment-methods {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        list-style: none;
+
+        &--2-cols {
+            margin: -8px -15px;
+        }
+
+        &--5-cols {
+            margin: -10px;
+        }
+    }
+
+    &__item {
+
+    }
+
+    &__list--2-cols &__item {
+        width: calc(100%*1/2 - 30px);
+        margin: 8px 15px;
+    }
+
+    &__list--5-cols &__item {
+        width: calc(100%*1/5 - 20px);
+        min-height: auto;
+        margin: 10px;
+    }
+}

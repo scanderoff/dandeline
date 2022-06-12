@@ -1,0 +1,102 @@
+{% load mptt_tags %}
+
+<aside class="sidebar sidebar--lg content__sidebar">
+    {% if categories %}
+        <section class="sidebar-section sidebar__section">
+            <div class="sidebar-section__title">
+                Категории товаров
+            </div>
+
+            <div class="category-nav">
+                <ul class="category-nav__list">
+                    {% recursetree categories %}
+                        <li class="category-nav__item">
+                            <a class="category-nav__link" href="{{ node.get_absolute_url }}">
+                                {{ node.name }}
+                            </a>
+
+                            {% if not node.is_leaf_node %}
+                                <button class="category-nav__btn" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" fill="none" viewBox="0 0 11 6">
+                                        <path stroke="#2E2E2E" stroke-linecap="round" stroke-linejoin="round" d="m1 1 4.456 4.386L9.914 1" />
+                                    </svg>
+                                </button>
+
+                                <div class="category-nav category-nav--sub">
+                                    <ul class="category-nav__list">
+                                        {{ children }}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endrecursetree %}
+                </ul>
+            </div>
+        </section>
+    {% endif %}
+
+    <form class="product-filter" action="/" method="GET">
+        {% if sizes %}
+            <section class="sidebar-section sidebar__section">
+                <div class="sidebar-section__title">
+                    Размер
+                </div>
+
+                <div class="sizes sizes--sm product-info__sizes">
+                    <div class="sizes__list">
+                        {% for size in sizes %}
+                            <label class="size sizes__item">
+                                <input class="size__field" type="checkbox" name="size" value="{{ size.id }}">
+                                <span class="size__inner">
+                                    {{ size.value }}
+                                </span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        <section class="sidebar-section sidebar__section">
+            <div class="sidebar-section__title">
+                Фильтр по цене:
+            </div>
+
+            <div class="price-filter">
+                <div class="price-filter__inputs">
+                    <div class="price-input price-filter__input">
+                        <input class="price-input__field" type="text" name="price_from">
+                        <div class="price-input__label">
+                            от
+                        </div>
+                        <div class="price-input__currency">
+                            ₽
+                        </div>
+                    </div>
+
+                    <div class="price-input price-filter__input">
+                        <input class="price-input__field" type="text" name="price_to">
+                        <div class="price-input__label">
+                            до
+                        </div>
+                        <div class="price-input__currency">
+                            ₽
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-filter__slider"></div>
+            </div>
+        </section>
+
+        <div class="product-filter__btns">
+            <button class="btn btn--gray product-filter__btn" type="submit">
+                Применить
+            </button>
+
+            <button class="btn btn--gray product-filter__btn" type="submit">
+                Сбросить
+            </button>
+        </div>
+    </form>
+</aside>

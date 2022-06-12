@@ -1,0 +1,9 @@
+.auth {
+    display: flex;
+    margin: 0 -15px;
+
+    &__form {
+        width: calc(100%*1/2 - 30px);
+        margin: 0 15px;
+    }
+}

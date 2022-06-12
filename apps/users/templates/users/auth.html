@@ -1,0 +1,101 @@
+{% extends 'content.html' %}
+
+{% block title %}
+    Личный кабинет – {{ block.super }}
+{% endblock %}
+
+
+{% block heading %}
+    Личный кабинет
+{% endblock %}
+
+{% block inner %}
+    <div class="auth">
+        <form class="auth-form auth__form" action="{% url 'users:login' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="auth-form__title">
+                Авторизация
+            </div>
+
+            <div class="auth-form__inputs">
+                <label class="input input--1 auth-form__input">
+                    <div class="input__label">
+                        {{ login_form.phone.label }}
+                    </div>
+                    {{ login_form.phone }}
+                </label>
+
+                <label class="input input--1 auth-form__input">
+                    <div class="input__label">
+                        {{ login_form.password.label }}
+                    </div>
+                    {{ login_form.password }}
+                </label>
+            </div>
+
+            <label class="option option--1 auth-form__option">
+                <input class="hidden option__hidden" type="checkbox">
+
+                <span class="option__field">
+                    <svg class="option__value" xmlns="http://www.w3.org/2000/svg" width="10" height="11" fill="none" viewBox="0 0 10 11">
+                        <path stroke="#888" d="m1.041 6.346 2.18 2.913 5.82-8.002" />
+                    </svg>
+                </span>
+
+                <span class="option__text">
+                    Запомнить меня
+                </span>
+            </label>
+
+            <button class="btn btn--gray auth-form__btn" type="submit">
+                Войти
+            </button>
+
+            <a class="link auth-form__link" href="#">
+                Забыли свой пароль?
+            </a>
+        </form>
+
+        {% comment %} <form class="auth-form auth__form" action="/" method="POST">
+            {% csrf_token %}
+
+            <div class="auth-form__title">
+                Регистрация
+            </div>
+
+            <div class="auth-form__inputs">
+                <label class="input input--1 auth-form__input">
+                    <div class="input__label">
+                        Телефон
+                    </div>
+                    <input class="input__field" type="tel">
+                </label>
+
+                <label class="input input--1 auth-form__input">
+                    <div class="input__label">
+                        Пароль
+                    </div>
+                    <input class="input__field" type="password">
+                </label>
+
+                <label class="input input--1 auth-form__input">
+                    <div class="input__label">
+                        Повторите пароль
+                    </div>
+                    <input class="input__field" type="password">
+                </label>
+            </div>
+
+            <div class="auth-form__text">
+                Ваши личные данные будут использоваться для упрощения вашей работы с сайтом,
+                управления доступом к вашей учётной записи и для других целей, описанных в
+                нашей <a class="link" href="#">политика конфиденциальности</a>.
+            </div>
+
+            <a class="btn btn--gray auth-form__btn" href="{% url 'orders:checkout' %}">
+                Регистрация
+            </a>
+        </form> {% endcomment %}
+    </div>
+{% endblock %}

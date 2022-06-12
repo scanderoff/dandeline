@@ -1,0 +1,45 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease;
+    transition-delay: 0.3s;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    &__window {
+        margin: auto;
+        transform: translateY(-100px);
+
+        transition: transform 0.3s ease;
+        transition-delay: 0s;
+    }
+
+    &.active &__window {
+        transform: translateY(0);
+        transition-delay: 0.3s;
+    }
+
+    &__closer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        border: none;
+
+        background-image: none;
+        cursor: pointer;
+    }
+}

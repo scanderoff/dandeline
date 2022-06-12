@@ -1,0 +1,13 @@
+.hero-slide {
+    height: 640px;
+
+    &__link {
+        height: 100%;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

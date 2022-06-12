@@ -1,0 +1,15 @@
+.return-details {
+    &__title {
+        margin-bottom: 17px;
+
+        color: var(--color-black);
+
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 30px;
+    }
+
+    &__list {
+        margin-left: 30px;
+    }
+}

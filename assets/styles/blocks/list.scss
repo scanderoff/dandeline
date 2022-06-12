@@ -1,0 +1,28 @@
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        position: relative;
+        padding-left: 24px;
+
+        color: var(--color-black);
+
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 24px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+            background-color: var(--color-black);
+        }
+    }
+}

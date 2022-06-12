@@ -1,0 +1,23 @@
+.message {
+    position: relative;
+    padding: 14px 14px 14px 49px;
+    border: 1px solid #e5e5e5;
+    border-top: 2px solid #a1a1a1;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 14px;
+        content: "i";
+        width: 21px;
+        height: 21px;
+        padding-top: 14px;
+
+        background-color: #a1a1a1;
+        color: var(--color-white);
+
+        font-family: Times, Georgia, serif;
+        font-style: italic;
+        text-align: center;
+    }
+}

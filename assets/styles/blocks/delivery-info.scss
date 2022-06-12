@@ -1,0 +1,53 @@
+.delivery-info {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+
+    color: var(--color-black);
+
+    &__title {
+        position: absolute;
+        top: -11px;
+        left: 60px;
+        padding: 0 9px;
+
+        background-color: var(--color-white);
+
+        line-height: 17px;
+
+        span {
+            border-bottom: 1px solid var(--color-gold);
+
+            color: var(--color-gold);
+        }
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+            margin-right: 70px;
+        }
+
+        svg {
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        div {
+            font-size: 12px;
+            line-height: 19px;
+
+            span {
+                border-bottom: 1px solid var(--color-gold);
+
+                color: var(--color-gold);
+            }
+        }
+    }
+}

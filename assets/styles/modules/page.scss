@@ -1,0 +1,29 @@
+.page {
+    overflow-x: hidden;
+
+    &.locked {
+        padding-right: var(--scrollbar-width);
+        overflow-y: hidden;
+
+        .fixed {
+            padding-right: var(--scrollbar-width);
+
+            @media (max-width: 1200px) {
+                padding-right: 0;
+            }
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+
+        text-rendering: optimizeSpeed;
+    }
+
+    &__main {
+        flex-grow: 1;
+    }
+}

@@ -1,0 +1,9 @@
+<div class="messages content__messages">
+    <ul class="messages__list">
+        {% for message in messages %}
+            <li class="message messages__item">
+                {{ message|safe }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

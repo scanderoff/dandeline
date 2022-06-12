@@ -1,0 +1,24 @@
+.delivery-method {
+    display: flex;
+    flex-direction: column;
+
+    &__content {
+        flex-grow: 1;
+        margin: 19px 0 40px;
+    }
+
+    &__title {
+        margin-bottom: 15px;
+        color: #2E2E2E;
+
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 23px;
+    }
+
+    &__descr {
+        color: #2E2E2E;
+
+        line-height: 22px;
+    }
+}

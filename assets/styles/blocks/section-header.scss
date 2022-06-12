@@ -1,0 +1,22 @@
+.section-header {
+    text-align: center;
+
+    &__title {
+        margin: 0;
+
+        color: #000000;
+
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 38px;
+    }
+
+    &__subtitle {
+        margin-top: 11px;
+
+        color: var(--color-gray);
+
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
