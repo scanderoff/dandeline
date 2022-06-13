@@ -8,6 +8,7 @@ from . import views
 app_name = UsersConfig.name
 
 urlpatterns: list[URLPattern] = [
-    # path("", views.sign_in, name="login"),
-    path("", auth_views.LoginView.as_view(), name="login"),
+    path("", views.auth, name="auth"),
+    path("login/", views.user_login, name="login"),
+    path("register/", views.user_register, name="register"),
 ]

@@ -35,6 +35,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +48,6 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'adminsortable2',
 
-    'users.apps.UsersConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'coupons.apps.CouponsConfig',
@@ -195,3 +196,10 @@ EMAIL_USE_TLS = True
 # Cart
 
 CART_SESSION_ID = 'cart'
+
+
+#
+
+# AUTHENTICATION_BACKENDS = [
+#     'users.authentication.PhoneAuthBackend',
+# ]

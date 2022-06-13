@@ -57,7 +57,7 @@
             </a>
         </form>
 
-        {% comment %} <form class="auth-form auth__form" action="/" method="POST">
+        <form class="auth-form auth__form" action="{% url 'users:register' %}" method="POST">
             {% csrf_token %}
 
             <div class="auth-form__title">
@@ -67,23 +67,23 @@
             <div class="auth-form__inputs">
                 <label class="input input--1 auth-form__input">
                     <div class="input__label">
-                        Телефон
+                        {{ register_form.phone.label }}
                     </div>
-                    <input class="input__field" type="tel">
+                    {{ register_form.phone }}
                 </label>
 
                 <label class="input input--1 auth-form__input">
                     <div class="input__label">
-                        Пароль
+                        {{ register_form.password1.label }}
                     </div>
-                    <input class="input__field" type="password">
+                    {{ register_form.password1 }}
                 </label>
 
                 <label class="input input--1 auth-form__input">
                     <div class="input__label">
-                        Повторите пароль
+                        {{ register_form.password2.label }}
                     </div>
-                    <input class="input__field" type="password">
+                    {{ register_form.password2 }}
                 </label>
             </div>
 
@@ -93,9 +93,9 @@
                 нашей <a class="link" href="#">политика конфиденциальности</a>.
             </div>
 
-            <a class="btn btn--gray auth-form__btn" href="{% url 'orders:checkout' %}">
+            <button class="btn btn--gray auth-form__btn" type="submit">
                 Регистрация
-            </a>
-        </form> {% endcomment %}
+            </button>
+        </form>
     </div>
 {% endblock %}
