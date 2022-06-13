@@ -5,13 +5,21 @@ from django.contrib.auth import get_user_model
 from django.db.models import Model
 
 
-class LoginForm(forms.Form):
+class FormCleanMixin:
+    def clean_phone(self) -> str:
+        phone: str = self.cleaned_data["phone"]
+        unmasked: str = "".join(ch for ch in phone if ch.isdigit())
+
+        return unmasked
+
+
+class LoginForm(forms.Form, FormCleanMixin):
     phone = forms.CharField(
         label="Логин (номер телефона в формате +79999999999)",
         widget=forms.TextInput(attrs={
             "type": "tel",
             "class": "input__field",
-            "autofocus": True,
+            "data-phone-field": "",
         })
     )
     password = forms.CharField(
@@ -23,7 +31,7 @@ class LoginForm(forms.Form):
         super().__init__(*args, auto_id=False, **kwargs)
 
 
-class RegistrationForm(forms.ModelForm):
+class RegisterForm(forms.ModelForm, FormCleanMixin):
     password1 = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={"class": "input__field"})
@@ -36,11 +44,22 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model: type[Model] = get_user_model()
         fields: Sequence[str] = ("phone",)
-        widgets: dict[str, type | forms.Widget] = {
-            "phone": forms.TextInput(attrs={"class": "input__field", "type": "tel"}),
+        widgets: dict[str, type[forms.Widget] | forms.Widget] = {
+            "phone": forms.TextInput(attrs={
+                "class": "input__field",
+                "type": "tel",
+                "data-phone-field": "",
+            }),
         }
+
         labels: dict[str, str] = {
             "phone": "Телефон",
+        }
+
+        error_messages: dict[str, dict[str, str]] = {
+            "phone": {
+                "unique": "Пользователь с таким номером уже зарегистрирован",
+            },
         }
 
     def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:
@@ -53,3 +72,80 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Пароли не совпадают.")
 
         return cd["password2"]
+
+
+class EditForm(forms.ModelForm, FormCleanMixin):
+    current_password = forms.CharField(
+        label="Сменить пароль",
+        widget=forms.PasswordInput(attrs={
+            "class": "input__field",
+            "placeholder": "Введите текущий пароль",
+        }),
+        required=False,
+    )
+    new_password1 = forms.CharField(
+        label="",
+        widget=forms.PasswordInput(attrs={
+            "class": "input__field",
+            "placeholder": "Введите новый пароль",
+        }),
+        required=False,
+    )
+    new_password2 = forms.CharField(
+        label="",
+        widget=forms.PasswordInput(attrs={
+            "class": "input__field",
+            "placeholder": "Подтвердите новый пароль",
+        }),
+        required=False,
+    )
+
+    class Meta:
+        model: type[Model] = get_user_model()
+
+        fields: Sequence[str] = (
+            "first_name",
+            "last_name",
+            "phone",
+            "birthdate",
+            "zip_code",
+            "city",
+            "address1",
+            "address2",
+            "gender",
+        )
+
+        widgets: dict[str, type[forms.Widget] | forms.Widget] = {
+            "first_name": forms.TextInput(attrs={"class": "input__field"}),
+            "last_name": forms.TextInput(attrs={"class": "input__field"}),
+            "phone": forms.TextInput(attrs={
+                "type": "tel",
+                "class": "input__field",
+                "data-phone-field": "",
+            }),
+            "birthdate": forms.TextInput(attrs={"class": "input__field"}),
+            "zip_code": forms.TextInput(attrs={"class": "input__field"}),
+            "city": forms.TextInput(attrs={"class": "input__field"}),
+            "address1": forms.TextInput(
+                attrs={
+                    "class": "input__field",
+                    "placeholder": "Название улицы и номер дома"
+                }
+            ),
+            "address2": forms.TextInput(
+                attrs={"class": "input__field", "placeholder": "Квартира"}
+            ),
+            "gender": forms.RadioSelect,
+        }
+
+        labels: dict[str, str] = {
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "phone": "Телефон",
+            "birthdate": "Дата рождения",
+            "zip_code": "Индекс",
+            "city": "Город/населённый пункт",
+            "address1": "Улица, дом",
+            "address2": "",
+            "gender": "Пол",
+        }

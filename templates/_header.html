@@ -25,11 +25,11 @@
 
             <div class="header__auth">
                 {% if user.is_authenticated %}
-                    <a class="link" href="#">
+                    <a class="link" href="{% url 'users:logout' %}?next={{ request.path }}">
                         Выход
                     </a>
                 {% else %}
-                    <a class="link" href="#">
+                    <a class="link" href="{% url 'users:auth' %}?next={{ request.path }}">
                         Вход
                     </a>
                 {% endif %}
@@ -107,7 +107,7 @@
             </nav>
 
             <div class="header__actions">
-                <a class="header__action" href="#">
+                <a class="header__action" href="{% url 'users:edit' %}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17">
                         <path stroke="none" d="m6.774 9.049.206.721.145-1.384-.35.663Zm4.224 0-.341-.668.135 1.389.206-.721ZM16.386 16v.75h.75V16h-.75Zm-14.25 0c0-2.932 2.027-5.426 4.844-6.23l-.41-1.442C3.159 9.3.636 12.346.636 16h1.5Zm4.99-7.614c-1.16-.614-1.93-1.784-1.93-3.1h-1.5c0 1.924 1.125 3.576 2.727 4.425l.702-1.325Zm-1.93-3.1c0-1.94 1.615-3.536 3.69-3.536V.25c-2.853 0-5.19 2.219-5.19 5.036h1.5Zm3.69-3.536c2.075 0 3.69 1.597 3.69 3.536h1.5c0-2.817-2.337-5.036-5.19-5.036v1.5Zm3.69 3.536c0 1.323-.775 2.51-1.92 3.095l.683 1.336c1.618-.827 2.738-2.514 2.738-4.431h-1.5ZM10.793 9.77c2.818.804 4.844 3.298 4.844 6.23h1.5c0-3.654-2.522-6.7-5.932-7.672l-.412 1.442Zm5.594 5.48H6.18v1.5h10.207v-1.5ZM.636 16v.77h1.5V16h-1.5Z" />
                     </svg>

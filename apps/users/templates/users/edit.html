@@ -1,0 +1,170 @@
+{% extends 'content.html' %}
+
+{% block title %}
+    Личный кабинет – {{ block.super }}
+{% endblock %}
+
+{% block heading %}
+    Личный кабинет
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'users/_sidebar.html' with section=section %}
+{% endblock %}
+
+{% block inner %}
+    <form class="account-form" action="{% url 'users:edit' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="account-form__inputs account-form__inputs--2-cols">
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.first_name.label }}*
+                </div>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <div class="input__message">
+                        *{{ form.first_name.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.last_name.label }}*
+                </div>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <div class="input__message">
+                        *{{ form.last_name.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.phone.label }}*
+                </div>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                    <div class="input__message">
+                        *{{ form.phone.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.birthdate.label }}
+                </div>
+                {{ form.birthdate }}
+                {% if form.birthdate.errors %}
+                    <div class="input__message">
+                        *{{ form.birthdate.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.zip_code.label }}*
+                </div>
+                {{ form.zip_code }}
+                {% if form.zip_code.errors %}
+                    <div class="input__message">
+                        *{{ form.zip_code.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.city.label }}*
+                </div>
+                {{ form.city }}
+                {% if form.city.errors %}
+                    <div class="input__message">
+                        *{{ form.city.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.address1.label }}*
+                </div>
+                {{ form.address1 }}
+                {% if form.address1.errors %}
+                    <div class="input__message">
+                        *{{ form.address1.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    &nbsp;
+                </div>
+                {{ form.address2 }}
+                {% if form.address2.errors %}
+                    <div class="input__message">
+                        *{{ form.address2.errors.0 }}
+                    </div>
+                {% endif %}
+            </label>
+        </div>
+
+        <div class="options account-form__options">
+            <div class="options__title">
+                {{ form.gender.label }}
+            </div>
+
+            <div class="options__list">
+                {% for choice in form.gender.field.choices %}
+                    {% if choice.0 %}
+                        <label class="option option--2 account-form__option">
+                            <input class="hidden option__hidden" type="radio" name="{{ form.gender.name }}" value="{{ choice.0 }}" {% if choice.0 == form.gender.value %}checked{% endif %}>
+
+                            <span class="option__field">
+                                <svg class="option__value" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 13 13">
+                                    <path fill="#AF996B" d="M0 0h13v13H0z" />
+                                </svg>
+                            </span>
+
+                            <span class="option__text">
+                                {{ choice.1 }}
+                            </span>
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="account-form__inputs account-form__inputs--3-cols">
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    {{ form.current_password.label }}
+                </div>
+                {{ form.current_password }}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    &nbsp;
+                </div>
+                {{ form.new_password1 }}
+            </label>
+
+            <label class="input input--1 account-form__input">
+                <div class="input__label">
+                    &nbsp;
+                </div>
+                {{ form.new_password2 }}
+            </label>
+        </div>
+
+        <button class="btn btn--gold account-form__btn" type="submit">
+            Сохранить изменения
+        </button>
+    </form>
+{% endblock %}

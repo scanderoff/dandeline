@@ -3,12 +3,12 @@
 
 import Swiper, {Navigation, Thumbs, Autoplay} from "swiper";
 import noUiSlider from "nouislider";
-// import IMask from "imask";
 
 import Page from "./modules/page.js";
 
 import initMap from "./blocks/map.js";
 import initStories from "./blocks/stories.js";
+import initPhoneFields from "./blocks/phone-field.js";
 // import QtyInput from "./blocks/qty-input.js";
 import Popup from "./blocks/popup.js";
 // import Cart from "./blocks/cart.js";
@@ -59,12 +59,11 @@ window.addEventListener("load", () => {
     });
 
 
+
+
     ymaps.ready(initMap);
-
-
     initStories();
-
-
+    initPhoneFields("[data-phone-field]");
 
 
 
@@ -115,7 +114,7 @@ window.addEventListener("load", () => {
             range: {
                 "min": 0,
                 "max": 100,
-            }
+            },
         });
     }
 

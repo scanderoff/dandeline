@@ -203,3 +203,5 @@ CART_SESSION_ID = 'cart'
 # AUTHENTICATION_BACKENDS = [
 #     'users.authentication.PhoneAuthBackend',
 # ]
+
+LOGIN_URL = 'users:auth'

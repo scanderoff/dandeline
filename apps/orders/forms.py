@@ -2,7 +2,6 @@ from typing import Any
 
 from django import forms
 from django.conf import settings
-from django.forms import Widget
 # from django.utils.translation import gettext as _
 from django.db.models import Model
 
@@ -21,7 +20,7 @@ class OrderCreateForm(forms.ModelForm):
             "created_at",
         ]
 
-        widgets: dict[str, type | Widget] = {
+        widgets: dict[str, type | forms.Widget] = {
             "first_name": forms.TextInput(attrs={"class": "input__field"}),
             "last_name": forms.TextInput(attrs={"class": "input__field"}),
             "phone": forms.TextInput(attrs={"type": "tel", "class": "input__field"}),
@@ -32,7 +31,13 @@ class OrderCreateForm(forms.ModelForm):
             "address_2": forms.TextInput(attrs={"class": "input__field", "placeholder": "Квартира"}),
             "shipping_method": forms.RadioSelect,
             "payment_method": forms.RadioSelect,
-            "note": forms.Textarea(attrs={"class": "input__field", "placeholder": "Оставьте комментарий к заказу, например особые пожелания отделу доставки", "rows": 0, "cols": 0}),
+            "note": forms.Textarea(attrs={
+                "class": "input__field",
+                "placeholder": ("Оставьте комментарий к заказу,"
+                                "например особые пожелания отделу доставки"),
+                "rows": 0,
+                "cols": 0
+            }),
         }
 
         labels: dict[str, str] = {

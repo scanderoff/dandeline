@@ -13,6 +13,7 @@
     <div class="auth">
         <form class="auth-form auth__form" action="{% url 'users:login' %}" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
 
             <div class="auth-form__title">
                 Авторизация
@@ -59,6 +60,7 @@
 
         <form class="auth-form auth__form" action="{% url 'users:register' %}" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
 
             <div class="auth-form__title">
                 Регистрация
@@ -70,6 +72,11 @@
                         {{ register_form.phone.label }}
                     </div>
                     {{ register_form.phone }}
+                    {% if register_form.phone.errors %}
+                        <div class="input__message">
+                            *{{ register_form.phone.errors.0 }}
+                        </div>
+                    {% endif %}
                 </label>
 
                 <label class="input input--1 auth-form__input">
@@ -84,6 +91,11 @@
                         {{ register_form.password2.label }}
                     </div>
                     {{ register_form.password2 }}
+                    {% if register_form.password2.errors %}
+                        <div class="input__message">
+                            *{{ register_form.password2.errors.0 }}
+                        </div>
+                    {% endif %}
                 </label>
             </div>
 
