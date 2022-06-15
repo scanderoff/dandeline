@@ -1,0 +1,92 @@
+{% extends 'content.html' %}
+
+{% block title %}
+    Заказ №{{ order.id }} – {{ block.super }}
+{% endblock %}
+
+{% block heading %}
+    Заказ №{{ order.id }}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'users/_sidebar.html' with section=section %}
+{% endblock %}
+
+{% block inner %}
+    <table class="cart" style="margin-top: 50px">
+        <thead class="cart__head">
+            <tr>
+                <th class="cart__col">
+                    Товаров: {{ items|length }}
+                </th>
+                <th class="cart__col">
+                    Размер
+                </th>
+                <th class="cart__col">
+                    Количество
+                </th>
+                <th class="cart__col">
+                    Стоимость
+                </th>
+                <th class="cart__col">
+                    Итого
+                </th>
+                <th class="cart__col"></th>
+            </tr>
+        </thead>
+
+        <tbody class="cart__body">
+            {% for item in items %}
+                {% with product=item.product %}
+                    <tr class="cart__row">
+                        <td class="cart__col">
+                            <a class="cart-product" href="{{ product.get_absolute_url }}">
+                                <img class="cart-product__image" src="{{ product.thumbnail_url }}" alt="{{ product.name }}">
+
+                                <div class="cart-product__content">
+                                    <div class="cart-product__title">
+                                        {{ product.name }}
+                                    </div>
+                                    <div class="cart-product__param">
+                                        Артикул: {{ product.sku }}
+                                    </div>
+                                </div>
+                            </a>
+                        </td>
+                        <td class="cart__col">
+                            48
+                        </td>
+                        <td class="cart__col">
+                            {{ item.quantity }}
+                        </td>
+                        <td class="cart__col">
+                            {{ product.price }} ₽
+                        </td>
+                        <td class="cart__col cart__col--bold">
+                            {{ item.total_price }} ₽
+                        </td>
+                        <td class="cart__col">
+                        </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+        </tbody>
+
+        <tfoot class="cart__foot">
+            <tr class="cart__row">
+                <td class="cart__col" style="vertical-align: top;">
+                </td>
+                <td class="cart__col"></td>
+                <td class="cart__col"></td>
+                <td class="cart__col"></td>
+                <td class="cart__col" colspan="2" style="width: 1%; white-space: nowrap;">
+                    <div class="cart-total cart__total">
+                        <div class="cart-total__label">Итого</div>
+                        <div class="cart-total__price">{{ order.total_price }} ₽</div>
+                    </div>
+                </td>
+                <td class="cart__col"></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

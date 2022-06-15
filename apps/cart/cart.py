@@ -19,7 +19,7 @@ class Cart:
         if self.__coupon is not None:
             return self.__coupon
 
-        coupon_id: str = self.session.get("coupon_id")
+        coupon_id: str | None = self.session.get("coupon_id")
 
         if coupon_id is None:
             return None
@@ -43,7 +43,7 @@ class Cart:
         return self.total_price - self.discount
 
     @property
-    def products(self) -> QuerySet:
+    def products(self) -> QuerySet[Product]:
         if self.__products is not None:
             return self.__products
 
@@ -52,23 +52,23 @@ class Cart:
 
         return self.__products
 
-    def __init__(self, request: HttpRequest):
+    def __init__(self, request: HttpRequest) -> None:
         self.session = request.session
         cart: dict[str, Any] | None = self.session.get(settings.CART_SESSION_ID)
 
-        if not cart:
-            cart: dict[str, Any]
+        if cart is None:
             cart = self.session[settings.CART_SESSION_ID] = {}
 
         self.cart = cart
         self.__products = None
         self.__coupon = None
 
-    def add(self, product: Product, quantity: int = 1, override_quantity: bool = False) -> None:
-        product_id: str = str(product.id)
+    def add(self, product_id: int, quantity: int = 1, override_qty: bool = False) -> None:
+        product_id = str(product_id)
+        item: dict[str, Any] | None = self.cart.get(product_id)
 
-        if product_id not in self.cart:
-            self.cart[product_id] = {
+        if item is None:
+            item = self.cart[product_id] = {
                 "quantity": 0,
                 # TODO
                 # "variations": {
@@ -77,18 +77,21 @@ class Cart:
                 # }
             }
 
-        if override_quantity:
-            self.cart[product_id]["quantity"] = quantity
+        if override_qty:
+            item["quantity"] = quantity
         else:
-            self.cart[product_id]["quantity"] += quantity
+            item["quantity"] += quantity
+
+        if item["quantity"] < 1:
+            self.remove(product_id)
 
         self.save()
 
     def save(self) -> None:
         self.session.modified = True
 
-    def remove(self, product: Product) -> None:
-        product_id: str = str(product.id)
+    def remove(self, product_id: int) -> None:
+        product_id = str(product_id)
 
         if product_id in self.cart:
             del self.cart[product_id]
@@ -99,12 +102,13 @@ class Cart:
         self.save()
 
     def __iter__(self) -> dict[str, Any]:
+        # ???
         cart: dict[str, Any] = self.cart.copy()
 
         for product in self.products:
-            product_id: str = str(product.id)
+            product_id = str(product.id)
 
-            item: Any = cart[product_id]
+            item: dict[str, Any] = cart[product_id]
             item["product"] = product
             item["total_price"] = item["quantity"] * product.price
 

@@ -35,7 +35,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mptt',
+    'easy_thumbnails',
+    'adminsortable2',
+
+
     'users.apps.UsersConfig',
+    'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
+    'bookmark.apps.BookmarkConfig',
+    'coupons.apps.CouponsConfig',
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,16 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'mptt',
-    'easy_thumbnails',
-    'adminsortable2',
-
-    'shop.apps.ShopConfig',
-    'cart.apps.CartConfig',
-    'coupons.apps.CouponsConfig',
-    'orders.apps.OrdersConfig',
-    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -196,6 +198,11 @@ EMAIL_USE_TLS = True
 # Cart
 
 CART_SESSION_ID = 'cart'
+
+
+# Bookmark
+
+BOOKMARK_SESSION_ID = 'bookmark'
 
 
 #

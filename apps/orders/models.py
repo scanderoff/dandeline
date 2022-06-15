@@ -33,7 +33,7 @@ class Order(models.Model):
     #     M12: tuple[str, str] = ("m12", "12 мес.")
 
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")
     coupon = models.ForeignKey(Coupon, related_name="orders", null=True, blank=True, on_delete=models.SET_NULL)
     discount = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     transaction_id = models.CharField(max_length=150, blank=True)
@@ -75,14 +75,3 @@ class OrderItem(models.Model):
 
     def __str__(self) -> str:
         return f"{self.product.name} ({self.quantity})"
-
-    # def add_product(self) -> None:
-    #     self.quantity += 1
-    #     self.save()
-
-    # def remove_product(self) -> None:
-    #     self.quantity -= 1
-    #     self.save()
-
-    #     if self.quantity < 1:
-    #         self.delete()

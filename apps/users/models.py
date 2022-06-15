@@ -56,14 +56,3 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.full_name} ({self.phone})"
-
-    def change_password(self, current_password: str, new_password1: str,
-                        new_password2: str) -> None:
-
-        if new_password1 != new_password2:
-            raise Exception("Passwords don't match")
-
-        if not check_password(current_password, self.password):
-            raise Exception("Wrong password")
-
-        self.set_password(new_password1)

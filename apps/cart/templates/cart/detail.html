@@ -1,5 +1,4 @@
 {% extends 'content.html' %}
-{% load static %}
 
 {% block title %}
     Корзина – {{ block.super }}
@@ -97,9 +96,13 @@
             <tfoot class="cart__foot">
                 <tr class="cart__row">
                     <td class="cart__col" style="vertical-align: top;">
-                        <button class="cart__clear-btn" type="button">
-                            Очистить корзину
-                        </button>
+                        <form action="{% url 'cart:clear' %}" method="POST">
+                            {% csrf_token %}
+
+                            <button class="cart__clear-btn" type="submit">
+                                Очистить корзину
+                            </button>
+                        </form>
                     </td>
                     <td class="cart__col"></td>
                     <td class="cart__col"></td>

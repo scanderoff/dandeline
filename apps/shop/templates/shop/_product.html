@@ -2,23 +2,27 @@
 
 <li class="product {{ class }}">
     <div class="product__inner">
-        <a class="product-preview" href="{{ product.get_absolute_url }}">
-            <div class="product-preview__actions">
-                <button class="product-preview__action" type="button">
+        <div class="product-preview">
+            <form class="product-preview__actions" action="{% url 'bookmark:update' product_id=product.id %}" method="POST">
+                {% csrf_token %}
+
+                <button class="product-preview__action {% if product in bookmark %}active{% endif %}" type="submit" name="action" value="{% if product in bookmark %}remove{% else %}add{% endif %}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" fill="none" viewBox="0 0 19 17">
                         <path stroke-miterlimit="10" stroke-width="1.5" d="M9.28 5.155a4.147 4.147 0 1 1 8.29 0v.225c-.2 5.733-8.29 10.338-8.29 10.338S1.209 11.113 1 5.382v-.225a4.147 4.147 0 0 1 6.594-3.344" />
                     </svg>
                 </button>
 
-                <button class="product-preview__action" type="button">
+                <button class="product-preview__action" type="submit" style="display: none;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" viewBox="0 0 19 16">
                         <path stroke-miterlimit="10" stroke-width="1.5" d="M9.965 3.722V1.379c0-.086.025-.17.073-.243a.487.487 0 0 1 .197-.172.527.527 0 0 1 .518.035l7.039 4.663c.064.043.117.1.153.166a.443.443 0 0 1 0 .426.477.477 0 0 1-.153.166l-7.039 4.664a.52.52 0 0 1-.715-.136.445.445 0 0 1-.073-.243V8.386a9.138 9.138 0 0 0-4.96 1.789c-1.417 1.061-2.448 2.507-2.951 4.14l-.074.249a.469.469 0 0 1-.206.27.525.525 0 0 1-.657-.087.449.449 0 0 1-.117-.314V12.57c0-3.399 2.055-6.357 5.062-7.843" />
                     </svg>
                 </button>
-            </div>
+            </form>
 
-            <img class="product-preview__image" src="{{ product.thumbnail_url }}" alt="{{ product.name }}">
-        </a>
+            <a href="{{ product.get_absolute_url }}">
+                <img class="product-preview__image" src="{{ product.thumbnail_url }}" alt="{{ product.name }}">
+            </a>
+        </div>
 
         <div class="product__body">
             <a class="product__title product__title--sm" href="product.html">

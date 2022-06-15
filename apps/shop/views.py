@@ -1,10 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpRequest, HttpResponse
 from django.db.models import QuerySet
-# from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.contrib import messages
 
+from bookmark.bookmark import Bookmark
 from .models import *
 from .recommender import Recommender
 
@@ -36,6 +34,7 @@ def catalog(request: HttpRequest, path: str = "") -> HttpResponse:
         "category": category,
         "products": products,
         "sizes": sizes,
+        "bookmark": Bookmark(request),
     })
 
 
@@ -48,7 +47,7 @@ def product(request: HttpRequest, slug: str) -> HttpResponse:
             .all()
     )
 
-    r: Recommender = Recommender()
+    r = Recommender()
     recommended_products: list[Product] = r.suggest_products_for([product], 4)
 
     return render(request, "shop/product.html", {

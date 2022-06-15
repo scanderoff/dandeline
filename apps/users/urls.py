@@ -14,4 +14,6 @@ urlpatterns: list[URLPattern] = [
     path("register/", views.user_register, name="register"),
 
     path("edit/", views.user_edit, name="edit"),
+    path("orders/", views.user_orders, name="orders"),
+    path("order/<int:order_id>", views.user_order, name="order"),
 ]

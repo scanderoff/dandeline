@@ -1,0 +1,43 @@
+{% extends 'content.html' %}
+
+{% block title %}
+    Заказы – {{ block.super }}
+{% endblock %}
+
+{% block heading %}
+    Заказы
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'users/_sidebar.html' with section=section %}
+{% endblock %}
+
+{% block inner %}
+    <table class="orders">
+        <thead class="orders__head">
+            <tr>
+                <th class="orders__header">Заказ</th>
+                <th class="orders__header">Дата</th>
+                <th class="orders__header">Статус</th>
+                <th class="orders__header">Итого</th>
+                <th class="orders__header">Действия</th>
+                <th class="orders__header"></th>
+            </tr>
+        </thead>
+        <tbody class="orders__body">
+            {% for order in orders %}
+                <tr class="orders__row">
+                    <td class="orders__data">№ {{ order.id }}</td>
+                    <td class="orders__data">{{ order.created_at|date:'d.m.Y' }}</td>
+                    <td class="orders__data">{% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}</td>
+                    <td class="orders__data">{{ order.total_price }} ₽</td>
+                    <td class="orders__data">
+                        <a class="orders__btn orders__btn--white" href="{% url 'users:order' id=order.id %}">
+                            Просмотр
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

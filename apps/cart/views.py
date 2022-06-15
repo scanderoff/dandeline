@@ -1,23 +1,19 @@
-from typing import Any
-
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
-from shop.models import Product
 from .cart import Cart
 from .forms import CartUpdateForm
 
 
 @require_POST
-def update_product(request: HttpRequest, product_id: str) -> HttpResponse:
-    cart: Cart = Cart(request)
-    product: Product = get_object_or_404(Product, id=product_id)
+def update_product(request: HttpRequest, product_id: int) -> HttpResponse:
+    cart = Cart(request)
 
     action: str = request.POST.get("action", "")
     quantity: int
-    override: bool = False
+    override = False
 
     if action == "add":
         quantity = 1
@@ -27,22 +23,29 @@ def update_product(request: HttpRequest, product_id: str) -> HttpResponse:
         quantity = int(request.POST.get("quantity"))
         override = True
 
-    cart.add(product, quantity=quantity, override_quantity=override)
+    cart.add(product_id, quantity=quantity, override_qty=override)
 
-    return redirect("cart:detail")
+    return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
 @require_POST
 def remove_product(request: HttpRequest, product_id: str) -> HttpResponse:
-    cart: Cart = Cart(request)
-    product: Product = get_object_or_404(Product, id=product_id)
-    cart.remove(product)
+    cart = Cart(request)
+    cart.remove(product_id)
 
-    return redirect("cart:detail")
+    return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
-def cart_detail(request: HttpRequest) -> HttpResponse:
-    cart: Cart = Cart(request)
+@require_POST
+def clear(request: HttpRequest) -> HttpResponse:
+    cart = Cart(request)
+    cart.clear()
+
+    return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+def detail(request: HttpRequest) -> HttpResponse:
+    cart = Cart(request)
 
     for item in cart:
         item["update_form"] = CartUpdateForm(initial={

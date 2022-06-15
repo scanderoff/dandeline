@@ -2,6 +2,7 @@ from typing import Any, Sequence
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import check_password
 from django.db.models import Model
 
 
@@ -83,7 +84,7 @@ class EditForm(forms.ModelForm, FormCleanMixin):
         }),
         required=False,
     )
-    new_password1 = forms.CharField(
+    password1 = forms.CharField(
         label="",
         widget=forms.PasswordInput(attrs={
             "class": "input__field",
@@ -91,7 +92,7 @@ class EditForm(forms.ModelForm, FormCleanMixin):
         }),
         required=False,
     )
-    new_password2 = forms.CharField(
+    password2 = forms.CharField(
         label="",
         widget=forms.PasswordInput(attrs={
             "class": "input__field",
@@ -149,3 +150,21 @@ class EditForm(forms.ModelForm, FormCleanMixin):
             "address2": "",
             "gender": "Пол",
         }
+
+    def clean(self) -> str:
+        cd: dict[str, Any] = super().clean()
+        current_password: str = cd.get("current_password")
+        new_password1: str = cd.get("password1")
+        new_password2: str = cd.get("password2")
+
+        if not all((current_password, new_password1, new_password2)):
+            return cd
+
+        if not check_password(current_password, self.instance.password):
+            self.add_error("current_password", "Неверный пароль.")
+
+        if new_password1 != new_password2:
+            self.add_error("password1", "Пароли должны совпадать.")
+            self.add_error("password2", "Пароли должны совпадать.")
+
+        return cd
