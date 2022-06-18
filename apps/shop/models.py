@@ -77,6 +77,17 @@ class ProductImage(models.Model):
     file = models.ImageField(upload_to="product_image/%Y/%m/%d/")
 
 
+
+
+
+
+
+
+
+
+
+
+
 class Size(models.Model):
     value = models.CharField(max_length=20)
     order = models.PositiveSmallIntegerField(default=0, db_index=True)
@@ -88,10 +99,18 @@ class Size(models.Model):
         return self.value
 
 
+class Color(models.Model):
+    value = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return self.value
+
+
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="variations")
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    # other attributes, e.g. color
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True)
+    # other attributes
 
     def __str__(self) -> str:
-        return f"{self.product} (size: {self.size})"
+        return f"{self.product} (size: {self.size}, color: {self.color})"

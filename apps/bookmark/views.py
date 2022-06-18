@@ -6,13 +6,13 @@ from django.contrib import messages
 from .bookmark import Bookmark
 
 
-def detail(request: HttpRequest) -> HttpResponse:
+def summary(request: HttpRequest) -> HttpResponse:
     bookmark = Bookmark(request)
 
     if len(bookmark) == 0:
         messages.error(request, "У Вас пока нет избранных товаров.")
 
-    return render(request, "bookmark/detail.html", {
+    return render(request, "bookmark/summary.html", {
         "bookmark": bookmark,
     })
 

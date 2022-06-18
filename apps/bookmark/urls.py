@@ -6,7 +6,7 @@ from . import views
 app_name: str = BookmarkConfig.name
 
 urlpatterns: list[URLPattern] = [
-    path("", views.detail, name="detail"),
+    path("", views.summary, name="summary"),
     path("clear/", views.clear, name="clear"),
     path("update/<int:product_id>", views.update, name="update"),
 ]

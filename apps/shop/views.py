@@ -14,7 +14,8 @@ def homepage(request: HttpRequest) -> HttpResponse:
 def catalog(request: HttpRequest, path: str = "") -> HttpResponse:
     category: Category | None = None
     ancestors: list[Category] = []
-    products: QuerySet[Product] = Product.objects.all()
+    products: QuerySet[Product] = \
+        Product.objects.prefetch_related("variations__size").all()[:15]
 
     if path:
         category_slug: str = path.rsplit("/", 1)[-1]
@@ -40,18 +41,21 @@ def catalog(request: HttpRequest, path: str = "") -> HttpResponse:
 
 def product(request: HttpRequest, slug: str) -> HttpResponse:
     product: Product = get_object_or_404(Product, slug=slug)
-    variations: QuerySet[Variation] = (
-        product.variations
-            .select_related("size")
-            # .select_related("color")
-            .all()
-    )
+
+    colors_query = product.variations.select_related("color").query
+    query.group_by = ["color"]
+    print(colors)
 
     r = Recommender()
     recommended_products: list[Product] = r.suggest_products_for([product], 4)
 
     return render(request, "shop/product.html", {
         "product": product,
-        "variations": variations,
+        # "sizes": sizes,
+        # "colors": colors,
         "recommended_products": recommended_products,
     })
+
+
+def get_variation(request: HttpRequest) -> HttpResponse:
+    ...

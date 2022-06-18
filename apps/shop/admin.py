@@ -1,5 +1,6 @@
 from typing import Sequence
 
+from django import forms
 from django.contrib import admin
 from django.contrib.admin.options import InlineModelAdmin
 from django.db.models import Model
@@ -64,3 +65,23 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Size)
 class SizeAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display: Sequence[str] = ("order", "value")
+
+
+
+
+
+
+
+class ColorAdminForm(forms.ModelForm):
+    class Meta:
+        model: type[Model] = Color
+        widgets: dict[str, forms.Widget | type[forms.Widget]] = {
+            "value": forms.TextInput(attrs={"type": "color"})
+        }
+        fields = "__all__"
+
+
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+    form: type[forms.Form] = ColorAdminForm
+    list_display: Sequence[str] = ("value",)

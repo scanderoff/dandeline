@@ -14,6 +14,7 @@ def update_product(request: HttpRequest, product_id: int) -> HttpResponse:
     action: str = request.POST.get("action", "")
     quantity: int
     override = False
+    size_id = int(request.POST["size_id"])
 
     if action == "add":
         quantity = 1
@@ -23,7 +24,7 @@ def update_product(request: HttpRequest, product_id: int) -> HttpResponse:
         quantity = int(request.POST.get("quantity"))
         override = True
 
-    cart.add(product_id, quantity=quantity, override_qty=override)
+    cart.add(product_id, size_id, quantity=quantity, override_qty=override)
 
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
@@ -44,7 +45,7 @@ def clear(request: HttpRequest) -> HttpResponse:
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
-def detail(request: HttpRequest) -> HttpResponse:
+def summary(request: HttpRequest) -> HttpResponse:
     cart = Cart(request)
 
     for item in cart:
@@ -55,6 +56,6 @@ def detail(request: HttpRequest) -> HttpResponse:
     if len(cart) == 0:
         messages.error(request, "Ваша корзина пока пуста.")
 
-    return render(request, "cart/detail.html", {
+    return render(request, "cart/summary.html", {
         "cart": cart,
     })

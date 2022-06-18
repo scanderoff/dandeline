@@ -42,49 +42,71 @@
                 {{ product.name }}
             </h2>
 
-            <table class="product-info">
-                <tbody>
-                    <tr>
-                        <th class="product-info__header">
-                            Артикул:
-                        </th>
-                        <td class="product-info__data">
-                            {{ product.sku }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="product-info__header">
-                            Категория:
-                        </th>
-                        <td class="product-info__data">
-                            {{ product.category.name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="product-info__header">
-                            Размер:
-                        </th>
-                        <td class="product-info__data">
-                            <div class="sizes sizes--lg product-info__sizes">
-                                <div class="sizes__list">
-                                    {% for variation in variations %}
-                                        <label class="size sizes__item">
-                                            <input class="size__field" type="radio" name="size">
-                                            <span class="size__inner">
-                                                {{ variation.size.value }}
-                                            </span>
-                                        </label>
-                                    {% endfor %}
-                                </div>
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="variation_id" value="">
 
-                                {% comment %} <button class="sizes__btn" type="button">
-                                    Таблица размеров
-                                </button> {% endcomment %}
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="product-info">
+                    <tbody>
+                        <tr>
+                            <th class="product-info__header">
+                                Артикул:
+                            </th>
+                            <td class="product-info__data">
+                                {{ product.sku }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="product-info__header">
+                                Категория:
+                            </th>
+                            <td class="product-info__data">
+                                {{ product.category.name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="product-info__header">
+                                Размер:
+                            </th>
+                            <td class="product-info__data">
+                                <div class="sizes sizes--lg product-info__sizes">
+                                    <div class="sizes__list">
+                                        {% comment %} {% for size in sizes %}
+                                            <label class="size sizes__item">
+                                                <input class="size__field" type="radio" name="size_id" value="{{ size.id }}">
+                                                <span class="size__inner">
+                                                    {{ size.value }}
+                                                </span>
+                                            </label>
+                                        {% endfor %} {% endcomment %}
+                                    </div>
+
+                                    <button class="sizes__btn" type="button">
+                                        Таблица размеров
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="product-info__header">
+                                Цвет:
+                            </th>
+                            <td class="product-info__data">
+                                <div class="colors">
+                                    <div class="colors__list">
+                                        {% comment %} {% for color in colors %}
+                                            <label class="color color--lg colors__item" style="--color-value: {{ color.value }}">
+                                                <input class="color__field" type="radio" name="color_id" value="{{ color.id }}" checked>
+                                                <span class="color__inner"></span>
+                                            </label>
+                                        {% endfor %} {% endcomment %}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
 
             <div class="product__data">
                 <div class="product__summary">

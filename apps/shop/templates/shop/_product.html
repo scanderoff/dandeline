@@ -43,83 +43,46 @@
                 <tbody>
                     <tr>
                         <th class="product-info__header">
+                            Цвет:
+                        </th>
+                        <td class="product-info__data">
+                            <div class="colors">
+                                <div class="colors__list">
+                                    <label class="color color--sm colors__item" style="--color-value: #A9CEF8">
+                                        <input class="color__field" type="radio" name="color_id" value="" checked>
+                                        <span class="color__inner"></span>
+                                    </label>
+                                    <label class="color color--sm colors__item" style="--color-value: #A9F8F3">
+                                        <input class="color__field" type="radio" name="color_id" value="">
+                                        <span class="color__inner"></span>
+                                    </label>
+                                    <label class="color color--sm colors__item" style="--color-value: #F8A9D8">
+                                        <input class="color__field" type="radio" name="color_id" value="">
+                                        <span class="color__inner"></span>
+                                    </label>
+                                    <label class="color color--sm colors__item" style="--color-value: #F8EBA9">
+                                        <input class="color__field" type="radio" name="color_id" value="">
+                                        <span class="color__inner"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="product-info__header">
                             Размер:
                         </th>
                         <td class="product-info__data">
                             <div class="sizes sizes--sm product-info__sizes">
                                 <div class="sizes__list">
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
-                                    <label class="size sizes__item">
-                                        <input class="size__field" type="radio" name="size">
-                                        <span class="size__inner">
-                                            40
-                                        </span>
-                                    </label>
+                                    {% for variation in product.variations.all %}
+                                        <label class="size sizes__item">
+                                            <input class="size__field" type="radio" name="size_id" value="{{ variation.size.id }}" {% if forloop.first %}checked{% endif %}>
+                                            <span class="size__inner">
+                                                {{ variation.size }}
+                                            </span>
+                                        </label>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </td>

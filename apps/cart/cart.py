@@ -63,18 +63,17 @@ class Cart:
         self.__products = None
         self.__coupon = None
 
-    def add(self, product_id: int, quantity: int = 1, override_qty: bool = False) -> None:
-        product_id = str(product_id)
-        item: dict[str, Any] | None = self.cart.get(product_id)
+    def add(self, product_id: int, size_id: int,
+            quantity: int = 1, override_qty: bool = False) -> None:
+
+        item_key: str = self.__get_item_key(product_id, size_id)
+        item: dict[str, Any] | None = self.cart.get(item_key)
 
         if item is None:
-            item = self.cart[product_id] = {
+            item = self.cart[item_key] = {
+                "product_id": product_id,
+                "size_id": size_id,
                 "quantity": 0,
-                # TODO
-                # "variations": {
-                #     "size": None,
-                #     "color": None,
-                # }
             }
 
         if override_qty:
@@ -83,7 +82,7 @@ class Cart:
             item["quantity"] += quantity
 
         if item["quantity"] < 1:
-            self.remove(product_id)
+            self.remove(product_id, size_id)
 
         self.save()
 
@@ -102,8 +101,7 @@ class Cart:
         self.save()
 
     def __iter__(self) -> dict[str, Any]:
-        # ???
-        cart: dict[str, Any] = self.cart.copy()
+        cart: dict[str, Any] = self.cart.copy() # ???
 
         for product in self.products:
             product_id = str(product.id)
@@ -116,3 +114,6 @@ class Cart:
 
     def __len__(self) -> int:
         return sum(item["quantity"] for item in self.cart.values())
+
+    def __get_item_key(product_id: int, size_id: int) -> str:
+        return f"{product_id}-{size_id}"
