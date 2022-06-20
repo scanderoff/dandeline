@@ -16,7 +16,8 @@
 
 
     &[disabled] {
-        cursor: default;
+        opacity: 0.4;
+        cursor: not-allowed;
     }
 
 

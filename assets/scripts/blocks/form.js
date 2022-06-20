@@ -32,7 +32,8 @@ class Form {
 
 
                 this.container.reset();
-            });
+            })
+        ;
     }
 
     onReset(event) {

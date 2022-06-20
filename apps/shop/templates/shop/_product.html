@@ -36,8 +36,10 @@
             </div>
         </div>
 
-        <form class="product__footer" action="{% url 'cart:update-product' product_id=product.id %}" method="POST">
+        <form class="cart-update-form product__footer" action="{% url 'cart:update' %}" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input type="hidden" name="variation_id" value="">
 
             <table class="product-info product-info--sm product__info">
                 <tbody>
@@ -48,22 +50,12 @@
                         <td class="product-info__data">
                             <div class="colors">
                                 <div class="colors__list">
-                                    <label class="color color--sm colors__item" style="--color-value: #A9CEF8">
-                                        <input class="color__field" type="radio" name="color_id" value="" checked>
-                                        <span class="color__inner"></span>
-                                    </label>
-                                    <label class="color color--sm colors__item" style="--color-value: #A9F8F3">
-                                        <input class="color__field" type="radio" name="color_id" value="">
-                                        <span class="color__inner"></span>
-                                    </label>
-                                    <label class="color color--sm colors__item" style="--color-value: #F8A9D8">
-                                        <input class="color__field" type="radio" name="color_id" value="">
-                                        <span class="color__inner"></span>
-                                    </label>
-                                    <label class="color color--sm colors__item" style="--color-value: #F8EBA9">
-                                        <input class="color__field" type="radio" name="color_id" value="">
-                                        <span class="color__inner"></span>
-                                    </label>
+                                    {% for variation in product.color_variations %}
+                                        <label class="color color--sm colors__item" style="--color-value: {{ variation.color.value }}">
+                                            <input class="color__field" type="radio" name="color_id" value="{{ variation.color.id }}">
+                                            <span class="color__inner"></span>
+                                        </label>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </td>
@@ -75,11 +67,11 @@
                         <td class="product-info__data">
                             <div class="sizes sizes--sm product-info__sizes">
                                 <div class="sizes__list">
-                                    {% for variation in product.variations.all %}
+                                    {% for variation in product.size_variations %}
                                         <label class="size sizes__item">
-                                            <input class="size__field" type="radio" name="size_id" value="{{ variation.size.id }}" {% if forloop.first %}checked{% endif %}>
+                                            <input class="size__field" type="radio" name="size_id" value="{{ variation.size.id }}">
                                             <span class="size__inner">
-                                                {{ variation.size }}
+                                                {{ variation.size.value }}
                                             </span>
                                         </label>
                                     {% endfor %}
@@ -91,7 +83,7 @@
             </table>
 
             <div class="product__actions">
-                <button class="btn btn--gold product__btn" type="submit" name="action" value="add">
+                <button class="btn btn--gold product__btn" type="submit" name="do" value="add">
                     Добавить в корзину
                 </button>
             </div>

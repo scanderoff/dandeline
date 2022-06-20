@@ -6,6 +6,8 @@ from .cart import Cart
 
 
 def cart(request: HttpRequest) -> dict[str, Any]:
+    cart = Cart(request)
+
     return {
-        "cart": Cart(request),
+        "cart": cart,
     }

@@ -1,4 +1,5 @@
 {% extends 'content.html' %}
+
 {% load static %}
 {% load thumbnail %}
 
@@ -42,8 +43,9 @@
                 {{ product.name }}
             </h2>
 
-            <form action="#" method="POST">
+            <form class="cart-update-form" action="{% url 'cart:update' %}" method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
                 <input type="hidden" name="variation_id" value="">
 
                 <table class="product-info">
@@ -71,44 +73,42 @@
                             <td class="product-info__data">
                                 <div class="sizes sizes--lg product-info__sizes">
                                     <div class="sizes__list">
-                                        {% comment %} {% for size in sizes %}
+                                        {% for size in sizes %}
                                             <label class="size sizes__item">
-                                                <input class="size__field" type="radio" name="size_id" value="{{ size.id }}">
+                                                <input class="size__field" type="radio" name="size_id" value="{{ size.size }}">
                                                 <span class="size__inner">
-                                                    {{ size.value }}
+                                                    {{ size.size__value }}
                                                 </span>
                                             </label>
-                                        {% endfor %} {% endcomment %}
+                                        {% endfor %}
                                     </div>
 
-                                    <button class="sizes__btn" type="button">
+                                    <button class="sizes__btn not-implemented" type="button">
                                         Таблица размеров
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th class="product-info__header">
+                            <th class="product-info__header" style="vertical-align: middle">
                                 Цвет:
                             </th>
                             <td class="product-info__data">
                                 <div class="colors">
                                     <div class="colors__list">
-                                        {% comment %} {% for color in colors %}
-                                            <label class="color color--lg colors__item" style="--color-value: {{ color.value }}">
-                                                <input class="color__field" type="radio" name="color_id" value="{{ color.id }}" checked>
+                                        {% for color in colors %}
+                                            <label class="color color--lg colors__item" style="--color-value: {{ color.color__value }}">
+                                                <input class="color__field" type="radio" name="color_id" value="{{ color.color }}" checked>
                                                 <span class="color__inner"></span>
                                             </label>
-                                        {% endfor %} {% endcomment %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </form>
 
-            <div class="product__data">
                 <div class="product__summary">
                     <div class="product-pricing product__pricing">
                         <div class="product-pricing__price product-pricing__price--lg">
@@ -116,10 +116,8 @@
                         </div>
                     </div>
 
-                    <form class="product__actions" action="{% url 'cart:update-product' product_id=product.id %}" method="POST">
-                        {% csrf_token %}
-
-                        <button class="btn btn--gold product__btn" type="submit" name="action" value="add">
+                    <div class="product__actions">
+                        <button class="btn btn--gold product__btn" type="submit" name="do" value="add">
                             В корзину
                         </button>
 
@@ -128,14 +126,16 @@
                                 <path stroke="#B9A67D" stroke-miterlimit="10" stroke-width="1.5" d="M10.993 6.732a6.199 6.199 0 0 1 .347-2.184 5.71 5.71 0 0 1 1.076-1.861 5.022 5.022 0 0 1 1.638-1.248A4.548 4.548 0 0 1 15.996 1c.667 0 1.327.15 1.942.439.615.29 1.172.714 1.638 1.248a5.712 5.712 0 0 1 1.076 1.861 6.18 6.18 0 0 1 .347 2.184v.303C20.758 14.78 10.993 21 10.993 21S1.253 14.78 1 7.038v-.303a6.126 6.126 0 0 1 .741-2.93 5.271 5.271 0 0 1 2-2.062 4.554 4.554 0 0 1 2.669-.587c.92.084 1.803.45 2.549 1.061" />
                             </svg>
                         </button>
-                    </form>
+                    </div>
                 </div>
-                <div class="product__installment not-implemented">
-                    В рассрочку от 1034 ₽
-                </div>
-                <div class="product__orders">
-                    Этот товар заказали уже более <strong>87 раз</strong>
-                </div>
+            </form>
+
+            <div class="product__installment not-implemented">
+                В рассрочку от 1034 ₽
+            </div>
+
+            <div class="product__orders">
+                Этот товар заказали уже более <strong>87 раз</strong>
             </div>
 
             <div class="product__description">

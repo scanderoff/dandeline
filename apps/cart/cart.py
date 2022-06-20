@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Iterable
 from decimal import Decimal
 
 from django.conf import settings
@@ -6,7 +6,7 @@ from django.http import HttpRequest
 from django.db.models import QuerySet
 
 from coupons.models import Coupon
-from shop.models import Product
+from shop.models import Variation
 
 
 class Cart:
@@ -43,14 +43,18 @@ class Cart:
         return self.total_price - self.discount
 
     @property
-    def products(self) -> QuerySet[Product]:
-        if self.__products is not None:
-            return self.__products
+    def variations(self) -> dict[int, Variation]:
+        if self.__variations is not None:
+            return self.__variations
 
-        product_ids = self.cart.keys()
-        self.__products = Product.objects.filter(id__in=product_ids)
+        variation_ids: Iterable = self.cart.keys()
 
-        return self.__products
+        self.__variations = Variation.objects \
+            .filter(id__in=variation_ids) \
+            .select_related("product", "size", "color") \
+            .in_bulk() \
+
+        return self.__variations
 
     def __init__(self, request: HttpRequest) -> None:
         self.session = request.session
@@ -60,60 +64,57 @@ class Cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
 
         self.cart = cart
-        self.__products = None
+        self.__variations = None
         self.__coupon = None
 
-    def add(self, product_id: int, size_id: int,
-            quantity: int = 1, override_qty: bool = False) -> None:
 
-        item_key: str = self.__get_item_key(product_id, size_id)
-        item: dict[str, Any] | None = self.cart.get(item_key)
+    def add(self, variation_id: int, qty: int = 1, override_qty: bool = False) -> None:
+        variation_id = str(variation_id)
+        item: dict[str, Any] | None = self.cart.get(variation_id)
 
         if item is None:
-            item = self.cart[item_key] = {
-                "product_id": product_id,
-                "size_id": size_id,
+            item = self.cart[variation_id] = {
                 "quantity": 0,
             }
 
         if override_qty:
-            item["quantity"] = quantity
+            item["quantity"] = qty
         else:
-            item["quantity"] += quantity
+            item["quantity"] += qty
 
         if item["quantity"] < 1:
-            self.remove(product_id, size_id)
+            self.remove(variation_id)
+        else:
+            self.save()
 
-        self.save()
+    def remove(self, variation_id: int) -> None:
+        variation_id = str(variation_id)
+
+        if variation_id in self.cart:
+            del self.cart[variation_id]
+            self.save()
 
     def save(self) -> None:
         self.session.modified = True
-
-    def remove(self, product_id: int) -> None:
-        product_id = str(product_id)
-
-        if product_id in self.cart:
-            del self.cart[product_id]
-            self.save()
 
     def clear(self) -> None:
         del self.session[settings.CART_SESSION_ID]
         self.save()
 
     def __iter__(self) -> dict[str, Any]:
-        cart: dict[str, Any] = self.cart.copy() # ???
-
-        for product in self.products:
-            product_id = str(product.id)
-
-            item: dict[str, Any] = cart[product_id]
-            item["product"] = product
-            item["total_price"] = item["quantity"] * product.price
+        for variation_id in self.cart:
+            item: dict[str, Any] = self.get_item(int(variation_id))
 
             yield item
 
+    def get_item(self, variation_id: int) -> dict[str, Any]:
+        variation: Variation = self.variations[variation_id]
+
+        item: dict[str, Any] = {**self.cart[str(variation_id)]}
+        item["variation"] = variation
+        item["total_price"] = item["quantity"] * variation.product.price
+
+        return item
+
     def __len__(self) -> int:
         return sum(item["quantity"] for item in self.cart.values())
-
-    def __get_item_key(product_id: int, size_id: int) -> str:
-        return f"{product_id}-{size_id}"

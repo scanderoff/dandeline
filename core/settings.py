@@ -35,26 +35,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'mptt',
-    'easy_thumbnails',
-    'adminsortable2',
-
-
     'users.apps.UsersConfig',
-    'shop.apps.ShopConfig',
-    'cart.apps.CartConfig',
-    'bookmark.apps.BookmarkConfig',
-    'coupons.apps.CouponsConfig',
-    'orders.apps.OrdersConfig',
-    'payment.apps.PaymentConfig',
-
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'mptt',
+    'easy_thumbnails',
+    'adminsortable2',
+
+    'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
+    'bookmark.apps.BookmarkConfig',
+    'coupons.apps.CouponsConfig',
+    'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +88,22 @@ TEMPLATES = [
     },
 ]
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django.template': {
+#             'handlers': ['console'],
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+#         },
+#     },
+# }
+
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
@@ -98,8 +112,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dandeline',
+        'USER': 'iscander',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

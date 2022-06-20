@@ -54,6 +54,7 @@
     },
     "dependencies": {
         "imask": "^6.2.2",
+        "js-cookie": "^3.0.1",
         "nouislider": "^15.6.0",
         "swiper": "^7.4.1",
         "zuck.js": "^1.6.0"

@@ -78,16 +78,6 @@ class ProductImage(models.Model):
 
 
 
-
-
-
-
-
-
-
-
-
-
 class Size(models.Model):
     value = models.CharField(max_length=20)
     order = models.PositiveSmallIntegerField(default=0, db_index=True)

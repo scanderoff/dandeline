@@ -11,7 +11,10 @@ import initStories from "./blocks/stories.js";
 import initPhoneFields from "./blocks/phone-field.js";
 // import QtyInput from "./blocks/qty-input.js";
 import Popup from "./blocks/popup.js";
-// import Cart from "./blocks/cart.js";
+
+
+import CartUpdateForm from "./blocks/cart-update-form.js";
+import CartRemoveForm from "./blocks/cart-remove-form.js";
 
 
 window.addEventListener("load", () => {
@@ -203,4 +206,11 @@ window.addEventListener("load", () => {
 
 
 
+
+
+    const $cartUpdateForms = document.querySelectorAll(".cart-update-form");
+    $cartUpdateForms.forEach($form => new CartUpdateForm($form));
+
+    // const $cartRemoveForms = document.querySelectorAll(".cart-remove-form");
+    // $cartRemoveForms.forEach($form => new CartRemoveForm($form));
 });

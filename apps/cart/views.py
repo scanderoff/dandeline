@@ -1,38 +1,64 @@
-from django.http import HttpRequest, HttpResponse
+import json
+from typing import Any
+from decimal import Decimal
+
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.template.loader import render_to_string
 
 from .cart import Cart
-from .forms import CartUpdateForm
 
 
 @require_POST
-def update_product(request: HttpRequest, product_id: int) -> HttpResponse:
+def update(request: HttpRequest) -> JsonResponse:
     cart = Cart(request)
+    data = json.loads(request.body)
 
-    action: str = request.POST.get("action", "")
-    quantity: int
+    variation_id = int(data["variation_id"])
+    action: str = data.get("do", "")
     override = False
-    size_id = int(request.POST["size_id"])
 
     if action == "add":
-        quantity = 1
+        qty = 1
     elif action == "remove":
-        quantity = -1
+        qty = -1
     else:
-        quantity = int(request.POST.get("quantity"))
+        qty = int(data["quantity"])
         override = True
 
-    cart.add(product_id, size_id, quantity=quantity, override_qty=override)
+    cart.add(variation_id, qty=qty, override_qty=override)
 
-    return redirect(request.META.get("HTTP_REFERER", "/"))
+    item: dict[str, Any] = cart.get_item(variation_id)
+    item_qty: int = item["quantity"]
+    item_price: Decimal = item_qty*item["variation"].product.price
+    html = ""
+
+    if item_qty == 1 and action == "add":
+        html = render_to_string("cart/_item.html", {"item": item})
+
+    return JsonResponse({
+        "success": True,
+
+        "variationId": variation_id,
+        "newQty": item_qty,
+        "itemPrice": f"{item_price:.2f}",
+        "totalItems": len(cart),
+        "totalPrice": cart.total_price,
+        "html": html,
+    })
 
 
 @require_POST
-def remove_product(request: HttpRequest, product_id: str) -> HttpResponse:
+def remove(request: HttpRequest) -> HttpResponse:
     cart = Cart(request)
-    cart.remove(product_id)
+    data = request.POST
+    # data = json.loads(request.body)
+
+    variation_id = int(data["variation_id"])
+
+    cart.remove(variation_id)
 
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
@@ -47,11 +73,6 @@ def clear(request: HttpRequest) -> HttpResponse:
 
 def summary(request: HttpRequest) -> HttpResponse:
     cart = Cart(request)
-
-    for item in cart:
-        item["update_form"] = CartUpdateForm(initial={
-            "quantity": item["quantity"],
-        })
 
     if len(cart) == 0:
         messages.error(request, "Ваша корзина пока пуста.")

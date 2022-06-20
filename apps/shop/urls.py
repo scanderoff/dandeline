@@ -13,4 +13,6 @@ urlpatterns: list[URLPattern] = [
     path("catalog/<path:path>/", views.catalog, name="catalog"),
 
     path("product/<str:slug>/", views.product, name="product"),
+
+    path("get-variation", views.get_variation, name="get-variation"),
 ]
