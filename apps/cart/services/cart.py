@@ -107,7 +107,10 @@ class Cart:
 
             yield item
 
-    def get_item(self, variation_id: int) -> dict[str, Any]:
+    def get_item(self, variation_id: int) -> dict[str, Any] | None:
+        if variation_id not in self.variations:
+            return None
+
         variation: Variation = self.variations[variation_id]
 
         item: dict[str, Any] = {**self.cart[str(variation_id)]}

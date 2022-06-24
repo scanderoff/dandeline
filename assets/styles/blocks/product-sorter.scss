@@ -2,11 +2,15 @@
     display: flex;
     align-items: center;
 
-    &__link {
+    &__btn {
         display: flex;
         align-items: center;
 
         color: inherit;
+        background-image: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
         transition: color 0.3s ease;
 
         font-size: 15px;

@@ -32,7 +32,7 @@
                     <td class="orders__data">{% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}</td>
                     <td class="orders__data">{{ order.total_price }} ₽</td>
                     <td class="orders__data">
-                        <a class="orders__btn orders__btn--white" href="{% url 'users:order' id=order.id %}">
+                        <a class="orders__btn orders__btn--white" href="{% url 'users:order' order_id=order.id %}">
                             Просмотр
                         </a>
                     </td>

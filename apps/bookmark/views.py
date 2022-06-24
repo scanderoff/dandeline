@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
-from .bookmark import Bookmark
+from .services.bookmark import Bookmark
 
 
 def summary(request: HttpRequest) -> HttpResponse:

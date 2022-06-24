@@ -21,7 +21,7 @@
 
                 <div class="shipping-methods__list">
                     <label class="shipping-method shipping-methods__item">
-                        <input class="hidden shipping-method__hidden" type="radio" name="{{ form.shipping_method.name }}" value="{{ form.shipping_method.field.choices.0.0 }}" checked>
+                        <input class="hidden shipping-method__hidden" type="radio" name="{{ checkout_form.shipping_method.name }}" value="{{ checkout_form.shipping_method.field.choices.0.0 }}" checked>
 
                         <span class="shipping-method__inner">
                             <span class="shipping-method__checkbox">
@@ -32,7 +32,7 @@
 
                             <span class="shipping-method__content">
                                 <span class="shipping-method__title">
-                                    {{ form.shipping_method.field.choices.0.1 }}
+                                    {{ checkout_form.shipping_method.field.choices.0.1 }}
                                 </span>
                                 <span class="shipping-method__descr">
                                     <span>Доставим бесплатно</span>
@@ -53,7 +53,7 @@
                     </label>
 
                     <label class="shipping-method shipping-methods__item not-implemented">
-                        <input class="hidden shipping-method__hidden" type="radio" name="{{ form.shipping_method.name }}" value="{{ form.shipping_method.field.choices.1.0 }}">
+                        <input class="hidden shipping-method__hidden" type="radio" name="{{ checkout_form.shipping_method.name }}" value="{{ checkout_form.shipping_method.field.choices.1.0 }}">
 
                         <span class="shipping-method__inner">
                             <span class="shipping-method__checkbox">
@@ -64,7 +64,7 @@
 
                             <span class="shipping-method__content">
                                 <span class="shipping-method__title">
-                                    {{ form.shipping_method.field.choices.1.1 }}
+                                    {{ checkout_form.shipping_method.field.choices.1.1 }}
                                 </span>
                                 <span class="shipping-method__descr">
                                     <span>Доставим бесплатно</span>
@@ -75,7 +75,7 @@
                     </label>
 
                     <label class="shipping-method shipping-methods__item not-implemented">
-                        <input class="hidden shipping-method__hidden" type="radio" name="{{ form.shipping_method.name }}" value="{{ form.shipping_method.field.choices.2.0 }}">
+                        <input class="hidden shipping-method__hidden" type="radio" name="{{ checkout_form.shipping_method.name }}" value="{{ checkout_form.shipping_method.field.choices.2.0 }}">
 
                         <span class="shipping-method__inner">
                             <span class="shipping-method__checkbox">
@@ -86,7 +86,7 @@
 
                             <span class="shipping-method__content">
                                 <span class="shipping-method__title">
-                                    {{ form.shipping_method.field.choices.2.1 }}
+                                    {{ checkout_form.shipping_method.field.choices.2.1 }}
                                 </span>
                                 <span class="shipping-method__descr">
                                     <span>Померьте перед покупкой</span>
@@ -97,7 +97,7 @@
                     </label>
 
                     <label class="shipping-method shipping-methods__item not-implemented">
-                        <input class="hidden shipping-method__hidden" type="radio" name="{{ form.shipping_method.name }}" value="{{ form.shipping_method.field.choices.3.0 }}">
+                        <input class="hidden shipping-method__hidden" type="radio" name="{{ checkout_form.shipping_method.name }}" value="{{ checkout_form.shipping_method.field.choices.3.0 }}">
 
                         <span class="shipping-method__inner">
                             <span class="shipping-method__checkbox">
@@ -108,7 +108,7 @@
 
                             <span class="shipping-method__content">
                                 <span class="shipping-method__title">
-                                    {{ form.shipping_method.field.choices.3.1 }}
+                                    {{ checkout_form.shipping_method.field.choices.3.1 }}
                                 </span>
                                 <span class="shipping-method__descr">
                                     <span>Доставим бесплатно</span>
@@ -127,58 +127,58 @@
                 <div class="recipient-data__inputs">
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.first_name.label }}
+                            {{ checkout_form.first_name.label }}
                         </div>
-                        {{ form.first_name }}
+                        {{ checkout_form.first_name }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.last_name.label }}
+                            {{ checkout_form.last_name.label }}
                         </div>
-                        {{ form.last_name }}
+                        {{ checkout_form.last_name }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.phone.label }}
+                            {{ checkout_form.phone.label }}
                         </div>
-                        {{ form.phone }}
+                        {{ checkout_form.phone }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.email.label }}
+                            {{ checkout_form.email.label }}
                         </div>
-                        {{ form.email }}
+                        {{ checkout_form.email }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.zip_code.label }}
+                            {{ checkout_form.zip_code.label }}
                         </div>
-                        {{ form.zip_code }}
+                        {{ checkout_form.zip_code }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.city.label }}
+                            {{ checkout_form.city.label }}
                         </div>
-                        {{ form.city }}
+                        {{ checkout_form.city }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
-                            {{ form.address_1.label }}
+                            {{ checkout_form.address1.label }}
                         </div>
-                        {{ form.address_1 }}
+                        {{ checkout_form.address1 }}
                     </label>
 
                     <label class="input input--1 recipient-data__input">
                         <div class="input__label">
                             &nbsp;
                         </div>
-                        {{ form.address_2 }}
+                        {{ checkout_form.address2 }}
                     </label>
                 </div>
             </fieldset>
@@ -190,7 +190,7 @@
 
                 <div class="payment-methods__list payment-methods__list--2-cols">
                     <label class="payment-method payment-method--1 payment-methods__item">
-                        <input class="hidden payment-method__hidden" type="radio" name="{{ form.payment_method.name }}" value="{{ form.payment_method.field.choices.0.0 }}" checked>
+                        <input class="hidden payment-method__hidden" type="radio" name="{{ checkout_form.payment_method.name }}" value="{{ checkout_form.payment_method.field.choices.0.0 }}" checked>
 
                         <span class="payment-method__wrapper">
                             <span class="payment-method__inner">
@@ -202,14 +202,14 @@
                                 </svg>
 
                                 <span class="payment-method__title">
-                                    {{ form.payment_method.field.choices.0.1 }}
+                                    {{ checkout_form.payment_method.field.choices.0.1 }}
                                 </span>
                             </span>
                         </span>
                     </label>
 
                     <label class="payment-method payment-method--1 payment-methods__item not-implemented">
-                        <input class="hidden payment-method__hidden" type="radio" name="{{ form.payment_method.name }}" value="{{ form.payment_method.field.choices.1.0 }}">
+                        <input class="hidden payment-method__hidden" type="radio" name="{{ checkout_form.payment_method.name }}" value="{{ checkout_form.payment_method.field.choices.1.0 }}">
 
                         <span class="payment-method__wrapper">
                             <span class="payment-method__inner">
@@ -221,7 +221,7 @@
                                 </svg>
 
                                 <span class="payment-method__title">
-                                    {{ form.payment_method.field.choices.1.1 }}
+                                    {{ checkout_form.payment_method.field.choices.1.1 }}
                                 </span>
                             </span>
 
@@ -232,7 +232,7 @@
                     </label>
 
                     <label class="payment-method payment-method--1 payment-methods__item not-implemented">
-                        <input class="hidden payment-method__hidden" type="radio" name="{{ form.payment_method.name }}" value="{{ form.payment_method.field.choices.2.0 }}">
+                        <input class="hidden payment-method__hidden" type="radio" name="{{ checkout_form.payment_method.name }}" value="{{ checkout_form.payment_method.field.choices.2.0 }}">
 
                         <span class="payment-method__wrapper">
                             <span class="payment-method__inner">
@@ -243,7 +243,7 @@
                                 </svg>
 
                                 <span class="payment-method__title">
-                                    {{ form.payment_method.field.choices.2.1 }}
+                                    {{ checkout_form.payment_method.field.choices.2.1 }}
                                 </span>
                             </span>
 
@@ -254,7 +254,7 @@
                     </label>
 
                     <div class="payment-method payment-method--1 payment-methods__item not-implemented">
-                        <input id="installment_radio" class="hidden payment-method__hidden" type="radio" name="{{ form.payment_method.name }}" value="{{ form.payment_method.field.choices.3.0 }}">
+                        <input id="installment_radio" class="hidden payment-method__hidden" type="radio" name="{{ checkout_form.payment_method.name }}" value="{{ checkout_form.payment_method.field.choices.3.0 }}">
 
                         <label for="installment_radio" class="payment-method__wrapper">
                             <span class="payment-method__inner">
@@ -264,35 +264,35 @@
                                 </svg>
 
                                 <span class="payment-method__title">
-                                    {{ form.payment_method.field.choices.3.1 }}
+                                    {{ checkout_form.payment_method.field.choices.3.1 }}
                                 </span>
                             </span>
                         </label>
 
                         <span class="payment-options payment-method__options not-implemented">
                             <label class="payment-options__item">
-                                <input class="hidden" type="radio" name="{{ form.installment_period.name }}" value="{{ form.installment_period.field.choices.0.0 }}">
+                                <input class="hidden" type="radio" name="{{ checkout_form.installment_period.name }}" value="{{ checkout_form.installment_period.field.choices.0.0 }}">
                                 <span>
-                                    {{ form.installment_period.field.choices.0.1 }}
+                                    {{ checkout_form.installment_period.field.choices.0.1 }}
                                 </span>
                             </label>
                             <label class="payment-options__item">
-                                <input class="hidden" type="radio" name="{{ form.installment_period.name }}" value="{{ form.installment_period.field.choices.1.0 }}">
+                                <input class="hidden" type="radio" name="{{ checkout_form.installment_period.name }}" value="{{ checkout_form.installment_period.field.choices.1.0 }}">
                                 <span>
-                                    {{ form.installment_period.field.choices.1.1 }}
+                                    {{ checkout_form.installment_period.field.choices.1.1 }}
                                 </span>
                             </label>
                             <label class="payment-options__item">
-                                <input class="hidden" type="radio" name="{{ form.installment_period.name }}" value="{{ form.installment_period.field.choices.2.0 }}">
+                                <input class="hidden" type="radio" name="{{ checkout_form.installment_period.name }}" value="{{ checkout_form.installment_period.field.choices.2.0 }}">
                                 <span>
-                                    {{ form.installment_period.field.choices.2.1 }}
+                                    {{ checkout_form.installment_period.field.choices.2.1 }}
                                 </span>
                             </label>
                         </span>
                     </div>
 
                     <label class="payment-method payment-method--1 payment-methods__item not-implemented">
-                        <input class="hidden payment-method__hidden" type="radio" name="{{ form.payment_method.name }}" value="{{ form.payment_method.field.choices.4.0 }}">
+                        <input class="hidden payment-method__hidden" type="radio" name="{{ checkout_form.payment_method.name }}" value="{{ checkout_form.payment_method.field.choices.4.0 }}">
 
                         <span class="payment-method__wrapper">
                             <span class="payment-method__inner">
@@ -306,7 +306,7 @@
                                 </svg>
 
                                 <span class="payment-method__title">
-                                    {{ form.payment_method.field.choices.4.1 }}
+                                    {{ checkout_form.payment_method.field.choices.4.1 }}
                                 </span>
                             </span>
                         </span>
@@ -320,8 +320,8 @@
                 </div>
 
                 <div class="input input--1 checkout-note__input">
-                    {{ form.note }}
-                    <div>{{ form.note.label }}</div>
+                    {{ checkout_form.note }}
+                    <div>{{ checkout_form.note.label }}</div>
                 </div>
             </fieldset>
         </form>
@@ -332,7 +332,7 @@
                     Ваш заказ:
                 </div>
 
-                <a class="checkout-summary__link" href="{% url 'cart:detail' %}">
+                <a class="checkout-summary__link" href="{% url 'cart:summary' %}">
                     в корзину
                 </a>
             </div>
@@ -340,15 +340,17 @@
             <div class="checkout-products">
                 <ul class="checkout-products__list">
                     {% for item in cart %}
-                        <li class="checkout-product checkout-products__item">
-                            <div class="checkout-product__title">
-                                {{ item.product.name }}
-                            </div>
+                        {% with variation=item.variation product=item.variation.product %}
+                            <li class="checkout-product checkout-products__item">
+                                <div class="checkout-product__title">
+                                    {{ product.name }} – {{ variation.size.value }}
+                                </div>
 
-                            <div class="checkout-product__quantity">
-                                {{ item.quantity }}
-                            </div>
-                        </li>
+                                <div class="checkout-product__quantity">
+                                    {{ item.quantity }}
+                                </div>
+                            </li>
+                        {% endwith %}
                     {% endfor %}
                 </ul>
             </div>

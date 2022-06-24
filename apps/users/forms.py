@@ -6,6 +6,9 @@ from django.contrib.auth.hashers import check_password
 from django.db.models import Model
 
 
+User: type[Model] = get_user_model()
+
+
 class FormCleanMixin:
     def clean_phone(self) -> str:
         phone: str = self.cleaned_data["phone"]
@@ -43,7 +46,7 @@ class RegisterForm(forms.ModelForm, FormCleanMixin):
     )
 
     class Meta:
-        model: type[Model] = get_user_model()
+        model: type[Model] = User
         fields: Sequence[str] = ("phone",)
         widgets: dict[str, type[forms.Widget] | forms.Widget] = {
             "phone": forms.TextInput(attrs={
@@ -102,7 +105,7 @@ class EditForm(forms.ModelForm, FormCleanMixin):
     )
 
     class Meta:
-        model: type[Model] = get_user_model()
+        model: type[Model] = User
 
         fields: Sequence[str] = (
             "first_name",
@@ -124,6 +127,7 @@ class EditForm(forms.ModelForm, FormCleanMixin):
                 "class": "input__field",
                 "data-phone-field": "",
             }),
+            "email": forms.TextInput(attrs={"class": "input__field"}),
             "birthdate": forms.TextInput(attrs={"class": "input__field"}),
             "zip_code": forms.TextInput(attrs={"class": "input__field"}),
             "city": forms.TextInput(attrs={"class": "input__field"}),

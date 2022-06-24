@@ -1,34 +1,43 @@
-from typing import Any
+from typing import Any, Sequence
 
 from django import forms
-from django.conf import settings
+from django.contrib.auth import get_user_model
 # from django.utils.translation import gettext as _
 from django.db.models import Model
 
+from users.forms import FormCleanMixin
 from .models import Order
 
 
-class OrderCreateForm(forms.ModelForm):
+User: type[Model] = get_user_model()
+
+
+class OrderCreateForm(forms.ModelForm, FormCleanMixin):
     class Meta:
         model: type[Model] = Order
-        exclude: list[str] = [
-            "coupon",
-            "discount",
-            "user",
-            "paid",
-            "paid_at",
-            "created_at",
+        fields: Sequence[str] = [
+            "first_name",
+            "last_name",
+            "phone",
+            "email",
+            "zip_code",
+            "city",
+            "address1",
+            "address2",
+            "shipping_method",
+            "payment_method",
+            "note",
         ]
 
-        widgets: dict[str, type | forms.Widget] = {
+        widgets: dict[str, type[forms.Widget] | forms.Widget] = {
             "first_name": forms.TextInput(attrs={"class": "input__field"}),
             "last_name": forms.TextInput(attrs={"class": "input__field"}),
-            "phone": forms.TextInput(attrs={"type": "tel", "class": "input__field"}),
+            "phone": forms.TextInput(attrs={"type": "tel", "class": "input__field", "data-phone-field": ""}),
             "email": forms.EmailInput(attrs={"class": "input__field"}),
             "zip_code": forms.TextInput(attrs={"class": "input__field"}),
             "city": forms.TextInput(attrs={"class": "input__field"}),
-            "address_1": forms.TextInput(attrs={"class": "input__field", "placeholder": "Название улицы и номер дома"}),
-            "address_2": forms.TextInput(attrs={"class": "input__field", "placeholder": "Квартира"}),
+            "address1": forms.TextInput(attrs={"class": "input__field", "placeholder": "Название улицы и номер дома"}),
+            "address2": forms.TextInput(attrs={"class": "input__field", "placeholder": "Квартира"}),
             "shipping_method": forms.RadioSelect,
             "payment_method": forms.RadioSelect,
             "note": forms.Textarea(attrs={
@@ -47,8 +56,8 @@ class OrderCreateForm(forms.ModelForm):
             "email": "E-mail",
             "zip_code": "Индекс",
             "city": "Город",
-            "address_1": "Адрес",
-            "address_2": "",
+            "address1": "Адрес",
+            "address2": "",
             "shipping_method": "",
             "payment_method": "",
             "note": "Примечание к заказу (необязательно)",
@@ -56,3 +65,19 @@ class OrderCreateForm(forms.ModelForm):
 
     def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:
         super().__init__(*args, auto_id=False, **kwargs)
+
+    @classmethod
+    def from_user(cls, user: User):
+        if not user.is_authenticated:
+            return cls()
+
+        return cls(initial={
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "phone": user.phone,
+            "email": user.email,
+            "zip_code": user.zip_code,
+            "city": user.city,
+            "address1": user.address1,
+            "address2": user.address2,
+        })

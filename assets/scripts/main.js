@@ -207,7 +207,6 @@ window.addEventListener("load", () => {
 
 
 
-
     const $cartUpdateForms = document.querySelectorAll(".cart-update-form");
     $cartUpdateForms.forEach($form => new CartUpdateForm($form));
 

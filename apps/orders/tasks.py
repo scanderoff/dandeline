@@ -10,8 +10,8 @@ def order_created(order_id: int) -> int:
     order: Order = Order.objects.get(id=order_id)
     user: User = order.user
 
-    subject: str = f"Интернет-магазин Dandeline"
-    message: str = (
+    subject = f"Интернет-магазин Dandeline"
+    message = (
         f"Здравствуйте, {order.first_name},\n\n"
 
         f"Заказ №{order.id} принят.\n"

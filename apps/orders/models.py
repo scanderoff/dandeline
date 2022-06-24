@@ -6,7 +6,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from django.utils.translation import gettext as _
 
-from shop.models import Product
+from shop.models import Variation
 from coupons.models import Coupon
 
 
@@ -57,7 +57,7 @@ class Order(models.Model):
 
     @property
     def total_price(self) -> Decimal:
-        total_price: Decimal = sum(item.total_price for item in self.items.select_related("product").all())
+        total_price: Decimal = sum(item.total_price for item in self.items.select_related("variation").all())
         return total_price - self.discount/Decimal(100) * total_price
 
     def __str__(self) -> str:
@@ -66,12 +66,12 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variation = models.ForeignKey(Variation, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     @property
     def total_price(self) -> Decimal:
-        return self.quantity * self.product.price
+        return self.quantity * self.variation.product.price
 
     def __str__(self) -> str:
-        return f"{self.product.name} ({self.quantity})"
+        return f"{self.variation.product.name} ({self.quantity})"

@@ -53,7 +53,7 @@ order_pdf.short_description = "Invoice"
 
 class OrderItemInline(admin.TabularInline):
     model: type = OrderItem
-    raw_id_fields: list[str] = ("product",)
+    raw_id_fields: list[str] = ("variation",)
 
 
 @admin.register(Order)

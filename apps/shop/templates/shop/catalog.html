@@ -20,23 +20,23 @@
 {% block inner %}
     <div class="products">
         <div class="product-sorter products__sorter">
-            <a class="product-sorter__link" href="#">
+            <button class="product-sorter__btn" type="submit" form="catalogFilterForm">
                 <span>По популярности</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
                     <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />
                 </svg>
-            </a>
-            <a class="product-sorter__link" href="#">
+            </button>
+            <button class="product-sorter__btn" type="submit" form="catalogFilterForm">
                 <span>По цене</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
                     <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />
                 </svg>
-            </a>
+            </button>
         </div>
 
         <ul class="products__list products__list--3-cols">
             {% for product in products %}
-                {% include 'shop/_product.html' with class='product--item products__item' %}
+                {% include 'shop/_product.html' with product=product class='product--item products__item' %}
             {% endfor %}
         </ul>
     </div>

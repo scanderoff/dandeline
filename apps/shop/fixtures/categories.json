@@ -1,0 +1,535 @@
+[
+{
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+        "name": "Женское",
+        "slug": "женское",
+        "parent": null,
+        "lft": 1,
+        "rght": 38,
+        "tree_id": 2,
+        "level": 0
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+        "name": "Мужское",
+        "slug": "мужское",
+        "parent": null,
+        "lft": 1,
+        "rght": 20,
+        "tree_id": 3,
+        "level": 0
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+        "name": "Детское",
+        "slug": "детское",
+        "parent": null,
+        "lft": 1,
+        "rght": 24,
+        "tree_id": 1,
+        "level": 0
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+        "name": "Джинсы",
+        "slug": "джинсы",
+        "parent": 1,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 5,
+    "fields": {
+        "name": "Футболки, топы",
+        "slug": "футболки-топы",
+        "parent": 1,
+        "lft": 34,
+        "rght": 35,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 6,
+    "fields": {
+        "name": "Верхняя одежда",
+        "slug": "верхняя-одежда",
+        "parent": 1,
+        "lft": 6,
+        "rght": 11,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 7,
+    "fields": {
+        "name": "Платья",
+        "slug": "платья",
+        "parent": 1,
+        "lft": 22,
+        "rght": 31,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 8,
+    "fields": {
+        "name": "Юбки",
+        "slug": "юбки",
+        "parent": 1,
+        "lft": 36,
+        "rght": 37,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 9,
+    "fields": {
+        "name": "Блузки, рубашки",
+        "slug": "блузки-рубашки",
+        "parent": 1,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 10,
+    "fields": {
+        "name": "Брюки, шорты",
+        "slug": "брюки-шорты",
+        "parent": 1,
+        "lft": 4,
+        "rght": 5,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 11,
+    "fields": {
+        "name": "Джемпера, туники, кардиганы",
+        "slug": "джемпера-туники-кардиганы",
+        "parent": 1,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 12,
+    "fields": {
+        "name": "Костюмы",
+        "slug": "костюмы",
+        "parent": 1,
+        "lft": 20,
+        "rght": 21,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 13,
+    "fields": {
+        "name": "Жакеты",
+        "slug": "жакеты",
+        "parent": 1,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 14,
+    "fields": {
+        "name": "Спортивная одежда",
+        "slug": "спортивная-одежда",
+        "parent": 1,
+        "lft": 32,
+        "rght": 33,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 15,
+    "fields": {
+        "name": "Домашнаяя одежда",
+        "slug": "домашнаяя-одежда",
+        "parent": 1,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 2,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 16,
+    "fields": {
+        "name": "Горнолыжка",
+        "slug": "горнолыжка",
+        "parent": 6,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 17,
+    "fields": {
+        "name": "Куртки, ветровки, пальто",
+        "slug": "куртки-ветровки-пальто",
+        "parent": 6,
+        "lft": 9,
+        "rght": 10,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 18,
+    "fields": {
+        "name": "Платья повседневные",
+        "slug": "платья-повседневные",
+        "parent": 7,
+        "lft": 27,
+        "rght": 28,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 19,
+    "fields": {
+        "name": "Платья летние",
+        "slug": "платья-летние",
+        "parent": 7,
+        "lft": 23,
+        "rght": 24,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 20,
+    "fields": {
+        "name": "Платья нарядные",
+        "slug": "платья-нарядные",
+        "parent": 7,
+        "lft": 25,
+        "rght": 26,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 21,
+    "fields": {
+        "name": "Сарафаны",
+        "slug": "сарафаны",
+        "parent": 7,
+        "lft": 29,
+        "rght": 30,
+        "tree_id": 2,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 22,
+    "fields": {
+        "name": "Верхняя одежда",
+        "slug": "верхняя-одежда",
+        "parent": 2,
+        "lft": 4,
+        "rght": 7,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 23,
+    "fields": {
+        "name": "Куртки, бомберы",
+        "slug": "куртки-бомберы",
+        "parent": 22,
+        "lft": 5,
+        "rght": 6,
+        "tree_id": 3,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 24,
+    "fields": {
+        "name": "Джинсы",
+        "slug": "джинсы",
+        "parent": 2,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 25,
+    "fields": {
+        "name": "Футболки, майки",
+        "slug": "футболки-майки",
+        "parent": 2,
+        "lft": 18,
+        "rght": 19,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 26,
+    "fields": {
+        "name": "Брюки, шорты",
+        "slug": "брюки-шорты",
+        "parent": 2,
+        "lft": 2,
+        "rght": 3,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 27,
+    "fields": {
+        "name": "Джемпера, кардиганы",
+        "slug": "джемпера-кардиганы",
+        "parent": 2,
+        "lft": 8,
+        "rght": 9,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 28,
+    "fields": {
+        "name": "Домашнаяя одежда",
+        "slug": "домашнаяя-одежда",
+        "parent": 2,
+        "lft": 12,
+        "rght": 13,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 29,
+    "fields": {
+        "name": "Рубашки",
+        "slug": "рубашки",
+        "parent": 2,
+        "lft": 14,
+        "rght": 15,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 30,
+    "fields": {
+        "name": "Спортивная одежда",
+        "slug": "спортивная-одежда",
+        "parent": 2,
+        "lft": 16,
+        "rght": 17,
+        "tree_id": 3,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 31,
+    "fields": {
+        "name": "Аксессуары",
+        "slug": "аксессуары",
+        "parent": 3,
+        "lft": 2,
+        "rght": 5,
+        "tree_id": 1,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 32,
+    "fields": {
+        "name": "Девочки",
+        "slug": "девочки",
+        "parent": 3,
+        "lft": 6,
+        "rght": 19,
+        "tree_id": 1,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 33,
+    "fields": {
+        "name": "Мальчики",
+        "slug": "мальчики",
+        "parent": 3,
+        "lft": 20,
+        "rght": 23,
+        "tree_id": 1,
+        "level": 1
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 34,
+    "fields": {
+        "name": "Шапки",
+        "slug": "шапки",
+        "parent": 31,
+        "lft": 3,
+        "rght": 4,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 35,
+    "fields": {
+        "name": "Верхняя одежда",
+        "slug": "верхняя-одежда",
+        "parent": 32,
+        "lft": 9,
+        "rght": 12,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 36,
+    "fields": {
+        "name": "Куртки, жилеты, бомберы, ветровки",
+        "slug": "куртки-жилеты-бомберы-ветровки",
+        "parent": 35,
+        "lft": 10,
+        "rght": 11,
+        "tree_id": 1,
+        "level": 3
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 37,
+    "fields": {
+        "name": "Костюмы",
+        "slug": "костюмы",
+        "parent": 32,
+        "lft": 15,
+        "rght": 16,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 38,
+    "fields": {
+        "name": "Платья",
+        "slug": "платья",
+        "parent": 32,
+        "lft": 17,
+        "rght": 18,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 39,
+    "fields": {
+        "name": "Джемпера, кардиганы",
+        "slug": "джемпера-кардиганы",
+        "parent": 32,
+        "lft": 13,
+        "rght": 14,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 40,
+    "fields": {
+        "name": "Брюки, юбки, шорты",
+        "slug": "брюки-юбки-шорты",
+        "parent": 32,
+        "lft": 7,
+        "rght": 8,
+        "tree_id": 1,
+        "level": 2
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 41,
+    "fields": {
+        "name": "Костюмы",
+        "slug": "костюмы",
+        "parent": 33,
+        "lft": 21,
+        "rght": 22,
+        "tree_id": 1,
+        "level": 2
+    }
+}
+]

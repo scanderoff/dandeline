@@ -73,19 +73,19 @@
                             <td class="product-info__data">
                                 <div class="sizes sizes--lg product-info__sizes">
                                     <div class="sizes__list">
-                                        {% for size in sizes %}
+                                        {% for variation in product.sizes %}
                                             <label class="size sizes__item">
-                                                <input class="size__field" type="radio" name="size_id" value="{{ size.size }}">
+                                                <input class="size__field" type="radio" name="size_id" value="{{ variation.size.id }}">
                                                 <span class="size__inner">
-                                                    {{ size.size__value }}
+                                                    {{ variation.size.value }}
                                                 </span>
                                             </label>
                                         {% endfor %}
                                     </div>
 
-                                    <button class="sizes__btn not-implemented" type="button">
+                                    {% comment %} <button class="sizes__btn not-implemented" type="button">
                                         Таблица размеров
-                                    </button>
+                                    </button> {% endcomment %}
                                 </div>
                             </td>
                         </tr>
@@ -96,9 +96,9 @@
                             <td class="product-info__data">
                                 <div class="colors">
                                     <div class="colors__list">
-                                        {% for color in colors %}
-                                            <label class="color color--lg colors__item" style="--color-value: {{ color.color__value }}">
-                                                <input class="color__field" type="radio" name="color_id" value="{{ color.color }}" checked>
+                                        {% for variation in product.colors %}
+                                            <label class="color color--lg colors__item" style="--color-value: {{ variation.color.value }}">
+                                                <input class="color__field" type="radio" name="color_id" value="{{ variation.color.id }}">
                                                 <span class="color__inner"></span>
                                             </label>
                                         {% endfor %}
@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="product__actions">
-                        <button class="btn btn--gold product__btn" type="submit" name="do" value="add">
+                        <button class="btn btn--gold product__btn" type="submit" name="do" value="add" title="Выберите размер и цвет" disabled>
                             В корзину
                         </button>
 

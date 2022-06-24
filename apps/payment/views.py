@@ -21,7 +21,7 @@ def payment_process(request: HttpRequest) -> HttpResponse:
             "client_token": client_token,
         })
 
-    order_id: str = request.session.get("order_id")
+    order_id: str | None = request.session.get("order_id")
     order: Order = get_object_or_404(Order, id=order_id)
     total_price: Decimal = order.total_price
     nonce: str | None = request.POST.get("payment_method_nonce")

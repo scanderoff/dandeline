@@ -1,18 +1,19 @@
 from typing import Any
 
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
-from django.contrib.auth import (
-    authenticate, login,
-    get_user_model, update_session_auth_hash
-)
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_POST
+from django.http import HttpRequest, HttpResponse
 from django.db.models import QuerySet, Model
+from django.forms import ValidationError
 
 from orders.models import Order, OrderItem
 from .forms import LoginForm, RegisterForm, EditForm
+from .services.authentication import SignUpProcessor, SignInProcessor
+from .services.account import Account
+from .services.exceptions import DisabledUserError
 
 
 User: type[Model] = get_user_model()
@@ -20,6 +21,7 @@ User: type[Model] = get_user_model()
 
 @require_GET
 def auth(request: HttpRequest) -> HttpResponse:
+    """Render login and registration forms"""
     if request.user.is_authenticated:
         return redirect("users:edit")
 
@@ -33,52 +35,46 @@ def auth(request: HttpRequest) -> HttpResponse:
 
 
 @require_POST
-def user_login(request: HttpRequest) -> HttpResponse:
-    form = LoginForm(request.POST)
+def signin(request: HttpRequest) -> HttpResponse:
+    """Login processing"""
+    signin_processor = SignInProcessor(request)
 
-    if form.is_valid():
-        cd: dict[str, Any] = form.cleaned_data
-
-        user: User = authenticate(request, username=cd["phone"],
-                                  password=cd["password"])
-
-        if user is None:
-            return HttpResponse("Invalid login data")
-
-        if not user.is_active:
-            return HttpResponse("Disabled account")
-
-        login(request, user)
-
+    try:
+        signin_processor.signin()
+    except User.DoesNotExist:
+        ...
+    except DisabledUserError:
+        messages.error("Данный аккаунт отключен")
+    except ValidationError:
+        messages.error("Проверьте правильность заполнения формы")
+    else:
         next: str = request.POST["next"]
 
         return redirect(next if next else "users:edit")
 
-
     return render(request, "users/auth.html", {
-        "login_form": form,
+        "login_form": signin_processor.signin_form,
         "register_form": RegisterForm(),
     })
 
 
 @require_POST
-def user_register(request: HttpRequest) -> HttpResponse:
-    form = RegisterForm(request.POST)
+def signup(request: HttpRequest) -> HttpResponse:
+    """Registration processing"""
+    signup_processor = SignUpProcessor(request)
 
-    if form.is_valid():
-        new_user: User = form.save(commit=False)
-        new_user.set_password(form.cleaned_data["password1"])
-        new_user.save()
-
-        login(request, new_user)
+    try:
+        signup_processor.signup()
 
         next: str = request.POST["next"]
 
         return redirect(next if next else "users:edit")
+    except ValidationError:
+        messages.error("Проверьте правильность заполнения формы")
 
     return render(request, "users/auth.html", {
         "login_form": LoginForm(),
-        "register_form": form,
+        "register_form": signup_processor.form,
     })
 
 
@@ -112,8 +108,20 @@ def user_edit(request: HttpRequest) -> HttpRequest:
     })
 
 
+# @login_required
+# def edit(request: HttpRequest) -> HttpResponse:
+#     account = Account(request)
+
+
+
+#     return render(request, "users/edit.html", {
+#         "section": "profile",
+#         "form": account.edit_form,
+#     })
+
+
 @login_required
-def user_orders(request: HttpRequest) -> HttpResponse:
+def orders(request: HttpRequest) -> HttpResponse:
     orders: QuerySet[Order] = request.user.orders.all()
 
     return render(request, "users/orders.html", {
@@ -123,10 +131,10 @@ def user_orders(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def user_order(request: HttpRequest, order_id: int) -> HttpResponse:
+def order(request: HttpRequest, order_id: int) -> HttpResponse:
     order: Order = Order.objects.get(id=order_id)
-    items: QuerySet[OrderItem] = order.items.select_related("product").all()
-    # FIX: дублируется запрос на подсчет конечной суммы
+    items: QuerySet[OrderItem] = order.items.select_related("variation").all()
+    # TOFIX: дублируется запрос на подсчет конечной суммы
 
     return render(request, "users/order.html", {
         "section": "orders",

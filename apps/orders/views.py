@@ -1,21 +1,17 @@
 import weasyprint
 
+from django.forms import ValidationError
 from django.shortcuts import get_object_or_404, render, redirect
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.contrib.auth import login
 from django.contrib.admin.views.decorators import staff_member_required
-from django.urls import reverse
 from django.http import HttpRequest, HttpResponse
 from django.views import View
 
-from users.models import User
 from coupons.forms import CouponApplyForm
-from cart.cart import Cart
-from .models import Order, OrderItem
+from .models import Order
 from .forms import OrderCreateForm
-from .tasks import order_created
-from .utils import register_on_checkout
+from .services.checkout import CheckoutProcessor
 
 
 @staff_member_required
@@ -37,69 +33,24 @@ def admin_order_pdf(request: HttpRequest, order_id: str) -> HttpResponse:
 
 class CheckoutView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
-        cart: Cart = Cart(request)
-        user: User = request.user
-        initial: dict[str, str] = {}
-
-        if user.is_authenticated:
-            initial["first_name"] = user.first_name
-            initial["last_name"] = user.last_name
-            initial["phone"] = user.phone
-            initial["email"] = user.email
-            initial["zip_code"] = user.zip_code
-            initial["city"] = user.city
-            initial["address1"] = user.address1
-            initial["address2"] = user.address2
-
-        form: OrderCreateForm = OrderCreateForm(initial=initial)
-        coupon_form: CouponApplyForm = CouponApplyForm(auto_id=False)
+        checkout_form = OrderCreateForm.from_user(request.user)
+        coupon_form = CouponApplyForm(auto_id=False)
 
         return render(request, "orders/checkout.html", {
-            "cart": cart,
-            "form": form,
+            "checkout_form": checkout_form,
             "coupon_form": coupon_form,
         })
 
     def post(self, request: HttpRequest) -> HttpResponse:
-        cart: Cart = Cart(request)
-        form: OrderCreateForm = OrderCreateForm(request.POST)
+        checkout_processor = CheckoutProcessor(request)
 
-        if not form.is_valid():
+        try:
+            checkout_processor.run()
+        except ValidationError:
             return render(request, "orders/checkout.html", {
-                "cart": cart,
-                "form": form,
+                "cart": checkout_processor.cart,
+                "form": checkout_processor.form,
             })
 
-        order: Order = form.save(commit=False)
-        user: User = request.user
-
-        if not user.is_authenticated:
-            user = register_on_checkout(order)
-            login(request, user, "allauth.account.auth_backends.AuthenticationBackend")
-
-        order.user = user
-
-        if cart.coupon:
-            order.coupon = cart.coupon
-            order.discount = cart.coupon.discount
-        order.save()
-
-        order_items: list[OrderItem] = []
-
-        for item in cart:
-            order_item: OrderItem = OrderItem(
-                order=order,
-                product=item["product"],
-                quantity=item["quantity"]
-            )
-            order_items.append(order_item)
-
-        OrderItem.objects.bulk_create(order_items)
-
-        cart.clear()
-
-        order_created.delay(order.id)
-
-        request.session["order_id"] = order.id
-
-        return redirect(reverse("payment:process"))
+        # return redirect("payment:process")
+        return redirect("users:edit")
