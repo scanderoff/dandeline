@@ -1,0 +1,15 @@
+.price-filter {
+    &__inputs {
+        display: flex;
+        margin: 0 -7px;
+    }
+
+    &__input {
+        width: calc(100%*1/2 - 14px);
+        margin: 0 7px;
+    }
+
+    &__slider {
+        margin-top: 40px;
+    }
+}

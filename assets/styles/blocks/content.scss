@@ -1,0 +1,32 @@
+.content {
+    &__container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    &__header {
+        margin-bottom: 43px;
+    }
+
+    &__breadcrumbs {
+        margin-top: 18px;
+        margin-bottom: 42px;
+    }
+
+    &__messages {
+        margin-top: 42px;
+        margin-bottom: 42px;
+    }
+
+    &__wrapper {
+        display: flex;
+    }
+
+    &__inner {
+        flex-grow: 1;
+    }
+
+    &__sidebar {
+        margin-right: 30px;
+    }
+}

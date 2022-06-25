@@ -1,0 +1,13 @@
+.contacts {
+    &__list {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        margin: 0 50px;
+    }
+}

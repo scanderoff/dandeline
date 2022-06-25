@@ -1,0 +1,47 @@
+.color {
+    &__field {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__inner {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+
+        border-radius: 50%;
+        border: 1px solid transparent;
+    }
+
+    &__field + &__inner {
+        cursor: pointer;
+    }
+
+    &--sm &__inner {
+        width: 18px;
+        height: 18px;
+        padding: 2px;
+    }
+
+    &--lg &__inner {
+        width: 29px;
+        height: 29px;
+        padding: 3px;
+    }
+
+    &__inner::before {
+        content: "";
+        position: absolute;
+        width: calc(100% - 2px);
+        height: calc(100% - 2px);
+        top: 1px;
+        left: 1px;
+
+        border-radius: 50%;
+        background-color: var(--color-value);
+    }
+
+    &__field:checked + &__inner {
+        border-color: var(--color-value);
+    }
+}

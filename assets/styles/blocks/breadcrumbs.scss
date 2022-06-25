@@ -1,0 +1,38 @@
+.breadcrumbs {
+    &__list {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        &:not(:last-child) {
+            position: relative;
+            margin-right: 20px;
+
+            &::after {
+                content: "/";
+                position: absolute;
+                left: calc(100% + 7px);
+            }
+        }
+    }
+
+    &__link {
+        display: inline-block;
+
+        color: var(--color-gray);
+        transition: color 0.3s ease;
+
+        font-size: 15px;
+        line-height: 18px;
+        text-decoration: none;
+
+        &.active,
+        &:hover {
+            color: #2E2E2E;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.checkout-section {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    &__title {
+        margin-bottom: 20px;
+
+        color: var(--color-black);
+
+        font-size: 19px;
+        line-height: 23px;
+    }
+}

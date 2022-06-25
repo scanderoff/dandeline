@@ -1,0 +1,11 @@
+.search-popup {
+    min-width: 300px;
+    padding-top: 22px;
+
+    &__inner {
+        border: 1px solid #DDD;
+
+        background-color: var(--color-white);
+        // background-color: red;
+    }
+}

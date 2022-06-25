@@ -1,0 +1,17 @@
+.product-pricing {
+    &__price {
+        color: var(--color-black);
+
+        &--default {
+            font-weight: 900;
+            font-size: 15px;
+            line-height: 18px;
+        }
+
+        &--lg {
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 43px;
+        }
+    }
+}

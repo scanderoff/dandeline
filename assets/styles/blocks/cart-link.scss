@@ -1,0 +1,37 @@
+.cart-link {
+    position: relative;
+
+    &__counter {
+        position: absolute;
+        top: -11px;
+        right: -9px;
+        min-width: 19px;
+        min-height: 19px;
+
+        border-radius: 50%;
+        color: var(--color-white);
+        background-color: var(--color-gold);
+
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 19px;
+        text-align: center;
+    }
+
+    &__popup {
+        position: absolute;
+        top: calc(100%);
+        right: 0;
+        z-index: 6;
+
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease,
+                    visibility 0.3s ease;
+    }
+
+    &:hover &__popup {
+        opacity: 1;
+        visibility: visible;
+    }
+}

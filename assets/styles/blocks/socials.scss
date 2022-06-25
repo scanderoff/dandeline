@@ -1,0 +1,43 @@
+.socials {
+    &__title {
+        margin-bottom: 16px;
+
+        color: var(--color-black);
+
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18px;
+    }
+
+    &__list {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        &:not(:last-child) {
+            margin-right: 13px;
+        }
+    }
+
+    &__icon {
+        box-sizing: border-box;
+        width: 24px;
+        height: 24px;
+        border: 1.5px solid var(--color-gray);
+
+        border-radius: 50%;
+        fill: var(--color-gray);
+        transition: border-color 0.3s ease,
+                    background-color 0.3s ease,
+                    fill 0.3s ease;
+
+        &:hover {
+            border-color: var(--color-gold);
+            background-color: var(--color-gold);
+            fill: var(--color-white);
+        }
+    }
+}

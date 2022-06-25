@@ -1,0 +1,19 @@
+.counter {
+    padding: 17px 19px 23px;
+
+    background-color: #F5F5F5;
+
+    text-align: center;
+
+    &__value {
+        color: var(--color-gold);
+
+        font-weight: 900;
+        font-size: 35px;
+        line-height: 42px;
+    }
+
+    &__caption {
+
+    }
+}
