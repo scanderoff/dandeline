@@ -10,12 +10,12 @@ import {browserSync} from "./server.js";
 
 const fonts = () => {
     return gulp.src(globs.fonts.src)
-        .pipe(
-            plumber(notify.onError({
-                title: "FONTS",
-                message: "<%= error.message %>",
-            }))
-        )
+        // .pipe(
+        //     plumber(notify.onError({
+        //         title: "FONTS",
+        //         message: "<%= error.message %>",
+        //     }))
+        // )
         .pipe(newer(globs.fonts.build))
         .pipe(ttf2woff2())
         .pipe(gulp.dest(globs.fonts.build))

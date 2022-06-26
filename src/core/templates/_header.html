@@ -39,45 +39,49 @@
 
     <div class="header__bottom">
         <div class="header__bottom-container page__container">
-            <a class="logo header__logo" href="{% url 'shop:homepage' %}">
+            <a class="logo header__logo" href="{% url 'marketing:homepage' %}">
                 <img class="logo__image" src="{% static 'images/logo/logo.svg' %}" alt="Dandeline" width="171" height="50">
             </a>
 
             <nav class="nav">
                 <ul class="nav__list">
                     <li class="nav-item nav__item">
-                        <a class="nav-item__link" href="{% url 'shop:catalog' %}">
+                        <a class="nav-item__link" href="{% url 'catalog:products' %}">
                             <span>Каталог</span>
-                            <svg class="nav-item__icon" xmlns="http://www.w3.org/2000/svg" width="11" height="6" fill="none" viewBox="0 0 11 6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m1.396.937 4.456 4.385L10.31.937" />
-                            </svg>
+                            {% if categories %}
+                                <svg class="nav-item__icon" xmlns="http://www.w3.org/2000/svg" width="11" height="6" fill="none" viewBox="0 0 11 6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m1.396.937 4.456 4.385L10.31.937" />
+                                </svg>
+                            {% endif %}
                         </a>
 
-                        <div class="subnav nav-item__subnav">
-                            <ul class="subnav__list">
-                                {% recursetree categories %}
-                                    <li class="subnav-item subnav__item">
-                                        <a class="subnav-item__link" href="{{ node.get_absolute_url }}">
-                                            <span>{{ node.name }}</span>
+                        {% if categories %}
+                            <div class="subnav nav-item__subnav">
+                                <ul class="subnav__list">
+                                    {% recursetree categories %}
+                                        <li class="subnav-item subnav__item">
+                                            <a class="subnav-item__link" href="{{ node.get_absolute_url }}">
+                                                <span>{{ node.name }}</span>
+
+                                                {% if not node.is_leaf_node %}
+                                                    <svg class="subnav-item__icon" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1.39661 0.936523L5.85261 5.32223L10.3104 0.936523" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                {% endif %}
+                                            </a>
 
                                             {% if not node.is_leaf_node %}
-                                                <svg class="subnav-item__icon" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M1.39661 0.936523L5.85261 5.32223L10.3104 0.936523" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
+                                                <div class="subnav subnav-item__subnav">
+                                                    <ul class="subnav__list">
+                                                        {{ children }}
+                                                    </ul>
+                                                </div>
                                             {% endif %}
-                                        </a>
-
-                                        {% if not node.is_leaf_node %}
-                                            <div class="subnav subnav-item__subnav">
-                                                <ul class="subnav__list">
-                                                    {{ children }}
-                                                </ul>
-                                            </div>
-                                        {% endif %}
-                                    </li>
-                                {% endrecursetree %}
-                            </ul>
-                        </div>
+                                        </li>
+                                    {% endrecursetree %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </li>
 
                     <li class="nav-item nav__item">

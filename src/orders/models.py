@@ -6,7 +6,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 # from django.utils.translation import gettext as _
 
-from shop.models import Variation
+from catalog.models import Variation
 from coupons.models import Coupon
 
 

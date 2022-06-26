@@ -6,7 +6,7 @@ from django.http import HttpRequest
 from django.db.models import QuerySet
 
 from coupons.models import Coupon
-from shop.models import Variation
+from catalog.models import Variation
 
 
 class Cart:

@@ -11,6 +11,7 @@ import initPhoneFields from "./blocks/phone-field.js";
 // import QtyInput from "./blocks/qty-input.js";
 import Popup from "./blocks/popup.js";
 import PriceFilter from "./blocks/price-filter.js";
+import "./blocks/products.js";
 
 
 import CartUpdateForm from "./blocks/cart-update-form.js";

@@ -9,7 +9,7 @@
     Корзина
 {% endblock %}
 
-{% block inner %}
+{% block content %}
     {% if cart %}
         <div class="cart">
             {% include '_cart-table.html' with container=cart updatable=True %}
@@ -60,7 +60,7 @@
             </div>
         </div>
     {% else %}
-        <a class="btn btn--gray" href="{% url 'shop:catalog' %}">
+        <a class="btn btn--gray" href="{% url 'catalog:products' %}">
             Вернуться в магазин
         </a>
     {% endif %}

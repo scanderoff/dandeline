@@ -1,0 +1,3 @@
+{% for product in products %}
+    {% include 'catalog/_product.html' with product=product class='product--item products__item' %}
+{% endfor %}

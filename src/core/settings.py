@@ -10,14 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import sys, os
+# import sys
+import os
 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,12 +49,13 @@ INSTALLED_APPS = [
     'adminsortable2',
 
     'core',
-    'shop.apps.ShopConfig',
+    'catalog.apps.CatalogConfig',
     'cart.apps.CartConfig',
     'bookmark.apps.BookmarkConfig',
     'coupons.apps.CouponsConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'marketing.apps.MarketingConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'cart.context_processors.cart',
-                'shop.context_processors.categories',
+                'catalog.context_processors.categories',
             ],
         },
     },
@@ -156,7 +158,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / 'static/'
+# STATIC_ROOT = BASE_DIR / 'core/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'core/static/',
 ]

@@ -12,7 +12,7 @@
     {% include 'users/_sidebar.html' with section=section %}
 {% endblock %}
 
-{% block inner %}
+{% block content %}
     <form class="account-form" action="{% url 'users:edit' %}" method="POST">
         {% csrf_token %}
 

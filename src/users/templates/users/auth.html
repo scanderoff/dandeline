@@ -9,7 +9,7 @@
     Личный кабинет
 {% endblock %}
 
-{% block inner %}
+{% block content %}
     <div class="auth">
         <form class="auth-form auth__form" action="{% url 'users:login' %}" method="POST">
             {% csrf_token %}

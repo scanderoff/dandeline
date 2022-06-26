@@ -12,12 +12,12 @@ import {browserSync} from "./server.js";
 
 const images = () => {
     return gulp.src(globs.images.src)
-        .pipe(
-            plumber(notify.onError({
-                title: "IMAGES",
-                message: "<%= error.message %>",
-            }))
-        )
+        // .pipe(
+        //     plumber(notify.onError({
+        //         title: "IMAGES",
+        //         message: "<%= error.message %>",
+        //     }))
+        // )
         .pipe(newer(globs.images.build))
         .pipe(if_(app.isProd,
             imagemin({

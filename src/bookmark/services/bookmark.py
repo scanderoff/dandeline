@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpRequest
 from django.db.models import QuerySet
 
-from shop.models import Product
+from catalog.models import Product
 
 
 class Bookmark:

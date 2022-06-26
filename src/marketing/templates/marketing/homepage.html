@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block sections %}
+    <section class="hero">
+        <div class="hero-slider swiper">
+            <ul class="hero-slider__slides swiper-wrapper">
+                {% for slide in hero_slides %}
+                    <li class="hero-slide swiper-slide">
+                        <a class="hero-slide__link" href="#">
+                            <img class="hero-slide__image" src="{{ slide.image.url }}" alt="">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="hero-nav hero-slider__nav">
+                <div class="hero-nav__container page__container">
+                    <button class="hero-nav__btn hero-nav__btn--prev" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="18" fill="none" viewBox="0 0 10 18">
+                            <path stroke="#fff" d="M9.423 17.106 1.11 8.792 9.423.48" />
+                        </svg>
+                    </button>
+                    <button class="hero-nav__btn hero-nav__btn--next" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="18" fill="none" viewBox="0 0 11 18">
+                            <path stroke="#fff" d="m1.135.895 8.313 8.313-8.313 8.313" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="promotions-section">
+        <div class="page__container">
+            <div class="promotions">
+                <ul class="promotions__list">
+                    <li class="promotion promotions__item">
+                        <a class="promotion__link" href="#">
+                            <img class="promotion__image" src="images/promotion/00.jpg" alt="">
+                        </a>
+                    </li>
+                    <li class="promotion promotions__item">
+                        <a class="promotion__link" href="#">
+                            <img class="promotion__image" src="images/promotion/01.jpg" alt="">
+                        </a>
+                    </li>
+                    <li class="promotion promotions__item">
+                        <a class="promotion__link" href="#">
+                            <img class="promotion__image" src="images/promotion/02.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="reviews-section">
+        <div class="page__container">
+            <div class="section-header reviews-section__header">
+                <h2 class="section-header__title">
+                    Отзывы
+                </h2>
+
+                <div class="section-header__subtitle">
+                    от наших дорогих клиентов
+                </div>
+            </div>
+
+            <div class="stories"></div>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="page__container">
+            <div class="section-header recommended-section__header">
+                <h2 class="section-header__title">
+                    Категории
+                </h2>
+            </div>
+
+            <div class="categories">
+                <ul class="categories__list">
+                    {% for cat in featured_cats %}
+                        <li class="category categories__item">
+                            <a class="category__link" href="{{ cat.get_absolute_url }}">
+                                <div class="category-thumb">
+                                    <img class="category-thumb__image" src="{{ cat.image.url }}" alt="">
+                                </div>
+
+                                <div class="category__body">
+                                    <div class="category__title">
+                                        {{ cat.name }}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="new-section">
+        <div class="page__container">
+            <div class="section-header new-section__header">
+                <h2 class="section-header__title">
+                    Новинки
+                </h2>
+            </div>
+
+            <div class="products">
+                <ul class="products__list products__list--4-cols">
+                    {% include 'catalog/_product_loop.html' with products=new_products %}
+                </ul>
+
+                <div class="products__actions">
+                    <a class="btn btn--gold products__more-link" href="{% url 'catalog:products' %}">
+                        Больше
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="recommended-section">
+        <div class="page__container">
+            <div class="section-header recommended-section__header">
+                <h2 class="section-header__title">
+                    Рекомендуемые Товары
+                </h2>
+
+                <div class="section-header__subtitle">
+                    Рекомендуемые товары на этой неделе
+                </div>
+            </div>
+
+            <div class="products">
+                <ul class="products__list products__list--4-cols">
+                    {% include 'catalog/_product_loop.html' with products=popular_products %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

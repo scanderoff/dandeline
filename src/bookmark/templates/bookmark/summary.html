@@ -9,7 +9,7 @@
     Избранные товары
 {% endblock %}
 
-{% block inner %}
+{% block content %}
     {% if bookmark %}
         <div class="cart">
             <table class="cart-table" style="margin-top: 50px">
@@ -72,7 +72,7 @@
             </div>
         </div>
     {% else %}
-        <a class="btn btn--gray" href="{% url 'shop:catalog' %}">
+        <a class="btn btn--gray" href="{% url 'catalog:products' %}">
             Вернуться в магазин
         </a>
     {% endif %}

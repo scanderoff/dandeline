@@ -1,0 +1,41 @@
+{% extends 'content.html' %}
+
+{% block title %}
+    Товары – {{ block.super }}
+{% endblock %}
+
+
+{% block heading %}
+    {% if category %}
+        {{ category.name }}
+    {% else %}
+        Каталог
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'catalog/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="products">
+        <div class="product-sorter products__sorter">
+            <button class="product-sorter__btn" type="submit" form="catalogFilterForm" name="order_by" value="-total_sales">
+                <span>По популярности</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
+                    <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />
+                </svg>
+            </button>
+            <button class="product-sorter__btn" type="submit" form="catalogFilterForm" name="order_by" value="-price">
+                <span>По цене</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
+                    <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />
+                </svg>
+            </button>
+        </div>
+
+        <ul class="products__list products__list--3-cols">
+            {% include 'catalog/_product_loop.html' with products=products %}
+        </ul>
+    </div>
+{% endblock %}

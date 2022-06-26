@@ -19,12 +19,12 @@ const sass = gulpSass(dartSass);
 
 const styles = () => {
     return gulp.src(globs.styles.src, {sourcemaps: app.isDev})
-        .pipe(
-            plumber(notify.onError({
-                title: "SCSS",
-                message: "<%= error.message %>",
-            }))
-        )
+        // .pipe(
+        //     plumber(notify.onError({
+        //         title: "SCSS",
+        //         message: "<%= error.message %>",
+        //     }))
+        // )
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(shorthand())

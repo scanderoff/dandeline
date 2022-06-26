@@ -13,12 +13,12 @@ import {browserSync} from "./server.js";
 
 const scripts = () => {
     return gulp.src(globs.scripts.src, {sourcemaps: app.isDev})
-        .pipe(
-            plumber(notify.onError({
-                title: "JS",
-                message: "<%= error.message %>",
-            }))
-        )
+        // .pipe(
+        //     plumber(notify.onError({
+        //         title: "JS",
+        //         message: "<%= error.message %>",
+        //     }))
+        // )
         .pipe(babel())
         .pipe(
             webpack({
