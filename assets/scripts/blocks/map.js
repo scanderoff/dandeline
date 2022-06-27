@@ -6,9 +6,10 @@ function initMap() {
     }
 
     const center = JSON.parse($map.dataset.mapCenter);
+    const pin = $map.dataset.pin;
 
     const map = new ymaps.Map($map, {
-        center: [52.257604, 104.269737],
+        center: center,
         zoom: 17,
     }, {
         searchControlProvider: "yandex#search"
@@ -18,7 +19,7 @@ function initMap() {
 
     const placemark = new ymaps.Placemark(map.getCenter(), {}, {
         iconLayout: "default#image",
-        iconImageHref: "images/map/pin.svg",
+        iconImageHref: pin,
         iconImageSize: [20, 30],
         // iconImageOffset: [-5, -38]
     });

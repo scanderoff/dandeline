@@ -128,6 +128,9 @@ def orders(request: HttpRequest) -> HttpResponse:
 
     orders: QuerySet[Order] = request.user.orders.all()
 
+    # if not orders:
+    #     messages.error(request, "У вас пока нет заказов")
+
     return render(request, "users/orders.html", {
         "section": "orders",
         "orders": orders,

@@ -13,31 +13,37 @@
 {% endblock %}
 
 {% block content %}
-    <table class="orders">
-        <thead class="orders__head">
-            <tr>
-                <th class="orders__header">Заказ</th>
-                <th class="orders__header">Дата</th>
-                <th class="orders__header">Статус</th>
-                <th class="orders__header">Итого</th>
-                <th class="orders__header">Действия</th>
-                <th class="orders__header"></th>
-            </tr>
-        </thead>
-        <tbody class="orders__body">
-            {% for order in orders %}
-                <tr class="orders__row">
-                    <td class="orders__data">№ {{ order.id }}</td>
-                    <td class="orders__data">{{ order.created_at|date:'d.m.Y' }}</td>
-                    <td class="orders__data">{% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}</td>
-                    <td class="orders__data">{{ order.total_price }} ₽</td>
-                    <td class="orders__data">
-                        <a class="orders__btn orders__btn--white" href="{% url 'users:order' order_id=order.id %}">
-                            Просмотр
-                        </a>
-                    </td>
+    {% if orders %}
+        <table class="orders">
+            <thead class="orders__head">
+                <tr>
+                    <th class="orders__header">Заказ</th>
+                    <th class="orders__header">Дата</th>
+                    <th class="orders__header">Статус</th>
+                    <th class="orders__header">Итого</th>
+                    <th class="orders__header">Действия</th>
+                    <th class="orders__header"></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="orders__body">
+                {% for order in orders %}
+                    <tr class="orders__row">
+                        <td class="orders__data">№ {{ order.id }}</td>
+                        <td class="orders__data">{{ order.created_at|date:'d.m.Y' }}</td>
+                        <td class="orders__data">{% if order.paid %}Оплачен{% else %}Не оплачен{% endif %}</td>
+                        <td class="orders__data">{{ order.total_price }} ₽</td>
+                        <td class="orders__data">
+                            <a class="orders__btn orders__btn--white" href="{% url 'users:order' order_id=order.id %}">
+                                Просмотр
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <a class="btn btn--gray" href="{% url 'catalog:products' %}">
+            Перейти в магазин
+        </a>
+    {% endif %}
 {% endblock %}

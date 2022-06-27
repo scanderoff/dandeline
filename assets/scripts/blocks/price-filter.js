@@ -15,7 +15,7 @@ export default class PriceFilter {
         // const params = new URLSearchParams(location.search);
 
         noUiSlider.create(this.$slider, {
-            start: [0, +this.$priceTo.value],
+            start: [+this.$priceFrom.value, +this.$priceTo.value],
             connect: true,
             range: {
                 "min": 0,

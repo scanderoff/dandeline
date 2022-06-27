@@ -11,15 +11,17 @@ import initPhoneFields from "./blocks/phone-field.js";
 // import QtyInput from "./blocks/qty-input.js";
 import Popup from "./blocks/popup.js";
 import PriceFilter from "./blocks/price-filter.js";
-import "./blocks/products.js";
+import FilterForm from "./blocks/filter-form.js";
 
-
+import RequestForm from "./blocks/request-form.js";
 import CartUpdateForm from "./blocks/cart-update-form.js";
 // import CartRemoveForm from "./blocks/cart-remove-form.js";
 
+import "./blocks/products.js";
+
 
 window.addEventListener("load", () => {
-    new Page();
+    window.page = new Page();
 
 
     new Swiper(".hero-slider", {
@@ -75,6 +77,25 @@ window.addEventListener("load", () => {
 
 
 
+    const $requestPopup = document.getElementById("requestPopup");
+
+    if ($requestPopup) {
+        new Popup($requestPopup);
+    }
+
+
+
+    const $requestForm = document.forms.requestForm;
+
+    if ($requestForm) {
+        new RequestForm($requestForm);
+    }
+
+
+
+
+
+
     const $searchAction = document.querySelector(".search-action__inner");
 
     if ($searchAction) {
@@ -107,10 +128,17 @@ window.addEventListener("load", () => {
 
 
     const $filter = document.querySelector(".price-filter");
-    new PriceFilter($filter);
+
+    if ($filter) {
+        new PriceFilter($filter);
+    }
 
 
+    const $filterForm = document.querySelector(".filter-form");
 
+    if ($filterForm) {
+        new FilterForm($filterForm);
+    }
 
 
 

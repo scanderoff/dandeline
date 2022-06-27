@@ -10,30 +10,36 @@
                 </h1>
             </div>
 
-            {% comment %} {% if path is not None %} {% endcomment %}
+            {% if ancestors is not None %}
                 <div class="breadcrumbs content__breadcrumbs">
                     <ul class="breadcrumbs__list">
                         <li class="breadcrumbs__item">
-                            <a class="breadcrumbs__link" href="#">
+                            <a class="breadcrumbs__link" href="{% url 'marketing:homepage' %}">
                                 Главная
                             </a>
                         </li>
-                        {% comment %} {% for category in path %}
+                        {% for category in ancestors %}
                             <li class="breadcrumbs__item">
-                                <a class="breadcrumbs__link" href="{{ category.get_absolute_url }}">
-                                    {{ category.name }}
-                                </a>
+                                {% if not forloop.last %}
+                                    <a class="breadcrumbs__link" href="{{ category.get_absolute_url }}">
+                                        {{ category.name }}
+                                    </a>
+                                {% else %}
+                                    <span class="breadcrumbs__link">
+                                        {{ category.name }}
+                                    </span>
+                                {% endif %}
                             </li>
                         {% empty %}
                             <li class="breadcrumbs__item">
-                                <a class="breadcrumbs__link" href="#">
+                                <a class="breadcrumbs__link" href="{% url 'catalog:products' %}">
                                     Каталог
                                 </a>
                             </li>
-                        {% endfor %}{% endcomment %}
+                        {% endfor %}
                     </ul>
                 </div>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
 
             {% if messages %}
                 <div class="messages content__messages">

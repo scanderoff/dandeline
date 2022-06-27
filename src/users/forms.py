@@ -21,6 +21,7 @@ class LoginForm(forms.Form, FormCleanMixin):
             "data-phone-field": "",
         })
     )
+
     password = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={"class": "input__field"}),
@@ -41,6 +42,7 @@ class RegisterForm(forms.ModelForm, FormCleanMixin):
         label="Пароль",
         widget=forms.PasswordInput(attrs={"class": "input__field"})
     )
+
     password2 = forms.CharField(
         label="Повторите пароль",
         widget=forms.PasswordInput(attrs={"class": "input__field"})
@@ -81,28 +83,28 @@ class RegisterForm(forms.ModelForm, FormCleanMixin):
 
 class EditForm(forms.ModelForm, FormCleanMixin):
     current_password = forms.CharField(
+        required=False,
         label="Сменить пароль",
         widget=forms.PasswordInput(attrs={
             "class": "input__field",
             "placeholder": "Введите текущий пароль",
         }),
-        required=False,
     )
     password1 = forms.CharField(
+        required=False,
         label="",
         widget=forms.PasswordInput(attrs={
             "class": "input__field",
             "placeholder": "Введите новый пароль",
         }),
-        required=False,
     )
     password2 = forms.CharField(
+        required=False,
         label="",
         widget=forms.PasswordInput(attrs={
             "class": "input__field",
             "placeholder": "Подтвердите новый пароль",
         }),
-        required=False,
     )
 
     class Meta:

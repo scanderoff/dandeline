@@ -9,8 +9,9 @@
     Оформление заказа
 {% endblock %}
 
+
 {% block content %}
-    <div class="checkout" style="margin-top: 50px">
+    <div class="checkout">
         <form id="checkoutForm" class="checkout__form" action="{% url 'orders:checkout' %}" method="POST">
             {% csrf_token %}
 
@@ -343,7 +344,10 @@
                         {% with variation=item.variation product=item.variation.product %}
                             <li class="checkout-product checkout-products__item">
                                 <div class="checkout-product__title">
-                                    {{ product.name }} – {{ variation.size.value }}
+                                    {{ product.name }} – {{ variation.size.value }} –
+                                    <label class="color color--sm colors__item" style="--color-value: {{ variation.color.value }}">
+                                        <span class="color__inner"></span>
+                                    </label>
                                 </div>
 
                                 <div class="checkout-product__quantity">

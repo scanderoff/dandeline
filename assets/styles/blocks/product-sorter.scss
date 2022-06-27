@@ -34,14 +34,17 @@
             transition: stroke 0.3s ease;
         }
 
+        &.active,
         &:hover {
             color: var(--color-gold);
         }
 
+        &.active span,
         &:hover span {
             border-bottom-color: var(--color-gold);
         }
 
+        &.active svg,
         &:hover svg {
             stroke: var(--color-gold)
         }

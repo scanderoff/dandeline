@@ -19,7 +19,7 @@ export default class CartUpdateForm {
             return;
         }
 
-        const url = new URL("/get-variation", location.origin);
+        const url = new URL("/catalog/variation", location.origin);
 
         url.searchParams.append("product_id", product_id);
         url.searchParams.append("size_id", size_id);

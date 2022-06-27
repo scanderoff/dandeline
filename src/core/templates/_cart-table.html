@@ -1,4 +1,4 @@
-<table class="cart-table" style="margin-top: 50px">
+<table class="cart-table">
     <thead class="cart-table__head">
         <tr>
             <th class="cart-table__col">
@@ -29,7 +29,7 @@
                 <tr class="cart-table__row">
                     <td class="cart-table__col">
                         <a class="cart-product" href="{{ product.get_absolute_url }}">
-                            <img class="cart-product__image" src="{{ product.thumbnail_url }}" alt="{{ product.name }}">
+                            <img class="cart-product__image" src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
 
                             <div class="cart-product__content">
                                 <div class="cart-product__title">

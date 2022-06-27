@@ -10,7 +10,6 @@
 
     &__breadcrumbs {
         margin-top: 18px;
-        margin-bottom: 42px;
     }
 
     &__messages {
@@ -20,6 +19,7 @@
 
     &__wrapper {
         display: flex;
+        margin-top: 42px;
     }
 
     &__inner {

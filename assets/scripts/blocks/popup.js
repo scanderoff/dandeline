@@ -31,6 +31,8 @@ class Popup extends Eventable(class {
 
         Popup.active = this;
 
+        window.page.lockScroll();
+
         this._emit("show");
     }
 
@@ -38,6 +40,8 @@ class Popup extends Eventable(class {
         this.$container.classList.remove("active");
 
         Popup.active = null;
+
+        window.page.unlockScroll();
 
         this._emit("hide");
     }

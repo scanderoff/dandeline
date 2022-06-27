@@ -1,0 +1,9 @@
+.form {
+    &__step {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}
