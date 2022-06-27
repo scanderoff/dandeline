@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 # from django.utils.translation import gettext as _
 from django.db.models import Model
 
-from users.forms import FormCleanMixin
+from core.mixins import FormCleanMixin
 from .models import Order
 
 

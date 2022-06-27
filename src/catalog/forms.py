@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -15,6 +17,7 @@ class FilterForm(forms.Form):
     )
 
     price_from = forms.IntegerField(
+        required=False,
         label="от",
         initial=MIN_PRICE,
         min_value=MIN_PRICE,
@@ -30,6 +33,7 @@ class FilterForm(forms.Form):
     )
 
     price_to = forms.IntegerField(
+        required=False,
         label="до",
         initial=MAX_PRICE,
         min_value=MIN_PRICE,
@@ -43,3 +47,9 @@ class FilterForm(forms.Form):
             "class": "price-input__field price-input__field--to",
         }),
     )
+
+    s = forms.CharField(max_length=150, required=False)
+    order_by = forms.HiddenInput()
+
+    def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:
+        super().__init__(*args, auto_id=False, **kwargs)

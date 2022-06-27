@@ -5,16 +5,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import check_password
 from django.db.models import Model
 
+from core.mixins import FormCleanMixin
+
 
 User: type[Model] = get_user_model()
 
-
-class FormCleanMixin:
-    def clean_phone(self) -> str:
-        phone: str = self.cleaned_data["phone"]
-        unmasked: str = "".join(ch for ch in phone if ch.isdigit())
-
-        return unmasked
 
 
 class LoginForm(forms.Form, FormCleanMixin):
@@ -29,6 +24,12 @@ class LoginForm(forms.Form, FormCleanMixin):
     password = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={"class": "input__field"}),
+    )
+
+    remember_me = forms.BooleanField(
+        required=False,
+        label="Запомнить меня",
+        widget=forms.CheckboxInput(attrs={"class": "hidden option__hidden"}),
     )
 
     def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:

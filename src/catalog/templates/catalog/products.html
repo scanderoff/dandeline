@@ -20,13 +20,14 @@
 {% block content %}
     <div class="products">
         <div class="product-sorter products__sorter">
-            <button class="product-sorter__btn" type="submit" form="catalogFilterForm" name="order_by" value="-total_sales">
+            <button class="product-sorter__btn {% if request.GET.order_by == '-total_sales' %}active{% endif %}" type="submit" form="catalogFilterForm" name="order_by" value="-total_sales">
                 <span>По популярности</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
                     <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />
                 </svg>
             </button>
-            <button class="product-sorter__btn" type="submit" form="catalogFilterForm" name="order_by" value="-price">
+
+            <button class="product-sorter__btn {% if request.GET.order_by == '-price' %}active{% endif %}" type="submit" form="catalogFilterForm" name="order_by" value="-price">
                 <span>По цене</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="none" viewBox="0 0 10 12">
                     <path d="m.498 6.443 4.243 4.243 4.242-4.243M4.729.912v9.774" />

@@ -36,7 +36,7 @@
             </div>
 
             <label class="option option--1 auth-form__option">
-                <input class="hidden option__hidden" type="checkbox">
+                {{ login_form.remember_me }}
 
                 <span class="option__field">
                     <svg class="option__value" xmlns="http://www.w3.org/2000/svg" width="10" height="11" fill="none" viewBox="0 0 10 11">
@@ -45,7 +45,7 @@
                 </span>
 
                 <span class="option__text">
-                    Запомнить меня
+                    {{ login_form.remember_me.label }}
                 </span>
             </label>
 

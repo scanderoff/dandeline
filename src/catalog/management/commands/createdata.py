@@ -18,18 +18,27 @@ class Command(BaseCommand):
         with open("catalog/fixtures/categories.json", "r") as inf:
             categories: dict[str, Any] = json.loads(inf.read())
 
+
         sizes: list[Size] = []
-        colors: list[Color] = []
 
         for _ in range(15):
-            sizes.append(Size.objects.create(
+            sizes.append(Size(
                 value=fake.unique.random_int(min=40, max=100, step=2),
             ))
 
+        Size.objects.bulk_create(sizes)
+
+
+        colors: list[Color] = []
+
         for _ in range(10):
-            colors.append(Color.objects.create(
+            colors.append(Color(
                 value=fake.unique.color(),
             ))
+
+        Color.objects.bulk_create(colors)
+
+
 
         faker.Faker.seed(0)
         for _ in range(30):

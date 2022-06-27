@@ -85,25 +85,25 @@
                     </li>
 
                     <li class="nav-item nav__item">
-                        <a class="nav-item__link" href="delivery-and-payments.html">
+                        <a class="nav-item__link" href="{% url 'marketing:delivery-and-payment' %}">
                             Доставка и оплата
                         </a>
                     </li>
 
                     <li class="nav-item nav__item">
-                        <a class="nav-item__link" href="return.html">
+                        <a class="nav-item__link" href="{% url 'marketing:return' %}">
                             Возврат
                         </a>
                     </li>
 
                     <li class="nav-item nav__item">
-                        <a class="nav-item__link" href="about-us.html">
+                        <a class="nav-item__link" href="{% url 'marketing:about-us' %}">
                             О нас
                         </a>
                     </li>
 
                     <li class="nav-item nav__item">
-                        <a class="nav-item__link" href="contact.html">
+                        <a class="nav-item__link" href="{% url 'marketing:contact' %}">
                             Контакты
                         </a>
                     </li>
@@ -125,8 +125,9 @@
 
                     <div class="search-popup search-action__popup">
                         <div class="search-popup__inner">
-                            <form class="search-form" action="/" method="GET">
+                            <form class="search-form" action="{% url 'catalog:products' %}" method="GET">
                                 <input class="search-form__field" type="search" name="s" placeholder="Поиск по товарам...">
+
                                 <button class="search-form__btn" type="submit">
                                     <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill="none" d="M18.2987 16.5278C17.372 15.601 16.8524 15.0814 15.9257 14.1547C14.9989 13.228 13.8736 12.6392 12.6225 12.39C11.3713 12.1408 10.0687 12.2643 8.88944 12.7511C8.0468 13.0989 7.57366 13.2024 6.65451 13.2024C3.48415 13.2024 0.914062 10.6323 0.914062 7.46194C0.914062 4.29158 3.48415 1.7215 6.65451 1.7215C9.82487 1.7215 12.3949 4.29158 12.3949 7.46194C12.3949 8.30755 12.2121 9.11045 11.8838 9.83327" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" />

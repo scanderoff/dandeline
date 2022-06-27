@@ -7,7 +7,7 @@ from . import views
 app_name: str = CatalogConfig.name
 
 urlpatterns: list[URLPattern] = [
-    path("get-variation", views.get_variation, name="get-variation"),
+    path("variation", views.variation, name="variation"),
 
     path("", views.products, name="products"),
     path("category/<path:path>/", views.products, name="products"),

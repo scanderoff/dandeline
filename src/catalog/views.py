@@ -7,7 +7,7 @@ from django.views.decorators.http import require_GET
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from core.services.utils import is_ajax
-# from bookmark.services.bookmark import Bookmark
+from bookmark.services.bookmark import Bookmark
 from .models import *
 from .services.recommender import Recommender
 from .forms import FilterForm
@@ -21,11 +21,15 @@ def products(request: HttpRequest, path: str = "") -> HttpResponse:
     filter_form = FilterForm(data=request.GET or None)
     products: QuerySet[Product] = Product.objects.order_by("-created_at")
 
-
     if path:
-        cat_slug: str = path.rsplit("/", 1)[-1]
+        try:
+            cats: list[str] = path.rsplit("/", 2)
+            cat_slug: str = cats.pop()
+            parent_slug: str = cats.pop()
+        except IndexError:
+            parent_slug: str = None
 
-        current_cat: Category = get_object_or_404(Category, slug=cat_slug)
+        current_cat: Category = get_object_or_404(Category, slug=cat_slug, parent__slug=parent_slug)
 
         family: list[Category] = list(current_cat.get_family())
         index: int = family.index(current_cat)
@@ -39,15 +43,19 @@ def products(request: HttpRequest, path: str = "") -> HttpResponse:
     if filter_form.is_valid():
         cd: dict[str, Any] = filter_form.cleaned_data
 
-        products = products \
-            .filter(price__gte=cd["price_from"]) \
-            .filter(price__lte=cd["price_to"]) \
+        if cd["price_from"]:
+            products = products.filter(price__gte=cd["price_from"])
+
+        if cd["price_to"]:
+            products = products.filter(price__lte=cd["price_to"])
 
         if cd["size"]:
             products = products.filter(variations__size__in=cd["size"])
 
-        if request.GET["order_by"]:
-            products = products.order_by(request.GET["order_by"])
+        if cd["s"]:
+            products = products.filter(name__icontains=cd["s"])
+
+        products = products.order_by(request.GET.get("order_by", "-created_at"))
 
 
     paginator = Paginator(products, 15)
@@ -68,13 +76,13 @@ def products(request: HttpRequest, path: str = "") -> HttpResponse:
             "products": products,
         })
 
-
     return render(request, "catalog/products.html", {
-        "path": ancestors,
+        "path": path,
+        "ancestors": ancestors,
         "category": current_cat,
         "products": products,
         "filter_form": filter_form,
-        # "bookmark": Bookmark(request),
+        "bookmark": Bookmark(request),
     })
 
 
@@ -94,7 +102,7 @@ def product(request: HttpRequest, slug: str) -> HttpResponse:
 
 
 @require_GET
-def get_variation(request: HttpRequest) -> JsonResponse:
+def variation(request: HttpRequest) -> JsonResponse:
     data: dict[str, Any] = request.GET
 
     try:

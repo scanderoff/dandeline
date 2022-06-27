@@ -35,68 +35,68 @@
         </section>
     {% endif %}
 
-    {% if products %}
-        <form id="catalogFilterForm" class="product-filter" action="{% url 'catalog:products' %}" method="GET">
-            <section class="sidebar-section sidebar__section">
-                <div class="sidebar-section__title">
-                    Размер
-                </div>
+    <form id="catalogFilterForm" class="filter-form" action="{% if path %}{% url 'catalog:products' path=path %}{% else %}{% url 'catalog:products' %}{% endif %}" method="GET">
+        {{ filter_form.s.as_hidden }}
 
-                <div class="sizes sizes--sm product-info__sizes">
-                    <div class="sizes__list">
-                        {% for choice in filter_form.size.field.choices %}
-                            <label class="size sizes__item">
-                                <input class="size__field" type="checkbox" name="{{ filter_form.size.name }}" value="{{ choice.0 }}" {% if choice.0|slugify in filter_form.size.value %}checked{% endif %}>
-                                <span class="size__inner">
-                                    {{ choice.1 }}
-                                </span>
-                            </label>
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
-
-            <section class="sidebar-section sidebar__section">
-                <div class="sidebar-section__title">
-                    Фильтр по цене:
-                </div>
-
-                <div class="price-filter">
-                    <div class="price-filter__inputs">
-                        <div class="price-input price-filter__input">
-                            {{ filter_form.price_from }}
-                            <div class="price-input__label">
-                                {{ filter_form.price_from.label }}
-                            </div>
-                            <div class="price-input__currency">
-                                ₽
-                            </div>
-                        </div>
-
-                        <div class="price-input price-filter__input">
-                            {{ filter_form.price_to }}
-                            <div class="price-input__label">
-                                {{ filter_form.price_to.label }}
-                            </div>
-                            <div class="price-input__currency">
-                                ₽
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="price-slider price-filter__slider"></div>
-                </div>
-            </section>
-
-            <div class="product-filter__btns">
-                <button class="btn btn--gray product-filter__btn" type="submit" name="order_by" value="-created_at">
-                    Применить
-                </button>
-
-                <button class="btn btn--gray product-filter__btn" type="submit">
-                    Сбросить
-                </button>
+        <section class="sidebar-section sidebar__section">
+            <div class="sidebar-section__title">
+                Размер
             </div>
-        </form>
-    {% endif %}
+
+            <div class="sizes sizes--sm product-info__sizes">
+                <div class="sizes__list">
+                    {% for choice in filter_form.size.field.choices %}
+                        <label class="size sizes__item">
+                            <input class="size__field" type="checkbox" name="{{ filter_form.size.name }}" value="{{ choice.0 }}" {% if choice.0|slugify in filter_form.size.value %}checked{% endif %}>
+                            <span class="size__inner">
+                                {{ choice.1 }}
+                            </span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="sidebar-section sidebar__section">
+            <div class="sidebar-section__title">
+                Фильтр по цене:
+            </div>
+
+            <div class="price-filter">
+                <div class="price-filter__inputs">
+                    <div class="price-input price-filter__input">
+                        {{ filter_form.price_from }}
+                        <div class="price-input__label">
+                            {{ filter_form.price_from.label }}
+                        </div>
+                        <div class="price-input__currency">
+                            ₽
+                        </div>
+                    </div>
+
+                    <div class="price-input price-filter__input">
+                        {{ filter_form.price_to }}
+                        <div class="price-input__label">
+                            {{ filter_form.price_to.label }}
+                        </div>
+                        <div class="price-input__currency">
+                            ₽
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-slider price-filter__slider"></div>
+            </div>
+        </section>
+
+        <div class="filter-form__btns">
+            <button class="btn btn--gray filter-form__btn" type="submit">
+                Применить
+            </button>
+
+            <button class="btn btn--gray filter-form__btn" type="reset">
+                Сбросить
+            </button>
+        </div>
+    </form>
 </aside>

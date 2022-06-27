@@ -23,6 +23,7 @@ User: type[Model] = get_user_model()
 @require_GET
 def auth(request: HttpRequest) -> HttpResponse:
     """Render login and registration forms"""
+
     if request.user.is_authenticated:
         return redirect("users:edit")
 
@@ -38,6 +39,7 @@ def auth(request: HttpRequest) -> HttpResponse:
 @require_POST
 def signin(request: HttpRequest) -> HttpResponse:
     """Login processing"""
+
     form = LoginForm(request.POST)
 
     if form.is_valid():
@@ -54,6 +56,9 @@ def signin(request: HttpRequest) -> HttpResponse:
 
         login(request, user)
 
+        if not cd["remember_me"]:
+            request.session.set_expiry(0)
+
         next: str = request.POST["next"]
 
         return redirect(next if next else "users:edit")
@@ -67,6 +72,7 @@ def signin(request: HttpRequest) -> HttpResponse:
 @require_POST
 def signup(request: HttpRequest) -> HttpResponse:
     """Registration processing"""
+
     form = RegisterForm(request.POST)
 
     if form.is_valid():
@@ -118,6 +124,8 @@ def user_edit(request: HttpRequest) -> HttpRequest:
 
 @login_required
 def orders(request: HttpRequest) -> HttpResponse:
+    """User order list"""
+
     orders: QuerySet[Order] = request.user.orders.all()
 
     return render(request, "users/orders.html", {
@@ -128,6 +136,8 @@ def orders(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def order(request: HttpRequest, order_id: int) -> HttpResponse:
+    """User order"""
+
     order: Order = Order.objects.get(id=order_id)
     items: QuerySet[OrderItem] = order.items.select_related("variation").all()
     # TOFIX: дублируется запрос на подсчет конечной суммы

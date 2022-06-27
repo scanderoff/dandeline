@@ -1,6 +1,6 @@
 {% load static %}
 
-{{ sql_queries|length }}
+{% comment %} {{ sql_queries|length }}
 <table>
     <thead>
         <tr>
@@ -16,14 +16,14 @@
             </tr>
         {% endfor %}
     </tbody>
-</table>
+</table> {% endcomment %}
 
 
 <footer class="footer">
     <div class="footer__top">
         <div class="footer__top-container page__container">
             <div class="footer__col footer__col--1">
-                <a class="logo" href="#">
+                <a class="logo" href="{% url 'marketing:homepage' %}">
                     <img class="logo__image" src="{% static 'images/logo/logo.svg' %}" alt="Dandeline">
                 </a>
 
@@ -66,17 +66,17 @@
 
                     <ul class="footer-nav__list">
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'catalog:products' 'мужское' %}">
                                 Мужская
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'catalog:products' 'женское' %}">
                                 Женская
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'catalog:products' 'детское' %}">
                                 Детская
                             </a>
                         </li>
@@ -95,22 +95,22 @@
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'marketing:delivery-and-payment' %}">
                                 Доставка и оплата
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'marketing:return' %}">
                                 Возврат
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'marketing:about-us' %}">
                                 О нас
                             </a>
                         </li>
                         <li class="footer-nav__item">
-                            <a class="link footer-nav__link" href="#">
+                            <a class="link footer-nav__link" href="{% url 'marketing:contact' %}">
                                 Контакты
                             </a>
                         </li>

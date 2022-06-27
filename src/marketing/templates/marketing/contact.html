@@ -1,0 +1,69 @@
+{% extends 'content.html' %}
+{% load static %}
+
+{% block title %}
+    Контакты – {{ block.super }}
+{% endblock %}
+
+{% block heading %}
+    Контакты
+{% endblock %}
+
+
+{% block content %}
+    <div class="contacts contact-content__contacts">
+        <ul class="contacts__list">
+            <li class="contact contacts__item">
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" width="19" height="27" fill="none" viewBox="0 0 19 27">
+                    <path stroke="#888" stroke-miterlimit="10" d="M9.373 26.37a20.872 20.872 0 0 1 1.888-8.377 22.655 22.655 0 0 1 6.535-8.21 8.416 8.416 0 1 0-16.832.006 22.66 22.66 0 0 1 6.534 8.21c.38.831.704 1.686.97 2.56.577 1.884.885 3.84.912 5.811h-.007Z" />
+                </svg>
+
+                <div class="contact__content">
+                    <div class="contact__title">
+                        Адрес:
+                    </div>
+
+                    <div class="contact__inner">
+                        г. Иркутск,<br>
+                        ул. Академика Курчатова 3,<br>
+                        офис 406
+                    </div>
+                </div>
+            </li>
+
+            <li class="contact contacts__item">
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="none" viewBox="0 0 27 27">
+                    <path stroke="#888" stroke-miterlimit="10" d="M26.025 24.982a1.389 1.389 0 0 1-1.388 1.388 23.63 23.63 0 0 1-16.685-6.923A23.64 23.64 0 0 1 1.03 2.759 1.389 1.389 0 0 1 2.42 1.37h5.14a1.388 1.388 0 0 1 1.387 1.39 15.28 15.28 0 0 0 1.543 6.793 1.388 1.388 0 0 1-.645 1.866l-2.073.994a19.58 19.58 0 0 0 7.213 7.215l1-2.07a1.41 1.41 0 0 1 .799-.71c.35-.117.732-.095 1.066.064a15.322 15.322 0 0 0 6.792 1.554 1.388 1.388 0 0 1 1.388 1.389l-.005 5.128Z" />
+                </svg>
+
+                <div class="contact__content">
+                    <div class="contact__title">
+                        Телефон:
+                    </div>
+
+                    <a class="contact__inner" href="tel:+73952436645">
+                        +7 3952 43-66-45
+                    </a>
+                </div>
+            </li>
+
+            <li class="contact contacts__item">
+                <svg class="contact__icon" xmlns="http://www.w3.org/2000/svg" width="27" height="18" fill="none" viewBox="0 0 27 18">
+                    <path stroke="#888" stroke-miterlimit="10" d="m2.353 1.415 11.183 8.458L24.72 1.415M2.353 16.326l6.292-7.503m16.074 7.503-6.292-7.503M3.032.537H24.04c1.102 0 1.996.893 1.996 1.996v12.675a1.996 1.996 0 0 1-1.996 1.996H3.032a1.996 1.996 0 0 1-1.996-1.997V2.534c0-1.103.894-1.996 1.996-1.996Z" />
+                </svg>
+
+                <div class="contact__content">
+                    <div class="contact__title">
+                        E-mail:
+                    </div>
+
+                    <a class="contact__inner" href="mailto:info-dandeline@mail.ru">
+                        info-dandeline@mail.ru
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="map" data-map-center='[52.257604, 104.269737]' data-pin="{% static 'images/map/pin.svg' %}"></div>
+{% endblock %}
