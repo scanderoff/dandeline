@@ -14,6 +14,7 @@ click-plugins==1.1.1
 click-repl==0.2.0
 cssselect2==0.6.0
 Deprecated==1.2.13
+dj-database-url==0.5.0
 Django==4.0.5
 django-admin-sortable2==2.0.4
 django-dotenv==1.4.2
@@ -33,6 +34,7 @@ mypy==0.950
 mypy-extensions==0.4.3
 packaging==21.3
 Pillow==9.1.1
+pkg_resources==0.0.0
 prompt-toolkit==3.0.29
 psycopg2-binary==2.9.3
 pycparser==2.21
