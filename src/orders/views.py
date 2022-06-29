@@ -21,7 +21,8 @@ User: type[Model] = get_user_model()
 
 
 def register_on_checkout(request: HttpRequest, order: Order) -> User:
-    """Register after placing order"""
+    """Register after placing an order"""
+
     password: str = User.objects.make_random_password()
 
     user: User = User.objects.from_order(order, password)
@@ -61,18 +62,17 @@ class CheckoutView(View):
         cart = Cart(request)
         form = OrderCreateForm(request.POST)
 
-
-        if form.is_valid():
+        if not form.is_valid():
             return render(request, "orders/checkout.html", {
                 "cart": cart,
                 "form": form,
             })
 
-        order = self.form.save(commit=False)
-        user: User = self.request.user
+        order = form.save(commit=False)
+        user: User = request.user
 
         if not user.is_authenticated:
-            user = register_on_checkout(self.request, self.order)
+            user = register_on_checkout(request, order)
 
         order.user = user
 
@@ -86,13 +86,11 @@ class CheckoutView(View):
 
 
 
-
-
         order_items: list[OrderItem] = []
 
-        for item in self.cart:
+        for item in cart:
             order_item = OrderItem(
-                order=self.order,
+                order=order,
                 variation=item["variation"],
                 quantity=item["quantity"],
             )
@@ -104,12 +102,14 @@ class CheckoutView(View):
         cart.clear()
 
 
-        # order_created.delay(order.id)
+
+
+
+        order_created.delay(order.id)
 
         request.session["order_id"] = order.id
 
 
 
-
         # return redirect("payment:process")
-        return redirect("users:edit")
+        return redirect("users:orders")

@@ -1,8 +1,13 @@
 from celery import shared_task
-from django.core.mail import send_mail
 
-from users.models import User
+from django.db.models import Model
+from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+
 from .models import Order
+
+
+User: type[Model] = get_user_model()
 
 
 @shared_task
