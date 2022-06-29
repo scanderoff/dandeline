@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-# import sys
 import os
 
 from pathlib import Path
@@ -18,25 +17,26 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gx!2d%5wl_%ospw1d1+d+z5qu9+k9b&d#p0as_-8q34!yeck*&'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == '1'
 
 ALLOWED_HOSTS = []
+
+if not DEBUG:
+    ALLOWED_HOSTS.extend(os.getenv('ALLOWED_HOSTS', '').split(','))
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,13 +49,13 @@ INSTALLED_APPS = [
     'adminsortable2',
 
     'core',
-    'catalog.apps.CatalogConfig',
-    'cart.apps.CartConfig',
-    'bookmark.apps.BookmarkConfig',
-    'coupons.apps.CouponsConfig',
-    'orders.apps.OrdersConfig',
-    'payment.apps.PaymentConfig',
-    'marketing.apps.MarketingConfig',
+    'catalog',
+    'cart',
+    'bookmark',
+    'coupons',
+    'orders',
+    'payment',
+    'marketing',
 ]
 
 MIDDLEWARE = [
@@ -90,21 +90,6 @@ TEMPLATES = [
     },
 ]
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.template': {
-#             'handlers': ['console'],
-#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-#         },
-#     },
-# }
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -115,11 +100,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dandeline',
-        'USER': 'iscander',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
@@ -183,16 +168,16 @@ INTERNAL_IPS = ['127.0.0.1']
 
 # Redis
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_DB = os.getenv('REDIS_DB')
 
 
 # Braintree
 
-BRAINTREE_MERCHANT_ID = 'jjfywg2gfksm2ddp'
-BRAINTREE_PUBLIC_KEY = 'bk5mwxw93ww8yx99'
-BRAINTREE_PRIVATE_KEY = '35b3333f649d174487ecbd72b02437eb'
+BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
 
 import braintree
 
@@ -208,11 +193,11 @@ BRAINTREE_CONF = braintree.Configuration(
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'h3ckphy@gmail.com'
-EMAIL_HOST_PASSWORD = 'jemzsiosridhlrfc'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == '1'
 
 
 # Cart

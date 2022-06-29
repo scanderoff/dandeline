@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 from django.views.decorators.http import require_POST
@@ -10,7 +10,7 @@ from .forms import CouponApplyForm
 
 
 @require_POST
-def coupon_apply(request: HttpRequest) -> HttpResponse:
+def apply(request: HttpRequest) -> HttpResponse:
     now: datetime = timezone.now()
     form = CouponApplyForm(request.POST)
 
@@ -29,4 +29,4 @@ def coupon_apply(request: HttpRequest) -> HttpResponse:
         except Coupon.DoesNotExist:
             request.session["coupon_id"] = None
 
-    return redirect("orders:checkout")
+    return redirect(request.META.get("HTTP_REFERER", "/"))

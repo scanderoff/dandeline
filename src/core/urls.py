@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import URLPattern, path, include
 from django.conf.urls.static import static
 
-urlpatterns = [
+
+urlpatterns: list[URLPattern] = [
     path("admin/", admin.site.urls),
 
     path("my-account/", include("users.urls", namespace="users")),

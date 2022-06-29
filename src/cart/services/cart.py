@@ -3,7 +3,6 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.http import HttpRequest
-from django.db.models import QuerySet
 
 from coupons.models import Coupon
 from catalog.models import Variation

@@ -13,6 +13,8 @@ from coupons.models import Coupon
 class Order(models.Model):
     class Meta:
         ordering: Sequence[str] = ("-created_at",)
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
 
     class ShippingMethod(models.TextChoices):
         POST: tuple[str, str] = ("post", "Доставка почтой")

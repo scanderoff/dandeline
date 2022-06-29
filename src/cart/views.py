@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 # from django.template.loader import render_to_string
 
+from coupons.forms import CouponApplyForm
 from .services.cart import Cart
 
 
@@ -77,10 +78,12 @@ def clear(request: HttpRequest) -> HttpResponse:
 
 def summary(request: HttpRequest) -> HttpResponse:
     cart = Cart(request)
+    coupon_apply_form = CouponApplyForm()
 
     if len(cart) == 0:
         messages.error(request, "Ваша корзина пока пуста.")
 
     return render(request, "cart/summary.html", {
         "cart": cart,
+        "coupon_apply_form": coupon_apply_form,
     })

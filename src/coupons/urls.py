@@ -7,5 +7,5 @@ from . import views
 app_name: str = CouponsConfig.name
 
 urlpatterns: list[URLPattern] = [
-    path("apply", views.coupon_apply, name="apply"),
+    path("apply", views.apply, name="apply"),
 ]
