@@ -15,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args: Any, **kwargs: dict[str, Any]) -> None:
         fake = faker.Faker(["ru_RU"])
 
-        with open("catalog/fixtures/categories.json", "r") as inf:
+        with open("src/catalog/fixtures/categories.json", "r") as inf:
             categories: dict[str, Any] = json.loads(inf.read())
 
 
