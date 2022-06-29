@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG') == '1'
+DEBUG = os.getenv('DEBUG') == '1'
 
 ALLOWED_HOSTS = []
 
-# if not DEBUG:
-    # ALLOWED_HOSTS.extend(os.getenv('ALLOWED_HOSTS', '').split(','))
+if not DEBUG:
+    ALLOWED_HOSTS.extend(os.getenv('ALLOWED_HOSTS', '').split(','))
 
 
 # Application definition
@@ -97,16 +97,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DATABASE_NAME'),
-#         'USER': os.getenv('DATABASE_USER'),
-#         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-#         'HOST': os.getenv('DATABASE_HOST'),
-#         'PORT': os.getenv('DATABASE_PORT'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
+    }
+}
 
 
 # Password validation
@@ -168,36 +168,36 @@ INTERNAL_IPS = ['127.0.0.1']
 
 # Redis
 
-# REDIS_HOST = os.getenv('REDIS_HOST')
-# REDIS_PORT = os.getenv('REDIS_PORT')
-# REDIS_DB = os.getenv('REDIS_DB')
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_DB = os.getenv('REDIS_DB')
 
 
 # Braintree
 
-# BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
-# BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
-# BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
+BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
 
 import braintree
 
-# BRAINTREE_CONF = braintree.Configuration(
-#     braintree.Environment.Sandbox,
-#     BRAINTREE_MERCHANT_ID,
-#     BRAINTREE_PUBLIC_KEY,
-#     BRAINTREE_PRIVATE_KEY
-# )
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
 
 
 # Email
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_HOST = os.getenv('EMAIL_HOST')
-# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-# EMAIL_PORT = os.getenv('EMAIL_PORT')
-# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == '1'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == '1'
 
 
 # Cart
@@ -217,61 +217,3 @@ BOOKMARK_SESSION_ID = 'bookmark'
 # ]
 
 LOGIN_URL = 'users:auth'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SECRET_KEY='django-insecure-gx!2d%5wl_%ospw1d1+d+z5qu9+k9b&d#p0as_-8q34!yeck*&'
-DEBUG=True
-ALLOWED_HOSTS=['dandeline.herokuapp.com','localhost','127.0.0.1']
-
-
-# SMTP
-
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='h3ckphy@gmail.com'
-EMAIL_HOST_PASSWORD='jemzsiosridhlrfc'
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-
-
-# DATABASE
-
-DATABASE_NAME='dandeline'
-DATABASE_USER='iscander'
-DATABASE_PASSWORD=123456
-DATABASE_HOST='localhost'
-DATABASE_PORT=5432
-
-
-# REDIS
-
-REDIS_HOST='localhost'
-REDIS_PORT=6379
-REDIS_DB=0
-
-
-# BRAINTREE
-
-BRAINTREE_MERCHANT_ID='jjfywg2gfksm2ddp'
-BRAINTREE_PUBLIC_KEY='bk5mwxw93ww8yx99'
-BRAINTREE_PRIVATE_KEY='35b3333f649d174487ecbd72b02437eb'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
