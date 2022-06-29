@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from core.services.utils import is_ajax
 from bookmark.services.bookmark import Bookmark
 from .models import *
-from .services.recommender import Recommender
+# from .services.recommender import Recommender
 from .forms import FilterForm
 
 
@@ -92,12 +92,13 @@ def product(request: HttpRequest, slug: str) -> HttpResponse:
     except Product.DoesNotExist:
         raise Http404()
 
-    r = Recommender()
-    recommended_products: list[Product] = r.suggest_products_for([product], 4)
+    # Предложить продукты, которые чаще всего покупаются с этим продуктом
+    # r = Recommender()
+    # recommended_products: list[Product] = r.suggest_products_for([product], 4)
 
     return render(request, "catalog/product.html", {
         "product": product,
-        "recommended_products": recommended_products,
+        # "recommended_products": recommended_products,
     })
 
 
