@@ -18,7 +18,7 @@ class Command(BaseCommand):
         with open("src/catalog/fixtures/categories.json", "r") as inf:
             categories: dict[str, Any] = json.loads(inf.read())
 
-
+        print(categories)
         sizes: list[Size] = []
 
         for _ in range(15):
