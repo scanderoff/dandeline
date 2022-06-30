@@ -18,9 +18,15 @@
             {% with images=product.images.all %}
                 <div class="product-slider product__slider swiper">
                     <ul class="product-slider__slides swiper-wrapper">
-                        {% for image in images %}
+                        {% comment %} {% for image in images %}
                             <li class="product-slide swiper-slide">
                                 <img class="product-slide__image" src="{{ image.file.url }}" alt="Product">
+                            </li>
+                        {% endfor %} {% endcomment %}
+
+                        {% for i in '12345678'|make_list %}
+                            <li class="product-slide swiper-slide">
+                                <img class="product-slide__image" src="{% static 'images/product-preview/placeholder.png' %}" alt="Product">
                             </li>
                         {% endfor %}
                     </ul>
@@ -28,9 +34,15 @@
 
                 <div class="product-thumbs swiper">
                     <ul class="product-thumbs__slides swiper-wrapper">
-                        {% for image in images %}
+                        {% comment %} {% for image in images %}
                             <li class="product-thumb swiper-slide">
                                 <img class="product-thumb__image" src="{% thumbnail image.file 100x0 %}" alt="Product">
+                            </li>
+                        {% endfor %} {% endcomment %}
+
+                        {% for i in '12345678'|make_list %}
+                            <li class="product-thumb swiper-slide">
+                                <img width="85" height="85" style="width: 85px; height: 85px" class="product-thumb__image" src="{% static 'images/product-preview/placeholder.png' %}" alt="Product">
                             </li>
                         {% endfor %}
                     </ul>
