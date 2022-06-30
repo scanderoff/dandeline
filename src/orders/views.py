@@ -13,7 +13,7 @@ from cart.services.cart import Cart
 from coupons.forms import CouponApplyForm
 from .models import Order, OrderItem
 from .forms import OrderCreateForm
-from .tasks import order_created
+# from .tasks import order_created
 
 
 
@@ -105,7 +105,7 @@ class CheckoutView(View):
 
 
 
-        order_created.delay(order.id)
+        # order_created.delay(order.id)
 
         request.session["order_id"] = order.id
 
