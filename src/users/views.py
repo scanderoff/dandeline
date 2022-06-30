@@ -144,7 +144,7 @@ def order(request: HttpRequest, order_id: int) -> HttpResponse:
     order: Order = Order.objects.get(id=order_id)
     items: QuerySet[OrderItem] = order.items.select_related("variation").all()
     # TOFIX: дублируется запрос на подсчет конечной суммы
-    print(items)
+
     return render(request, "users/order.html", {
         "section": "orders",
         "order": order,
