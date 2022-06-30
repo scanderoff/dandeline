@@ -7,8 +7,8 @@ from django.db import models
 class HeroSlide(models.Model):
     class Meta:
         ordering: Sequence[str] = ("order",)
-        verbose_name = 'Hero слайд'
-        verbose_name_plural = 'Hero слайды'
+        verbose_name = "Hero слайд"
+        verbose_name_plural = "Hero слайды"
 
 
     image = models.ImageField(upload_to="hero_slide/%Y/%m/%d/")
@@ -18,8 +18,8 @@ class HeroSlide(models.Model):
 
 class Contact(models.Model):
     class Meta:
-        verbose_name = 'Контакт'
-        verbose_name_plural = 'Контакты'
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
 
 
     name = models.CharField(max_length=100, null=True, blank=True)

@@ -13,8 +13,8 @@ class Category(MPTTModel):
     class Meta:
         verbose_name_plural = "categories"
         unique_together = ("slug", "parent")
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
 
     class MPTTMeta:
         order_insertion_by: list[str] = ["name"]
@@ -52,8 +52,8 @@ class Product(models.Model):
     """Represents a product"""
 
     class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
 
     sku = models.CharField(max_length=15, unique=True, blank=True)
     category = TreeForeignKey(Category, on_delete=models.PROTECT)
@@ -89,8 +89,8 @@ class ProductImage(models.Model):
     """Each product has a set of images on their detail page"""
 
     class Meta:
-        verbose_name = 'Изображение продукта'
-        verbose_name_plural = 'Изображения продукта'
+        verbose_name = "Изображение продукта"
+        verbose_name_plural = "Изображения продукта"
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
     file = models.ImageField(upload_to="product_image/%Y/%m/%d/")
@@ -101,8 +101,8 @@ class Size(models.Model):
 
     class Meta:
         ordering: Sequence[str] = ("order",)
-        verbose_name = 'Размер'
-        verbose_name_plural = 'Размеры'
+        verbose_name = "Размер"
+        verbose_name_plural = "Размеры"
 
     value = models.CharField(max_length=20)
     order = models.PositiveSmallIntegerField(default=0, db_index=True)
@@ -115,8 +115,8 @@ class Color(models.Model):
     """Product color attribute"""
 
     class Meta:
-        verbose_name = 'Цвет'
-        verbose_name_plural = 'Цвета'
+        verbose_name = "Цвет"
+        verbose_name_plural = "Цвета"
 
     value = models.CharField(max_length=20)
 
@@ -128,8 +128,8 @@ class Variation(models.Model):
     """Intermediary model for product variations"""
 
     class Meta:
-        verbose_name = 'Вариация'
-        verbose_name_plural = 'Вариации'
+        verbose_name = "Вариация"
+        verbose_name_plural = "Вариации"
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="variations")
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
