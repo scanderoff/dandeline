@@ -21,7 +21,7 @@
                 <div class="cart-total cart__total">
                     <div class="cart-total__label" style="margin-right: 20px">Итого</div>
                     <div class="cart-total__price">
-                        <span class="cart-total-price">{{ cart.discounted_total_price }}</span> ₽
+                        <span class="cart-total-price">{{ order.total_price|floatformat:2 }}</span> ₽
                     </div>
                 </div>
             </div>
