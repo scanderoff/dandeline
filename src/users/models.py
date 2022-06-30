@@ -61,6 +61,8 @@ class User(AbstractUser):
 
 
     username = None
+    first_name = models.CharField(max_length=150, null=True, blank=True)
+    last_name = models.CharField(max_length=150, null=True, blank=True)
     phone = models.CharField(max_length=50, unique=True)
     birthdate = models.DateField(null=True, blank=True)
     zip_code = models.CharField(max_length=50, null=True, blank=True)
