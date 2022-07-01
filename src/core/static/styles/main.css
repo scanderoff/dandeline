@@ -1742,7 +1742,7 @@ svg {
     position: absolute;
     top: 100%;
     left: -20px;
-    z-index: 3;
+    z-index: 6;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;

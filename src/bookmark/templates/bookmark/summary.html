@@ -30,7 +30,7 @@
                         <tr class="cart-table__row">
                             <td class="cart-table__col">
                                 <a class="cart-product" href="{{ product.get_absolute_url }}">
-                                    <img class="cart-product__image" src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% else %}{% static 'media/placeholder.png' %}{% endif %}" alt="{{ product.name }}">
+                                    <img class="cart-product__image" src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
 
                                     <div class="cart-product__content">
                                         <div class="cart-product__title">

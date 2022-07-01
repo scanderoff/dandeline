@@ -1,3 +1,5 @@
+{% load static %}
+
 {% with variation=item.variation product=item.variation.product %}
     <li class="cart-item cart-items__item" data-variation-id="{{ variation.id }}">
         <form action="{% url 'cart:remove' %}" method="POST">
@@ -12,7 +14,7 @@
         </form>
 
         <a class="cart-item__image-container" href="{{ product.get_absolute_url }}">
-            <img class="cart-item__image" src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% else %}{% static 'media/placeholder.png' %}{% endif %}" alt="{{ product.name }}">
+            <img class="cart-item__image" src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
         </a>
 
         <div class="cart-item__content">

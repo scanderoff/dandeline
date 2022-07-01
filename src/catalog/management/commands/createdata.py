@@ -13,30 +13,26 @@ class Command(BaseCommand):
     help = "Command info"
 
     def handle(self, *args: Any, **kwargs: dict[str, Any]) -> None:
-        fake = faker.Faker(["ru_RU"])
+        fake = faker.Faker(["ru_US"])
 
         with open("src/catalog/fixtures/categories.json", "r") as inf:
             categories: dict[str, Any] = json.loads(inf.read())
 
-        print(categories)
+
         sizes: list[Size] = []
 
         for _ in range(15):
-            sizes.append(Size(
+            sizes.append(Size.objects.create(
                 value=fake.unique.random_int(min=40, max=100, step=2),
             ))
-
-        Size.objects.bulk_create(sizes)
 
 
         colors: list[Color] = []
 
         for _ in range(10):
-            colors.append(Color(
+            colors.append(Color.objects.create(
                 value=fake.unique.color(),
             ))
-
-        Color.objects.bulk_create(colors)
 
 
 

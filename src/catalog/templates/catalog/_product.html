@@ -20,7 +20,7 @@
             </form>
 
             <a href="{{ product.get_absolute_url }}">
-                <img class="product-preview__image" src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% else %}{% static 'media/placeholder.png' %}{% endif %}" alt="{{ product.name }}">
+                <img class="product-preview__image" src="{{ product.thumbnail.url }}" alt="{{ product.name }}">
             </a>
         </div>
 
