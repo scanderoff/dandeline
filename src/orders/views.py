@@ -50,6 +50,11 @@ def admin_order_pdf(_: HttpRequest, order_id: str) -> HttpResponse:
 
 class CheckoutView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
+        cart = Cart(request)
+
+        if len(cart) == 0:
+            return redirect("catalog:products")
+
         checkout_form = OrderCreateForm.from_user(request.user)
         coupon_form = CouponApplyForm(auto_id=False)
 

@@ -18,6 +18,7 @@ import CartUpdateForm from "./blocks/cart-update-form.js";
 // import CartRemoveForm from "./blocks/cart-remove-form.js";
 
 import "./blocks/products.js";
+import "./blocks/category-nav.js";
 
 
 window.addEventListener("load", () => {
@@ -179,26 +180,7 @@ window.addEventListener("load", () => {
 
 
 
-    const $catNavBtns = document.querySelectorAll(".category-nav__btn");
-    $catNavBtns.forEach($catNavBtn => $catNavBtn.addEventListener("click", toggleNav));
 
-    function toggleNav(event) {
-        const $btn = event.currentTarget;
-        const $nav = $btn.nextElementSibling;
-        const $item = $btn.closest(".category-nav__item");
-
-        let maxHeight = 0;
-
-        if (!$item.classList.contains("active")) {
-            maxHeight = $nav.scrollHeight;
-
-            const $innerNavs = $nav.querySelectorAll(".category-nav--sub");
-            $innerNavs.forEach($innerNav => maxHeight += $innerNav.scrollHeight);
-        }
-
-        $nav.style.maxHeight = `${maxHeight}px`;
-        $item.classList.toggle("active");
-    }
 
 
 

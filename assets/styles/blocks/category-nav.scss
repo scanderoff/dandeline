@@ -36,6 +36,7 @@
         line-height: 19px;
         text-decoration: none;
 
+        &.active,
         &:hover {
             color: var(--color-gold);
         }
@@ -57,5 +58,9 @@
 
     &__item.active > &__btn svg {
         transform: rotateZ(-180deg);
+    }
+
+    &__item.active > & {
+        max-height: var(--max-height);
     }
 }

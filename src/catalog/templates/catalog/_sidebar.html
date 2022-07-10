@@ -10,8 +10,8 @@
             <div class="category-nav">
                 <ul class="category-nav__list">
                     {% recursetree categories %}
-                        <li class="category-nav__item">
-                            <a class="category-nav__link" href="{{ node.get_absolute_url }}">
+                        <li class="category-nav__item {% if node.id == category.id %}active{% endif %}">
+                            <a class="category-nav__link {% if node.id == category.id %}active{% endif %}" href="{{ node.get_absolute_url }}">
                                 {{ node.name }}
                             </a>
 

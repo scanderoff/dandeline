@@ -35,6 +35,7 @@ export default class CartUpdateForm {
                     this.$form["do"].title = "Нет в наличии";
 
                     this.$form["variation_id"].value = "";
+
                     return;
                 }
 

@@ -1,4 +1,9 @@
 .color {
+    &--inline {
+        display: inline-block;
+        vertical-align: text-top;
+    }
+
     &__field {
         position: absolute;
         opacity: 0;

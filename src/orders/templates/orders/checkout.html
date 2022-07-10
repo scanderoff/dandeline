@@ -344,10 +344,8 @@
                         {% with variation=item.variation product=item.variation.product %}
                             <li class="checkout-product checkout-products__item">
                                 <div class="checkout-product__title">
-                                    {{ product.name }} – {{ variation.size.value }} –
-                                    <label class="color color--sm colors__item" style="--color-value: {{ variation.color.value }}">
-                                        <span class="color__inner"></span>
-                                    </label>
+                                    {{ product.name }}<br>
+                                    {{ variation.size.value }} – <span class="color color--sm color--inline" style="--color-value: {{ variation.color.value }}"><span class="color__inner"></span></span>
                                 </div>
 
                                 <div class="checkout-product__quantity">

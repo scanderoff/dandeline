@@ -19,10 +19,8 @@
 
         <div class="cart-item__content">
             <a class="link cart-item__title" href="{{ product.get_absolute_url }}">
-                {{ product.name }} – {{ variation.size.value }} –
-                <label class="color color--sm colors__item" style="--color-value: {{ variation.color.value }}">
-                    <span class="color__inner"></span>
-                </label>
+                {{ product.name }}<br>
+                {{ variation.size.value }} – <span class="color color--sm color--inline" style="--color-value: {{ variation.color.value }}"><span class="color__inner"></span></span>
             </a>
             <div class="cart-item__summary">
                 <span class="cart-item__qty cart-item-qty">{{ item.quantity }}</span> x <span class="cart-item__price">{{ product.price }} ₽</span>

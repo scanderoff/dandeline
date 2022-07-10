@@ -1,5 +1,5 @@
 
-const $productList = document.querySelector(".products__list");
+const $productList = document.querySelector(".product-sorter + .products__list");
 const $footer = document.querySelector(".footer");
 let page = 1;
 let block_request = false;
@@ -12,7 +12,7 @@ if ($productList) {
     });
 
     observer.observe($footer)
- 
+
     function onIntersect(entries, observer) {
         const entry = entries[0];
 
@@ -40,6 +40,7 @@ if ($productList) {
             .then(html => {
                 if (!html) {
                     observer.unobserve($target);
+
                     return;
                 }
 

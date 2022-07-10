@@ -6,6 +6,7 @@ from django.db.models import QuerySet
 from django.views.decorators.http import require_POST
 
 from catalog.models import Category, Product
+from bookmark.services.bookmark import Bookmark
 from .models import HeroSlide
 from .forms import ContactForm
 
@@ -21,6 +22,7 @@ def homepage(request: HttpRequest) -> HttpResponse:
         "featured_cats": featured_cats,
         "new_products": new_products,
         "popular_products": popular_products,
+        "bookmark": Bookmark(request),
     })
 
 
