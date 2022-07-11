@@ -22,15 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv('SECRET_KEY')
-SECRET_KEY = 'django-insecure-gx!2d%5wl_%ospw1d1+d+z5qu9+k9b&d#p0as_-8q34!yeck*&'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv('DEBUG') == '1'
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == '1'
 
-# ALLOWED_HOSTS = [*os.getenv('ALLOWED_HOSTS', '').split(',')]
-ALLOWED_HOSTS = ['u1730497.trial.reg.site']
+ALLOWED_HOSTS = [*os.getenv('ALLOWED_HOSTS', '').split(',')]
 
 
 # Application definition
@@ -112,10 +109,6 @@ DATABASES = {
     }
 }
 
-# import dj_database_url
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -171,41 +164,41 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.User'
-# INTERNAL_IPS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1']
 
 
 # Redis
 
-# REDIS_HOST = os.getenv('REDIS_HOST')
-# REDIS_PORT = os.getenv('REDIS_PORT')
-# REDIS_DB = os.getenv('REDIS_DB')
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_DB = os.getenv('REDIS_DB')
 
 
 # Braintree
 
-# BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
-# BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
-# BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
+BRAINTREE_MERCHANT_ID = os.getenv('BRAINTREE_MERCHANT_ID')
+BRAINTREE_PUBLIC_KEY = os.getenv('BRAINTREE_PUBLIC_KEY')
+BRAINTREE_PRIVATE_KEY = os.getenv('BRAINTREE_PRIVATE_KEY')
 
-# import braintree
+import braintree
 
-# BRAINTREE_CONF = braintree.Configuration(
-#     braintree.Environment.Sandbox,
-#     BRAINTREE_MERCHANT_ID,
-#     BRAINTREE_PUBLIC_KEY,
-#     BRAINTREE_PRIVATE_KEY
-# )
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
 
 
 # Email
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# EMAIL_HOST = os.getenv('EMAIL_HOST')
-# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-# EMAIL_PORT = os.getenv('EMAIL_PORT')
-# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == '1'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') == '1'
 
 
 # Cart
