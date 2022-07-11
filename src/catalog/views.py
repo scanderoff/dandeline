@@ -19,7 +19,7 @@ def products(request: HttpRequest, path: str = "") -> HttpResponse:
     ancestors: list[Category] = []
 
     filter_form = FilterForm(data=request.GET or None)
-    products: QuerySet[Product] = Product.objects.order_by("-created_at")
+    products: QuerySet[Product] = Product.objects.order_by("-created_at").distinct()
 
     if path:
         try:
