@@ -1,3 +1,4 @@
+import urllib.parse
 from typing import Any
 
 from django.http import HttpRequest, HttpResponse, JsonResponse, Http404
@@ -24,8 +25,8 @@ def products(request: HttpRequest, path: str = "") -> HttpResponse:
     if path:
         try:
             cats: list[str] = path.rsplit("/", 2)
-            cat_slug: str = cats.pop()
-            parent_slug: str = cats.pop()
+            cat_slug: str = urllib.parse.unquote(cats.pop()) # tmp
+            parent_slug: str = urllib.parse.unquote(cats.pop()) # tmp
         except IndexError:
             parent_slug: str = None
 
