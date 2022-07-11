@@ -1,0 +1,11 @@
+[
+{
+    "model": "marketing.contact",
+    "pk": 1,
+    "fields": {
+        "name": "Test",
+        "phone": "79996846533",
+        "sent_at": "2022-07-10T15:19:08.189Z"
+    }
+}
+]

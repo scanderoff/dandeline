@@ -1,0 +1,1406 @@
+[
+{
+    "model": "catalog.variation",
+    "pk": 1,
+    "fields": {
+        "product": 1,
+        "size": 3,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 2,
+    "fields": {
+        "product": 1,
+        "size": 8,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 3,
+    "fields": {
+        "product": 1,
+        "size": 2,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 4,
+    "fields": {
+        "product": 1,
+        "size": 15,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 5,
+    "fields": {
+        "product": 2,
+        "size": 2,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 6,
+    "fields": {
+        "product": 2,
+        "size": 10,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 7,
+    "fields": {
+        "product": 2,
+        "size": 8,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 8,
+    "fields": {
+        "product": 3,
+        "size": 12,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 9,
+    "fields": {
+        "product": 3,
+        "size": 13,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 10,
+    "fields": {
+        "product": 3,
+        "size": 13,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 11,
+    "fields": {
+        "product": 4,
+        "size": 11,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 12,
+    "fields": {
+        "product": 4,
+        "size": 7,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 13,
+    "fields": {
+        "product": 4,
+        "size": 14,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 14,
+    "fields": {
+        "product": 4,
+        "size": 1,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 15,
+    "fields": {
+        "product": 4,
+        "size": 14,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 16,
+    "fields": {
+        "product": 4,
+        "size": 7,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 17,
+    "fields": {
+        "product": 4,
+        "size": 3,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 18,
+    "fields": {
+        "product": 5,
+        "size": 5,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 19,
+    "fields": {
+        "product": 5,
+        "size": 13,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 20,
+    "fields": {
+        "product": 5,
+        "size": 14,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 21,
+    "fields": {
+        "product": 5,
+        "size": 3,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 22,
+    "fields": {
+        "product": 5,
+        "size": 14,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 23,
+    "fields": {
+        "product": 5,
+        "size": 2,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 24,
+    "fields": {
+        "product": 5,
+        "size": 5,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 25,
+    "fields": {
+        "product": 6,
+        "size": 6,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 26,
+    "fields": {
+        "product": 6,
+        "size": 15,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 27,
+    "fields": {
+        "product": 6,
+        "size": 11,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 28,
+    "fields": {
+        "product": 6,
+        "size": 7,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 29,
+    "fields": {
+        "product": 6,
+        "size": 2,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 30,
+    "fields": {
+        "product": 6,
+        "size": 4,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 31,
+    "fields": {
+        "product": 7,
+        "size": 8,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 32,
+    "fields": {
+        "product": 7,
+        "size": 9,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 33,
+    "fields": {
+        "product": 7,
+        "size": 15,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 34,
+    "fields": {
+        "product": 7,
+        "size": 1,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 35,
+    "fields": {
+        "product": 7,
+        "size": 12,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 36,
+    "fields": {
+        "product": 8,
+        "size": 5,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 37,
+    "fields": {
+        "product": 8,
+        "size": 10,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 38,
+    "fields": {
+        "product": 8,
+        "size": 6,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 39,
+    "fields": {
+        "product": 9,
+        "size": 1,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 40,
+    "fields": {
+        "product": 9,
+        "size": 5,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 41,
+    "fields": {
+        "product": 9,
+        "size": 9,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 42,
+    "fields": {
+        "product": 9,
+        "size": 10,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 43,
+    "fields": {
+        "product": 9,
+        "size": 4,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 44,
+    "fields": {
+        "product": 9,
+        "size": 13,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 45,
+    "fields": {
+        "product": 9,
+        "size": 12,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 46,
+    "fields": {
+        "product": 10,
+        "size": 5,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 47,
+    "fields": {
+        "product": 10,
+        "size": 11,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 48,
+    "fields": {
+        "product": 10,
+        "size": 3,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 49,
+    "fields": {
+        "product": 10,
+        "size": 2,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 50,
+    "fields": {
+        "product": 11,
+        "size": 6,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 51,
+    "fields": {
+        "product": 11,
+        "size": 11,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 52,
+    "fields": {
+        "product": 11,
+        "size": 8,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 53,
+    "fields": {
+        "product": 11,
+        "size": 5,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 54,
+    "fields": {
+        "product": 11,
+        "size": 14,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 55,
+    "fields": {
+        "product": 11,
+        "size": 10,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 56,
+    "fields": {
+        "product": 12,
+        "size": 11,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 57,
+    "fields": {
+        "product": 12,
+        "size": 9,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 58,
+    "fields": {
+        "product": 12,
+        "size": 7,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 59,
+    "fields": {
+        "product": 12,
+        "size": 7,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 60,
+    "fields": {
+        "product": 12,
+        "size": 5,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 61,
+    "fields": {
+        "product": 12,
+        "size": 6,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 62,
+    "fields": {
+        "product": 13,
+        "size": 11,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 63,
+    "fields": {
+        "product": 13,
+        "size": 3,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 64,
+    "fields": {
+        "product": 13,
+        "size": 15,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 65,
+    "fields": {
+        "product": 13,
+        "size": 9,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 66,
+    "fields": {
+        "product": 14,
+        "size": 7,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 67,
+    "fields": {
+        "product": 14,
+        "size": 10,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 68,
+    "fields": {
+        "product": 14,
+        "size": 9,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 69,
+    "fields": {
+        "product": 14,
+        "size": 8,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 70,
+    "fields": {
+        "product": 15,
+        "size": 4,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 71,
+    "fields": {
+        "product": 15,
+        "size": 4,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 72,
+    "fields": {
+        "product": 15,
+        "size": 14,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 73,
+    "fields": {
+        "product": 15,
+        "size": 15,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 74,
+    "fields": {
+        "product": 15,
+        "size": 6,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 75,
+    "fields": {
+        "product": 15,
+        "size": 2,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 76,
+    "fields": {
+        "product": 16,
+        "size": 3,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 77,
+    "fields": {
+        "product": 16,
+        "size": 15,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 78,
+    "fields": {
+        "product": 16,
+        "size": 10,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 79,
+    "fields": {
+        "product": 16,
+        "size": 9,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 80,
+    "fields": {
+        "product": 16,
+        "size": 6,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 81,
+    "fields": {
+        "product": 16,
+        "size": 8,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 82,
+    "fields": {
+        "product": 17,
+        "size": 1,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 83,
+    "fields": {
+        "product": 17,
+        "size": 15,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 84,
+    "fields": {
+        "product": 17,
+        "size": 9,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 85,
+    "fields": {
+        "product": 17,
+        "size": 13,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 86,
+    "fields": {
+        "product": 17,
+        "size": 13,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 87,
+    "fields": {
+        "product": 18,
+        "size": 9,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 88,
+    "fields": {
+        "product": 18,
+        "size": 15,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 89,
+    "fields": {
+        "product": 18,
+        "size": 8,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 90,
+    "fields": {
+        "product": 18,
+        "size": 12,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 91,
+    "fields": {
+        "product": 18,
+        "size": 7,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 92,
+    "fields": {
+        "product": 18,
+        "size": 8,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 93,
+    "fields": {
+        "product": 18,
+        "size": 1,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 94,
+    "fields": {
+        "product": 19,
+        "size": 12,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 95,
+    "fields": {
+        "product": 19,
+        "size": 15,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 96,
+    "fields": {
+        "product": 19,
+        "size": 12,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 97,
+    "fields": {
+        "product": 19,
+        "size": 4,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 98,
+    "fields": {
+        "product": 19,
+        "size": 9,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 99,
+    "fields": {
+        "product": 20,
+        "size": 13,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 100,
+    "fields": {
+        "product": 20,
+        "size": 2,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 101,
+    "fields": {
+        "product": 20,
+        "size": 8,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 102,
+    "fields": {
+        "product": 20,
+        "size": 12,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 103,
+    "fields": {
+        "product": 20,
+        "size": 14,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 104,
+    "fields": {
+        "product": 20,
+        "size": 15,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 105,
+    "fields": {
+        "product": 21,
+        "size": 15,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 106,
+    "fields": {
+        "product": 21,
+        "size": 6,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 107,
+    "fields": {
+        "product": 21,
+        "size": 15,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 108,
+    "fields": {
+        "product": 21,
+        "size": 13,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 109,
+    "fields": {
+        "product": 21,
+        "size": 7,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 110,
+    "fields": {
+        "product": 22,
+        "size": 2,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 111,
+    "fields": {
+        "product": 22,
+        "size": 7,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 112,
+    "fields": {
+        "product": 22,
+        "size": 6,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 113,
+    "fields": {
+        "product": 22,
+        "size": 8,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 114,
+    "fields": {
+        "product": 22,
+        "size": 14,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 115,
+    "fields": {
+        "product": 23,
+        "size": 8,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 116,
+    "fields": {
+        "product": 23,
+        "size": 2,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 117,
+    "fields": {
+        "product": 23,
+        "size": 9,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 118,
+    "fields": {
+        "product": 23,
+        "size": 13,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 119,
+    "fields": {
+        "product": 23,
+        "size": 1,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 120,
+    "fields": {
+        "product": 24,
+        "size": 13,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 121,
+    "fields": {
+        "product": 24,
+        "size": 11,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 122,
+    "fields": {
+        "product": 24,
+        "size": 13,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 123,
+    "fields": {
+        "product": 24,
+        "size": 7,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 124,
+    "fields": {
+        "product": 24,
+        "size": 10,
+        "color": 6
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 125,
+    "fields": {
+        "product": 24,
+        "size": 12,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 126,
+    "fields": {
+        "product": 24,
+        "size": 15,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 127,
+    "fields": {
+        "product": 25,
+        "size": 5,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 128,
+    "fields": {
+        "product": 25,
+        "size": 7,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 129,
+    "fields": {
+        "product": 25,
+        "size": 11,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 130,
+    "fields": {
+        "product": 25,
+        "size": 5,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 131,
+    "fields": {
+        "product": 25,
+        "size": 12,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 132,
+    "fields": {
+        "product": 25,
+        "size": 6,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 133,
+    "fields": {
+        "product": 26,
+        "size": 7,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 134,
+    "fields": {
+        "product": 26,
+        "size": 11,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 135,
+    "fields": {
+        "product": 26,
+        "size": 3,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 136,
+    "fields": {
+        "product": 26,
+        "size": 10,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 137,
+    "fields": {
+        "product": 26,
+        "size": 11,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 138,
+    "fields": {
+        "product": 26,
+        "size": 2,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 139,
+    "fields": {
+        "product": 26,
+        "size": 10,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 140,
+    "fields": {
+        "product": 27,
+        "size": 8,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 141,
+    "fields": {
+        "product": 27,
+        "size": 11,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 142,
+    "fields": {
+        "product": 27,
+        "size": 8,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 143,
+    "fields": {
+        "product": 27,
+        "size": 3,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 144,
+    "fields": {
+        "product": 28,
+        "size": 14,
+        "color": 3
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 145,
+    "fields": {
+        "product": 28,
+        "size": 4,
+        "color": 5
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 146,
+    "fields": {
+        "product": 28,
+        "size": 15,
+        "color": 4
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 147,
+    "fields": {
+        "product": 29,
+        "size": 1,
+        "color": 7
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 148,
+    "fields": {
+        "product": 29,
+        "size": 9,
+        "color": 1
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 149,
+    "fields": {
+        "product": 29,
+        "size": 3,
+        "color": 2
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 150,
+    "fields": {
+        "product": 29,
+        "size": 14,
+        "color": 10
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 151,
+    "fields": {
+        "product": 30,
+        "size": 9,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 152,
+    "fields": {
+        "product": 30,
+        "size": 2,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 153,
+    "fields": {
+        "product": 30,
+        "size": 2,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 154,
+    "fields": {
+        "product": 30,
+        "size": 2,
+        "color": 9
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 155,
+    "fields": {
+        "product": 30,
+        "size": 15,
+        "color": 8
+    }
+},
+{
+    "model": "catalog.variation",
+    "pk": 156,
+    "fields": {
+        "product": 30,
+        "size": 8,
+        "color": 3
+    }
+}
+]
