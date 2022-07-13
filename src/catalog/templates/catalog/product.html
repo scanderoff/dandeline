@@ -1,4 +1,4 @@
-{% extends 'content.html' %}
+{% extends 'base.html' %}
 {% load thumbnail %}
 
 {% block title %}
@@ -175,7 +175,10 @@
     </div>
 {% endblock %}
 
+
 {% block sections %}
+    {{ block.super }}
+
     {% if recommended_products %}
         <section class="similars-section">
             <div class="page__container">
