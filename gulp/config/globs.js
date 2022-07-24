@@ -1,5 +1,5 @@
 const srcDir = "assets";
-const buildDir = "src/core/static";
+const buildDir = "backend/src/static";
 
 
 export default {
