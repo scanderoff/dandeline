@@ -4,11 +4,23 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.db.models import QuerySet
 from django.views.decorators.http import require_POST
+from rest_framework.generics import ListAPIView, CreateAPIView
 
 from src.catalog.models import Category, Product
 from src.bookmark.services.bookmark import Bookmark
-from .models import HeroSlide
+from .models import HeroSlide, Contact
 from .forms import ContactForm
+from .serializers import HeroSlideSerializer, ContactSerializer
+
+
+class HeroSlideListAPIView(ListAPIView):
+    queryset = HeroSlide.objects.all()
+    serializer_class = HeroSlideSerializer
+
+
+class ContactCreateAPIView(CreateAPIView):
+    model = Contact
+    serializer_class = ContactSerializer
 
 
 def homepage(request: HttpRequest) -> HttpResponse:
@@ -49,7 +61,6 @@ def leave_contact(request: HttpRequest) -> HttpResponse:
     form = ContactForm(data)
 
     if not form.is_valid():
-        print(form.errors)
         return JsonResponse({"success": False})
 
     form.save()

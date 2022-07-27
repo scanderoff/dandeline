@@ -11,7 +11,9 @@ class Bookmark:
         if self.__products is not None:
             return self.__products
 
-        self.__products = Product.objects.filter(id__in=self.bookmark)
+        self.__products = Product.objects \
+            .filter(id__in=self.bookmark) \
+            # .order_by("-created_at")
 
         return self.__products
 
@@ -44,7 +46,7 @@ class Bookmark:
 
     def __iter__(self) -> Product:
         for product in self.products:
-            yield product
+            yield {"product": product}
 
     def __len__(self) -> int:
         return len(self.bookmark)

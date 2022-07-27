@@ -1,4 +1,5 @@
 import weasyprint
+from typing import Any
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.conf import settings
@@ -8,12 +9,14 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpRequest, HttpResponse
 from django.views import View
 from django.db.models import Model
+from rest_framework.generics import ListCreateAPIView
 
 from src.cart.services.cart import Cart
 from src.coupons.forms import CouponApplyForm
 from .models import Order, OrderItem
 from .forms import OrderCreateForm
 # from .tasks import order_created
+from .serializers import OrderSerializer
 
 
 
@@ -46,6 +49,48 @@ def admin_order_pdf(_: HttpRequest, order_id: str) -> HttpResponse:
     )
 
     return response
+
+
+class OrderListCreateAPIView(ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    def perform_create(self, serializer: OrderSerializer) -> None:
+        kwargs: dict[str, Any] = {}
+        cart = Cart(self.request)
+
+        user: User = self.request.user
+
+        if not user.is_authenticated:
+            # user = register_on_checkout(request, order)
+            ...
+
+        kwargs["user"] = user
+
+        if cart.coupon:
+            kwargs["coupon"] = cart.coupon
+            kwargs["discount"] = cart.coupon.discount
+
+        order: Order = serializer.save(**kwargs)
+
+
+        order_items: list[OrderItem] = [
+            OrderItem(
+                order=order,
+                variation=item["variation"],
+                quantity=item["quantity"],
+            )
+            for item in cart
+        ]
+
+        OrderItem.objects.bulk_create(order_items)
+
+        cart.clear()
+
+
+        # order_created.delay(order.id)
+
+        self.request.session["order_id"] = order.id
 
 
 class CheckoutView(View):

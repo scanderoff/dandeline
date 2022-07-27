@@ -14,4 +14,7 @@ urlpatterns: list[URLPattern] = [
     path("contact/", views.contact, name="contact"),
 
     path("leave-contact/", views.leave_contact, name="leave-contact"),
+
+    path("hero-slides/", views.HeroSlideListAPIView.as_view(), name="hero-slides"),
+    path("contact-create/", views.ContactCreateAPIView.as_view(), name="contact-create"),
 ]

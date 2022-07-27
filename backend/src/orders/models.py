@@ -11,7 +11,7 @@ from src.coupons.models import Coupon
 
 
 class Order(models.Model):
-    class Meta:
+    class Meta():
         ordering: Sequence[str] = ("-created_at",)
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"

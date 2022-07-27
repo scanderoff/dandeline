@@ -1,16 +1,23 @@
-from django.urls import URLPattern, path
+from django.urls import URLPattern, path, include
+from rest_framework import routers
 
 from .apps import CatalogConfig
-from . import views
+from .views import variation, products, product, ProductViewSet, VariationListAPIView
 
 
 app_name: str = CatalogConfig.name
+router = routers.DefaultRouter()
+router.register(r"products", ProductViewSet, basename="products")
+
 
 urlpatterns: list[URLPattern] = [
-    path("variation", views.variation, name="variation"),
+    path("variation", variation, name="variation"),
 
-    path("", views.products, name="products"),
-    path("category/<path:path>/", views.products, name="products"),
+    path("", products, name="products"),
+    path("category/<path:path>/", products, name="products"),
 
-    path("product/<str:slug>/", views.product, name="product"),
+    path("product/<str:slug>/", product, name="product"),
+
+    path("", include(router.urls), name="products1"),
+    path("variations/", VariationListAPIView.as_view(), name="variations"),
 ]

@@ -9,4 +9,6 @@ urlpatterns: list[URLPattern] = [
     path("", views.summary, name="summary"),
     path("clear/", views.clear, name="clear"),
     path("update/<int:product_id>", views.update, name="update"),
+
+    path("bookmark/", views.BookmarkAPIView.as_view(), name="bookmark"),
 ]

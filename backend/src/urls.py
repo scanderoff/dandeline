@@ -30,6 +30,12 @@ urlpatterns: list[URLPattern] = [
     path("bookmark/", include("src.bookmark.urls", namespace="bookmark")),
     path("catalog/", include("src.catalog.urls", namespace="catalog")),
     path("", include("src.marketing.urls", namespace="marketing")),
+
+    path("api/v1/", include("src.catalog.urls", namespace="catalog1")),
+    path("api/v1/", include("src.cart.urls", namespace="cart1")),
+    path("api/v1/", include("src.bookmark.urls", namespace="bookmark1")),
+    path("api/v1/", include("src.orders.urls", namespace="orders1")),
+    path("api/v1/", include("src.marketing.urls", namespace="marketing1")),
 ]
 
 if settings.DEBUG:
